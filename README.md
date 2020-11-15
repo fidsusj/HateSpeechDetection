@@ -25,3 +25,33 @@ Goal of this project is to classify and filter social media posts on hate speech
     - Paper: [Link](https://arxiv.org/pdf/1710.07395.pdf)
 
 Taken from http://hatespeechdata.com/
+
+## Commands
+
+1. Install pipenv
+
+       pip install pipenv
+        
+2. Install all the dependencies defined in the Pipfile        
+        
+       pipenv install --dev
+        
+3. Enter the virtual environment of pipenv
+
+       pipenv shell
+
+4. Set up the git hook scripts
+       
+       pre-commit install
+
+5. Run the program
+
+       pipenv run main
+       
+6. Run the tests
+
+       pipenv run test && pipenv run report
+       
+7. Leave the virtual environment of pipenv
+
+       exit
