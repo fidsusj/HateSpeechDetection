@@ -13,18 +13,14 @@ Goal of this project is to classify and filter social media posts on hate speech
 
 ### hatespeechdata.com
 
-- Cyberbullying Datasets (WoW Forum and LoL Forum)
-    - Datasets: [Link](http://ub-web.de/research/)
-    - Paper: [Link](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1061&context=ecis2016_rp)
-- Hate Speech and Offensive Content Identification (HASOC)
-    - Datasets: [Link](https://hasocfire.github.io/hasoc/2019/dataset.html)
-    - Paper: [Link](https://dl.acm.org/doi/abs/10.1145/3368567.3368584?download=true)
-- Hate Speech Twitter
-    - Datasets: [Link](https://github.com/mayelsherif/hate_speech_icwsm18)
-    - Paper: [Link](https://arxiv.org/pdf/1909.04251.pdf)
-- Fox-News-User-Comments
-    - Datasets: [Link](https://github.com/sjtuprog/fox-news-comments)
-    - Paper: [Link](https://arxiv.org/pdf/1710.07395.pdf)
+- [Hate Speech Dataset from a White Supremacy Forum](https://arxiv.org/pdf/1703.04009.pdf)
+- [Hateful Symbols or Hateful People? Predictive Features for Hate Speech Detection on Twitter](https://www.aclweb.org/anthology/N16-2013.pdf)
+- [A Benchmark Dataset for Learning to Intervene in Online Hate Speech](https://arxiv.org/pdf/1909.04251.pdf)
+- [Hate Speech and Offensive Content Identification (HASOC)](https://dl.acm.org/doi/pdf/10.1145/3368567.3368584)
+- [Large Scale Crowdsourcing and Characterization of Twitter Abusive Behavior](https://arxiv.org/pdf/1802.00393.pdf)
+- [Cyberbullying Datasets (WoW Forum and LoL Forum)](https://aisel.aisnet.org/cgi/viewcontent.cgi?article=1061&context=ecis2016_rp)
+- [Detecting Online Hate Speech Using Context Aware Models](https://arxiv.org/pdf/1710.07395.pdf)
+- [Automated Hate Speech Detection and the Problem of Offensive Language∗](https://arxiv.org/pdf/1703.04009.pdf)
     
 ### ACM (VPN required)
 
@@ -46,6 +42,17 @@ Goal of this project is to classify and filter social media posts on hate speech
 - [Analysis Text of Hate Speech Detection Using Recurrent Neural Network](https://ieeexplore.ieee.org/document/8712104)
 - [Hate Speech Detection using Global Vector and Deep Belief Network Algorithm](https://ieeexplore.ieee.org/document/9245467)
 - [Evaluating Machine Learning Techniques for Detecting Offensive and Hate Speech in South African Tweets](https://ieeexplore.ieee.org/document/8963960)
+
+### Arxiv
+
+- [Detecting White Supremacist Hate Speech using Domain Specific Word Embedding with Deep Learning and BERT](https://arxiv.org/pdf/2010.00357.pdf)
+- [ETHOS: an Online Hate Speech Detection Dataset](https://arxiv.org/pdf/2006.08328.pdf)
+- [Investigating Deep Learning Approaches for Hate Speech Detection in Social Media ](https://arxiv.org/ftp/arxiv/papers/2005/2005.14690.pdf)
+- [A BERT-Based Transfer Learning Approach for Hate Speech Detection in Online Social Media](https://arxiv.org/pdf/1910.12574.pdf)
+- [Transfer Learning for Hate Speech Detection in Social Media](https://arxiv.org/pdf/1906.03829.pdf)
+- [Detecting Hate Speech and Offensive Language on Twitter using Machine Learning: An N-gram and TFIDF based Approach](https://arxiv.org/pdf/1809.08651.pdf)
+- [Hate Speech Detection: A Solved Problem? The Challenging Case of Long Tail on Twitter](https://arxiv.org/pdf/1803.03662.pdf)
+- [Detecting Hate Speech in Social Media](https://arxiv.org/pdf/1712.06427.pdf)
 
 ## Commands
 
