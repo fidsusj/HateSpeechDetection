@@ -1,13 +1,6 @@
 # HateSpeechDetection
 
-Goal of this project is to classify and filter social media posts on hate speech using text analytics methods. 
-
-## Categories
-
-- Bullying
-- Harassment
-- Racism
-- Sexism
+Goal of this project is to classify social media posts on hate speech using text analytics methods. 
 
 ## Datasets and papers
 
@@ -15,7 +8,9 @@ Goal of this project is to classify and filter social media posts on hate speech
 - [Hate Speech on Twitter: A Pragmatic Approach to Collect Hateful and Offensive Expressions and Perform Hate Speech Detection](https://ieeexplore.ieee.org/document/8292838)
 - [Evaluating Machine Learning Techniques for Detecting Offensive and Hate Speech in South African Tweets](https://ieeexplore.ieee.org/document/8963960)
 - [A Survey on Automatic Detection of Hate Speech in Text](https://dl.acm.org/doi/pdf/10.1145/3232676)
-
+- [Detecting Hate Speech and Offensive Language on Twitter using Machine Learning: An N-gram and TFIDF based Approach](https://arxiv.org/pdf/1809.08651.pdf)
+- [Detecting Hate Speech in Social Media](https://arxiv.org/pdf/1712.06427.pdf)
+- [Automated Hate Speech Detection and the Problem of Offensive Language∗](https://arxiv.org/pdf/1703.04009.pdf)
 
 ### hatespeechdata.com
 
@@ -36,6 +31,7 @@ Goal of this project is to classify and filter social media posts on hate speech
 - [Mean Birds: Detecting Aggression and Bullying on Twitter](https://dl.acm.org/doi/pdf/10.1145/3091478.3091487)
 - [A Unified Deep Learning Architecture for Abuse Detection](https://dl.acm.org/doi/pdf/10.1145/3292522.3326028)
 - [Identifying Hate Speech in Social Media](https://dl.acm.org/doi/pdf/10.1145/3155212)
+- [A Survey on Automatic Detection of Hate Speech in Text](https://dl.acm.org/doi/pdf/10.1145/3232676)
 
 ### IEEE
 
