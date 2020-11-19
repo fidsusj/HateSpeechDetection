@@ -11,6 +11,11 @@ Goal of this project is to classify and filter social media posts on hate speech
 
 ## Datasets and papers
 
+### Interesting papers for our purpose
+- [Hate Speech on Twitter: A Pragmatic Approach to Collect Hateful and Offensive Expressions and Perform Hate Speech Detection](https://ieeexplore.ieee.org/document/8292838)
+- [Evaluating Machine Learning Techniques for Detecting Offensive and Hate Speech in South African Tweets](https://ieeexplore.ieee.org/document/8963960)
+
+
 ### hatespeechdata.com
 
 - [Hate Speech Dataset from a White Supremacy Forum](https://arxiv.org/pdf/1703.04009.pdf)
