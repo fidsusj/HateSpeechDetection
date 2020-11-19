@@ -1,5 +1,3 @@
-[0] Config.pm:304> INFO - This is Biber 2.12
-[1] Config.pm:307> INFO - Logfile is 'project-proposal.blg'
-[73] biber-MSWIN64:315> INFO - === 
-[760] Utils.pm:209> ERROR - Cannot find control file 'project-proposal.bcf'! - Did latex run successfully on your .tex file before you ran biber?
-[761] Biber.pm:114> INFO - ERRORS: 1
+This is BibTeX, Version 0.99dThe top-level auxiliary file: project-proposal.aux
+The style file: plain.bst
+Database file #1: references.bib
