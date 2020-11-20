@@ -1,3 +1,5 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: project-proposal.aux
-The style file: plain.bst
-Database file #1: references.bib
+[0] Config.pm:304> INFO - This is Biber 2.13
+[0] Config.pm:307> INFO - Logfile is 'project-proposal.blg'
+[21] biber:315> INFO - === Fr Nov 20, 2020, 21:59:30
+[37] Utils.pm:316> ERROR - Cannot find 'project-proposal.bcf'!
+[37] Biber.pm:114> INFO - ERRORS: 1

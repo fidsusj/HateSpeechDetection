@@ -1,3 +1,47 @@
 \section{Research Topic Summary}
 
-- show selection of DL papers
+Current research in the area of hate speech detection is often built upon neuronal network techniques. Exemplary therefore are the works of Roy et al. \cite{9253658}, Setyadi, Nasrun and Setianingsih \cite{8712109} and Kapil, Ekbal and Das \cite{kapil2020investigating}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{9253658} have reached accuracies up to 95\%.
+
+Nevertheless even classical Machine Learning techniques such as Support Vector Machines (SVM) combined with text analytics methods are a promising approach.
+Watanabe, Bouazizi and Ohtsuki \cite{8292838} used a decision tree and reached an accuracy of 87.4\% for detecting whether a tweet is hateful or not.
+
+Furthermore the results of classical Machine Learning techniques can be used as reference value to evaluate the neuronal network approach. This was done by Roy et al. \cite{9253658}.
+
+There are three aspects to consider, derived from the domain of automatic hate speech detection:
+\begin{enumerate}
+	\item Raw dataset
+	\item Feature extraction
+	\item Machine Learning technique
+\end{enumerate}
+
+The following sections introduce these three aspects.
+
+\subsection{Raw dataset}
+To obtain a dataset one can use an existing already labelled dataset (e.g. done by Watanabe, Bouazizi and Ohtsuki \cite{8292838}), or one could label the data by hand (e.g. made by Oriola and Kotz\'{e} \cite{8963960}).
+Depending on the dataset the classes in which the data is classified can differ. Prominent classifications for datasets in the domain of hate speech are the binary classification (no hate speech, hate speech) and the ternary classification (clean, offensive, hate speech). 
+TODO: Beispieldatensaetze
+
+Another aspect is the distribution between the different classes. Is the distribution equally among the different classes or not? In case of imbalanced distributions the machine learning approach can be less performant and accurate \cite{8963960}.
+
+
+\subsection{Feature extraction}
+The main difference between the two introduced methodologies (neuronal network, classical Machine learning techniques) is the process of feature extraction. In neuronal network approaches the used features are learned automatically, whereas classical Machine Learning techniques require a manual feature extraction process. This is highly based on text analytics.
+
+The following list provides an overview of possible features:
+\begin{itemize}
+	\item Sentiment-based features
+	allow us to extract the polarity of the tweet
+	\item Semantic features
+	allow us to find any emphasized expression
+	-> TF-IDF, Part-of-speech
+	\item Unigram features
+	allow us to detect any explicit form of hate speech
+	-> N-grams, Bag-of-words
+	\item Pattern features
+	allow the identification of any longer or implicit forms of hate speech
+\end{itemize}
+
+TODO: Auflistung welche Features in welchen Papern schon betrachtet wurden.
+
+\subsection{Machine Learning technique}
+Welche ML methods werden benutzt
