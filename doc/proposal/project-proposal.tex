@@ -29,6 +29,15 @@
 \usepackage{graphicx}
 % Include doc++ generated tex-files:
 %\usepackage{docxx}
+\usepackage[english]{babel}
+\usepackage[
+backend=biber
+,style=ieee
+,backref
+,defernumbers=true
+]{biblatex}
+
+\addbibresource[datatype=bibtex]{references.bib}
 
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
@@ -106,8 +115,6 @@ Team Member: & Nils Krehl, 3664130, Applied Computer Science\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % REFERENCES:
-
-\bibliographystyle{plain}
-\bibliography{references}
+\printbibliography
 
 \end{document}

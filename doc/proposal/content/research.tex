@@ -1,19 +1,13 @@
 \section{Research Topic Summary}
 
-Current research in the area of hate speech detection is often built upon neuronal network techniques. Exemplary therefore are the works of Roy et al. \cite{9253658}, Setyadi, Nasrun and Setianingsih \cite{8712109} and Kapil, Ekbal and Das \cite{kapil2020investigating}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{9253658} have reached accuracies up to 95\%.
-
-Nevertheless even classical Machine Learning techniques such as Support Vector Machines (SVM) combined with text analytics methods are a promising approach.
-Watanabe, Bouazizi and Ohtsuki \cite{8292838} used a decision tree and reached an accuracy of 87.4\% for detecting whether a tweet is hateful or not.
-
-Furthermore the results of classical Machine Learning techniques can be used as reference value to evaluate the neuronal network approach. This was done by Roy et al. \cite{9253658}.
-
-There are three aspects to consider, derived from the domain of automatic hate speech detection:
+There are three aspects to consider, derived from the reseach on automatic hate speech detection:
 \begin{enumerate}
 	\item Raw dataset
 	\item Feature extraction
 	\item Machine Learning technique
 \end{enumerate}
 
+\noindent
 The following sections introduce these three aspects.
 
 \subsection{Raw dataset}
@@ -27,21 +21,28 @@ Another aspect is the distribution between the different classes. Is the distrib
 \subsection{Feature extraction}
 The main difference between the two introduced methodologies (neuronal network, classical Machine learning techniques) is the process of feature extraction. In neuronal network approaches the used features are learned automatically, whereas classical Machine Learning techniques require a manual feature extraction process. This is highly based on text analytics.
 
-The following list provides an overview of possible features:
+The following list provides an overview of possible features and their technical methods from the area of text analytics. The list is clustered into the four categories based on Watanabe, Bouazizi and Ohtsuki \cite{8292838}. The possible text analytics approaches derive from the literature review of Fortuna and Nunes \cite{10.1145/3232676}.
 \begin{itemize}
-	\item Sentiment-based features
-	allow us to extract the polarity of the tweet
-	\item Semantic features
-	allow us to find any emphasized expression
-	-> TF-IDF, Part-of-speech
-	\item Unigram features
-	allow us to detect any explicit form of hate speech
-	-> N-grams, Bag-of-words
-	\item Pattern features
-	allow the identification of any longer or implicit forms of hate speech
+	\item \textbf{Sentiment-based features}: Is the tweet rather positive or negative? \newline
+	% allow us to extract the polarity of the tweet
+	Text analytics approaches: Dictionaries, Rule Based Approaches, Ob\-jec\-ti\-vi\-ty-Subjectivity of the Language, Declarations of Superiority of the Ingroup
+	\item \textbf{Semantic features}: Which parts of the tweet are emphasized? \newline
+	% allow us to find any emphasized expression
+	Text analytics approaches: TF-IDF, Part-of-speech, Profanity Windows, Lexical Syntactic Feature-based, Topic Classification, Template Based Strategy, Word Sense Disambiguation Techniques, Othering Language
+	\item \textbf{Unigram features}: Are there any specific words marking hate speech? \newline
+	% allow us to detect any explicit form of hate speech
+	Text analytics approaches: N-grams, Bag-of-words
+	\item \textbf{Pattern features}: Are there any specific patterns marking hate speech? \newline
+	% allow the identification of any longer or implicit forms of hate speech
+	Text analytics approaches: Part-of-speech, Dictionaries, Typed De\-pen\-den\-cies,Word Embeddings
 \end{itemize}
 
-TODO: Auflistung welche Features in welchen Papern schon betrachtet wurden.
 
 \subsection{Machine Learning technique}
-Welche ML methods werden benutzt
+
+Current research in the area of hate speech detection is often built upon neuronal network techniques. Exemplary therefore are the works of Roy et al. \cite{9253658}, Setyadi, Nasrun and Setianingsih \cite{8712109} and Kapil, Ekbal and Das \cite{kapil2020investigating}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{9253658} have reached accuracies up to 95\% for detecting whether a tweet is hateful or not.
+
+Nevertheless even classical Machine Learning techniques such as Support Vector Machines (SVM) combined with text analytics methods are a promis\-ing approach.
+Watanabe, Bouazizi and Ohtsuki \cite{8292838} used a decision tree and reached an accuracy of 87.4\%.
+
+Furthermore the results of classical Machine Learning techniques can be used as reference value to evaluate the neuronal network approach. This was done by Roy et al. \cite{9253658}.
