@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400) (preloaded format=pdflatex 2020.11.22)  22 NOV 2020 12:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400) (preloaded format=pdflatex 2020.11.22)  22 NOV 2020 12:27
 entering extended mode
 **./project-proposal.tex
 (project-proposal.tex
@@ -685,9 +685,9 @@ nd anonymous
  []
 
 ) (content/research.tex [1]
-Overfull \hbox (6.2627pt too wide) in paragraph at lines 22--23
-\T1/lmr/m/n/12 automatically, whereas classical Machine Learning techniques req
-uire a manual
+Overfull \hbox (0.29538pt too wide) in paragraph at lines 22--23
+\T1/lmr/m/n/12 speech (neuronal network approaches, classical machine learning 
+approaches).
  []
 
 
@@ -751,7 +751,7 @@ ications
 
 [4] (project-proposal.aux)
 Package rerunfilecheck Info: File `project-proposal.out' has not changed.
-(rerunfilecheck)             Checksum: 98F6C414E8D41D8A3A61569A8BEAE9B4;364.
+(rerunfilecheck)             Checksum: CC001FE76EAADFE2BEE4E7873789CD14;363.
 Package logreq Info: Writing requests to 'project-proposal.run.xml'.
 \openout1 = `project-proposal.run.xml'.
 
@@ -759,7 +759,7 @@ Package logreq Info: Writing requests to 'project-proposal.run.xml'.
 Here is how much of TeX's memory you used:
  14181 strings out of 481737
  252688 string characters out of 2921602
- 988448 words of memory out of 3000000
+ 988454 words of memory out of 3000000
  30672 multiletter control sequences out of 15000+200000
  589759 words of font info for 62 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
@@ -770,9 +770,9 @@ l/fonts/type1/public/lm/lmbx12.pfb></home/st/.miktex/texmfs/install/fonts/type1
 /public/lm/lmcsc10.pfb></home/st/.miktex/texmfs/install/fonts/type1/public/lm/l
 mr12.pfb></home/st/.miktex/texmfs/install/fonts/type1/public/lm/lmri12.pfb></ho
 me/st/.miktex/texmfs/install/fonts/type1/public/lm/lmtt12.pfb>
-Output written on project-proposal.pdf (5 pages, 151195 bytes).
+Output written on project-proposal.pdf (5 pages, 152115 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  23 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
