@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400) (preloaded format=pdflatex 2020.11.22)  22 NOV 2020 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400) (preloaded format=pdflatex 2020.11.22)  22 NOV 2020 12:50
 entering extended mode
 **./project-proposal.tex
 (project-proposal.tex
@@ -712,55 +712,65 @@ Overfull \hbox (5.80026pt too wide) in paragraph at lines 35--38
 rns marking hate speech? 
  []
 
-[2]) (content/description.tex)
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-18.
+[2]) (content/description.tex
+Overfull \hbox (14.42699pt too wide) in paragraph at lines 3--4
+\T1/lmr/m/n/12 Finally the used machine learning approaches and their evaluatio
+n are presented. 
+ []
 
-(/home/st/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
+
+Overfull \hbox (27.84593pt too wide) in paragraph at lines 9--9
+[]\T1/lmr/bx/n/14.4 Text Analytics Tasks and Pipeline (Feature extraction) 
+ []
+
+) [3]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+19.
+ (/home/st/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 118.
+(Font)              <12> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 118.
+(Font)              <8> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 118.
+(Font)              <6> on input line 119.
 
-Overfull \hbox (6.65639pt too wide) in paragraph at lines 119--119
+Overfull \hbox (6.65639pt too wide) in paragraph at lines 120--120
 \T1/lmr/m/it/12 speech online\T1/lmr/m/n/12 , European Commission Homepage, 202
 0. [Online]. Available:
  []
 
 
-Overfull \hbox (3.7077pt too wide) in paragraph at lines 119--119
+Overfull \hbox (3.7077pt too wide) in paragraph at lines 120--120
 \T1/lmr/m/n/12 detecting offensive and hate speech in south african tweets, \T
 1/lmr/m/it/12 IEEE Access\T1/lmr/m/n/12 ,
  []
 
-[3]
-Overfull \hbox (29.93341pt too wide) in paragraph at lines 119--119
+
+Overfull \hbox (29.93341pt too wide) in paragraph at lines 120--120
 \T1/lmr/m/n/12 speech detection using backpropagation neural network, in \T1/l
 mr/m/it/12 2018 International
  []
 
 
-Overfull \hbox (18.34264pt too wide) in paragraph at lines 119--119
+Overfull \hbox (18.34264pt too wide) in paragraph at lines 120--120
 \T1/lmr/m/it/12 Conference on Control, Electronics, Renewable Energy and Commun
 ications
  []
 
 [4] (project-proposal.aux)
 Package rerunfilecheck Info: File `project-proposal.out' has not changed.
-(rerunfilecheck)             Checksum: CC001FE76EAADFE2BEE4E7873789CD14;363.
+(rerunfilecheck)             Checksum: C9C124442ABCFA01EA1148D4F66F59DD;688.
 Package logreq Info: Writing requests to 'project-proposal.run.xml'.
 \openout1 = `project-proposal.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14181 strings out of 481737
- 252688 string characters out of 2921602
+ 14189 strings out of 481737
+ 252800 string characters out of 2921602
  988454 words of memory out of 3000000
- 30672 multiletter control sequences out of 15000+200000
+ 30676 multiletter control sequences out of 15000+200000
  589759 words of font info for 62 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
  66i,6n,73p,1966b,1693s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -770,9 +780,9 @@ l/fonts/type1/public/lm/lmbx12.pfb></home/st/.miktex/texmfs/install/fonts/type1
 /public/lm/lmcsc10.pfb></home/st/.miktex/texmfs/install/fonts/type1/public/lm/l
 mr12.pfb></home/st/.miktex/texmfs/install/fonts/type1/public/lm/lmri12.pfb></ho
 me/st/.miktex/texmfs/install/fonts/type1/public/lm/lmtt12.pfb>
-Output written on project-proposal.pdf (5 pages, 152115 bytes).
+Output written on project-proposal.pdf (5 pages, 154810 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 145 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
