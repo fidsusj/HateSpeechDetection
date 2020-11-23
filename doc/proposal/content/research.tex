@@ -15,17 +15,21 @@ In order to achieve the goals of this work three milestones were identified:
 \noindent
 The following sections introduce these three aspects.
 
-\subsection{Raw dataset}
-To obtain a dataset one can use an existing already labelled dataset (e.g. done by Watanabe, Bouazizi and Ohtsuki \cite{Watanabe.2018}), or one could label the data by hand (e.g. made by Oriola and Kotz\'{e} \cite{Oriola.2020}).
-Depending on the dataset the classes in which the data is classified can differ. Prominent classifications for datasets in the domain of hate speech are the binary classification (no hate speech, hate speech) and the ternary classification (clean, offensive, hate speech). 
-% TODO: Beispieldatensaetze
+\subsection{Data preparation and representation}
 
-Another aspect is the distribution between the different classes. Is the distribution equally among the different classes or not? In case of imbalanced distributions the machine learning approach can be less performant and accurate \cite{Oriola.2020}.
+There are two data sets used for the project. The first one \cite{ThomasDavidson.2020} uses data from the \textit{Twitter API}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary classification style. The workers were adviced to follow predefined definitions of each category and to take context information into consideration. Each tweet was coded by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
 
+\noindent
+The second data set uses data from the \textit{White Supremacy Forum} \cite{OnadeGibert.2020}. One document represents a sentence that is according to binary classification either labeled as hate or no hate. In total, 1.119 sentences containing hate and 8.537 sentences containing no hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information were provided. 
+
+\noindent
+Both data sets are stated to be balanced, multiple documents cannot be traced back to a single user. In case of imbalanced distributions classifications can be less performant and accurate \cite{Oriola.2020}.
 
 \subsection{Feature extraction}
+
 There are two approaches for detecting hate speech, either using statistical and probabilistic methods from a conventional text analytics background or using deep learning based approaches. One main difference between the two approaches is the process of feature extraction. In deep learning approaches the used features are learned automatically, whereas classical text analytics techniques require a manual feature extraction process.
 
+\noindent
 The following list provides an overview of possible features and their technical methods from the area of text analytics. The list is clustered into the four categories based on Watanabe, Bouazizi and Ohtsuki \cite{Watanabe.2018}. The possible text analytics approaches derive from the literature review of Fortuna and Nunes \cite{Fortuna.2018}.
 \begin{itemize}
 	\item \textbf{Sentiment-based features}: Is the tweet rather positive or negative? \newline
@@ -47,9 +51,10 @@ The following list provides an overview of possible features and their technical
 
 Current research in the area of hate speech detection is often built upon deep learning techniques. Exemplary therefore are the works of Roy et al. \cite{Roy.2020}, Setyadi, Nasrun and Setianingsih \cite{NabiilaAdaniSetyadi.2018} and Kapil, Ekbal and Das \cite{Kapil.2020}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{Roy.2020} have reached accuracies up to 95\% for detecting whether a tweet is hateful or not.
 
+\noindent
 Nevertheless even classical machine learning techniques such as Support Vector Machines (SVM) combined with text analytics methods are a promis\-ing approach.
 Watanabe, Bouazizi and Ohtsuki \cite{Watanabe.2018} used a decision tree and reached an accuracy of 87.4\%.
 
 % TODO: Describe Classificators
-
+\noindent
 Furthermore the results of classical machine learning techniques can be used as reference value to evaluate the deep learning approach. This was done by Roy et al. \cite{Roy.2020}.
