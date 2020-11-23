@@ -1,10 +1,15 @@
 \section{Research Topic Summary}
 
-There are three aspects to consider, derived from the reseach on automatic hate speech detection:
+The main contribution of this work should be to evaluate the boundaries of conventional text analytics approaches for hate speech detection including manual feature extraction and subsequent text classification of documents into hate speech and non hate speech as opposed to modern deep learning approaches. The results should show which features work best for which classifier and which problems can be addressed with conventional text analytics methods and which not. A comparison to modern deep learning approaches should be drawn using the metrics of simple accuracy as well as precision and recall, respectively the F1-score. 
+
+\newpage
+\noindent
+In order to achieve the goals of this work three milestones were identified: 
+
 \begin{enumerate}
-	\item Raw dataset
+	\item Data preparation and representation
 	\item Feature extraction
-	\item Machine Learning approach
+	\item Text analytics classifier
 \end{enumerate}
 
 \noindent
@@ -19,7 +24,7 @@ Another aspect is the distribution between the different classes. Is the distrib
 
 
 \subsection{Feature extraction}
-There are two classes of machine learning approaches for detecting hate speech (neuronal network approaches, classical machine learning approaches). They are described in detail in the next chapter. One main difference between the two introduced approaches is the process of feature extraction. In neuronal network approaches the used features are learned automatically, whereas classical machine learning techniques require a manual feature ex\-trac\-tion process. This is highly based on text analytics.
+There are two approaches for detecting hate speech, either using statistical and probabilistic methods from a conventional text analytics background or using deep learning based approaches. One main difference between the two approaches is the process of feature extraction. In deep learning approaches the used features are learned automatically, whereas classical text analytics techniques require a manual feature extraction process.
 
 The following list provides an overview of possible features and their technical methods from the area of text analytics. The list is clustered into the four categories based on Watanabe, Bouazizi and Ohtsuki \cite{Watanabe.2018}. The possible text analytics approaches derive from the literature review of Fortuna and Nunes \cite{Fortuna.2018}.
 \begin{itemize}
@@ -38,11 +43,13 @@ The following list provides an overview of possible features and their technical
 \end{itemize}
 
 
-\subsection{Machine learning approach}
+\subsection{Text analytics approach}
 
-Current research in the area of hate speech detection is often built upon neuronal network techniques. Exemplary therefore are the works of Roy et al. \cite{Roy.2020}, Setyadi, Nasrun and Setianingsih \cite{NabiilaAdaniSetyadi.2018} and Kapil, Ekbal and Das \cite{Kapil.2020}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{Roy.2020} have reached accuracies up to 95\% for detecting whether a tweet is hateful or not.
+Current research in the area of hate speech detection is often built upon deep learning techniques. Exemplary therefore are the works of Roy et al. \cite{Roy.2020}, Setyadi, Nasrun and Setianingsih \cite{NabiilaAdaniSetyadi.2018} and Kapil, Ekbal and Das \cite{Kapil.2020}, to name just a few examples. Among other metrics by considering the accuracy one can evaluate the success of a choosen approach. Roy et al. \cite{Roy.2020} have reached accuracies up to 95\% for detecting whether a tweet is hateful or not.
 
 Nevertheless even classical machine learning techniques such as Support Vector Machines (SVM) combined with text analytics methods are a promis\-ing approach.
 Watanabe, Bouazizi and Ohtsuki \cite{Watanabe.2018} used a decision tree and reached an accuracy of 87.4\%.
 
-Furthermore the results of classical machine learning techniques can be used as reference value to evaluate the neuronal network approach. This was done by Roy et al. \cite{Roy.2020}.
+% TODO: Describe Classificators
+
+Furthermore the results of classical machine learning techniques can be used as reference value to evaluate the deep learning approach. This was done by Roy et al. \cite{Roy.2020}.
