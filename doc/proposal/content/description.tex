@@ -1,11 +1,24 @@
 \section{Project Description}
 
-This chapters aim is to introduce the chosen project approach. First of all the main project goals are presented. Based on the selected raw dataset the planned text analytics tasks and the corresponding pipeline are introduced. Finally the used machine learning approaches and their evaluation are presented.
+The main contribution of this work should be to evaluate the boundaries of conventional machine learning approaches for hate speech detection including manual feature extraction and subsequent text classification of documents into hate speech and non hate speech as opposed to modern deep learning approaches. Part of this work is also to find out which features and which classifiers are suitable for such a classification task. The results should show which features work best for which classifier and which problems can be addressed with conventional machine learning methods and which not. A comparison to modern deep learning approaches should be drawn using the metrics of simple accuracy as well as precision and recall, respectively the F1-score. As stated above, the two data sets from \cite{ThomasDavidson.2020} and \cite{OnadeGibert.2020} will be used for this project. One possible problem could be that the amount of documents classified as pure hate speech in \cite{ThomasDavidson.2020} might not be enough to create profound classifiers. In this case one has to evaluate whether hate speech data from \cite{OnadeGibert.2020} is enough to achieve valid results or whether documents classified as offensive language from \cite{ThomasDavidson.2020} should be used as hate speech data as well. 
 
-\subsection{Project goals}
+\noindent
+To summarize the scope of the project following subgoals were identified:
 
-\subsection{Raw dataset}
+\begin{itemize}
+	\item Prepare the data sets
+	\item Identify suitable feature representations and transform the data accordingly
+	\item Identify and train machine learning classifiers
+	\item Combine classifiers with different feature representations
+	\item Evalute and compare the performance using accuracy, precision, recall and F1-Score
+	\item Show the boundaries of conventional machine learning approaches in comparison to deep learning approaches
+\end{itemize}
 
-\subsection{Text Analytics Tasks and Pipeline (Feature extraction)}
+\noindent
+The results of the project can contribute to offer an easier way to detect hate speech without having to train deep neural networks. It furthermore gives a more wholistic view on different approaches to handle hate speech detection with conventional machine learning and text analytics methods. 
 
-\subsection{Machine learning approach and Evaluation}
+\noindent
+[Pipeline Figure]
+
+%TODO: Advantages and disadvantages of specific evaluation methods
+%TODO: Identify baseline scores

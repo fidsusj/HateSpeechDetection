@@ -1,20 +1,6 @@
 \section{Research Topic Summary}
 
-The main contribution of this work should be to evaluate the boundaries of conventional machine learning approaches for hate speech detection including manual feature extraction and subsequent text classification of documents into hate speech and non hate speech as opposed to modern deep learning approaches. The results should show which features work best for which classifier and which problems can be addressed with conventional machine learning methods and which not. A comparison to modern deep learning approaches should be drawn using the metrics of simple accuracy as well as precision and recall, respectively the F1-score. 
-
-\noindent
-In order to achieve the goals of this work three milestones were identified: 
-
-\begin{enumerate}
-	\item Data preparation and representation
-	\item Feature extraction
-	\item Conventional machine learning approaches
-\end{enumerate}
-
-\noindent
-The following sections introduce these three aspects.
-
-\subsection{Data preparation and representation}
+\subsection{Data sets introduction}
 
 There are two data sets used for the project. The first one \cite{ThomasDavidson.2020} uses data from the \textit{Twitter API}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary classification style. The workers were adviced to follow predefined definitions of each category and to take context information into consideration. Each tweet was coded by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
 
