@@ -31,3 +31,13 @@ TODO.md
 # data
 src/data/*
 !src/data/.gitkeep
+
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmak
+*.fls
+*.log
+*.out
+*_/_latexindent_temp.tex
