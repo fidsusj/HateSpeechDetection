@@ -32,12 +32,15 @@ TODO.md
 src/data/*
 !src/data/.gitkeep
 
+# latex
 *.aux
 *.bbl
 *.bcf
 *.blg
-*.fdb_latexmak
+*.fdb_latexmk
 *.fls
 *.log
 *.out
-*_/_latexindent_temp.tex
+*/__latexindent_temp.tex
+*.run.xml
+.synctex.gz
