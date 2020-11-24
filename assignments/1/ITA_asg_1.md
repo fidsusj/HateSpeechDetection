@@ -66,16 +66,15 @@ is an action, whereas "development" means a process)
 
 ### 1.
 
-In general, it probably is not a good idea to use regular expressions to parse an HTML file.
-Even though it is possible to use regular expressions to parse HTML, this only holds for well-formed HTML - which it most 
-often is not.
-Especially when trying to parse a complete HTML file and understanding the whole structure, regular expressions become 
-much too complex and difficult to maintain.
-On the other hand, it is feasible to use regular expressions to extract little bits of information out of an HTML file, 
-e.g. all links in between ```<a>``` tags.
-But with regular expressions it can quickly happen that too much input is matched, even if it is not supposed to match.
-
-Usually, it is much easier to just use an HTML parser, which already exist in abundance.
+In general, it probably is not a good idea to use regular expressions to parse an HTML file. Even though it is possible 
+to use regular expressions to parse HTML, this only holds for well-formed HTML (context free) with a determined 
+document structure - which is most often not the case. Especially when trying to parse a complete HTML file and 
+understanding the whole structure, regular expressions become much too complex and difficult to maintain. It can quickly 
+happen that too much input is matched, even if it is not supposed to match. On the other hand, it is feasible to use 
+regular expressions to extract little bits of information out of an HTML file, e.g. all links in between ```<a>``` tags. 
+So to match simple text patterns using regular expressions is probably the best approach. But to extract information over 
+the whole document - structured or unstructured - usually, it is much easier to just use an HTML parser, which already 
+exist in abundance.
 
 ### 2.
 
@@ -98,8 +97,7 @@ One drawback of this is that it is an online tool which has to be dealt with man
 ### 3. 
 
 One big problem in general with text conversion and of course this holds true for pdf as well are the various different 
-encodings.
-This could be observed quite well in the quantitative analysis of task 2, as some conversion methods had problems in 
+encodings. This could be observed quite well in the quantitative analysis of task 2, as some conversion methods had problems in 
 this regard, especially with german umlauts, but also with other characters such as '-' or '"'.
 
 Another problem could be observed in task 2 as well, namely what can happen when a pdf file contains text in different 
@@ -112,3 +110,17 @@ converted to text, even though they don't contain any textual meaning, and so on
 
 And of course, a pdf file could contain little or no text at all and mainly consist of vector graphics and images. Then 
 the question arises how to interpret these - if at all - or whether maybe some form of OCR should be applied.
+
+### 5.
+
+It works quite okay with the scanned and ocr interpreted text. But some phone numbers are missed, because they have 
+wrong characters recognized in between them.
+
+Examples:
+- "(06221) 43.41 49-0" is not recognized because of the point in between numbers
+- "(0 62 21] 4 18 55 58" is not recognized because the closing bracket is
+
+The extraction can be changed to take these into account, but one never can be sure to get all misinterpretations right.
+
+Furthermore, one difficulty is, that a lot of the phone numbers don't have a prefix, because e.g. it is a prefix for all 
+numbers on one page.
