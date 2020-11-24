@@ -31,3 +31,5 @@ TODO.md
 # data
 src/data/*
 !src/data/.gitkeep
+
+**/.ipynb_checkpoints
