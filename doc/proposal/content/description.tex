@@ -19,7 +19,7 @@ Recall = \frac{TP}{TP + FN}
 F1-score = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
 \end{equation}
 
-The accuracy is used to measure how good a classifier can detect hate speech with the appropriate features while the F1-Score is used to evaluate how error-prone the chosen machine learning approach is. The F1-score is especially important as both used data sets are not balanced. As both data sets are annotated an automatic evaluation is possible. As a baseline, results of the mentioned papers as well as from papers documented in GitHub will be chosen. 
+The accuracy is used to measure how good a classifier can detect hate speech with the appropriate features while the F1-Score is used to evaluate how error-prone the chosen machine learning approach is. The F1-score is especially important as both used data sets are not class-balanced. As both data sets are annotated an automatic evaluation is possible. As a baseline, results of the mentioned papers as well as from papers documented in GitHub will be chosen. 
 
 As stated above, the two data sets from \cite{ThomasDavidson.2020} and \cite{OnadeGibert.2020} will be used for this project. One possible problem could be that the amount of documents classified as pure hate speech in \cite{ThomasDavidson.2020} might not be enough to create profound classifiers. In this case one has to evaluate whether hate speech data from \cite{OnadeGibert.2020} is enough to achieve valid results or whether documents classified as offensive language from \cite{ThomasDavidson.2020} should be used as hate speech data as well. 
 
@@ -30,7 +30,7 @@ As stated above, the two data sets from \cite{ThomasDavidson.2020} and \cite{Ona
 	\label{fig:pipeline}
 \end{figure}
 
-In \ref{fig:pipeline} a schema of the project pipeline is shown. After having brought the offline data into a common processable format one has to figure out which feature representations are commonly used in the area of hate speech detection and which classifiers are to be evaluated. This informationen will be based on future lecture progress and further readings of the already introduced papers. The distribution of tasks can be done by feature-classifier combinations. In this sense the project is also quite scalable.  
+In \autoref{fig:pipeline} a schema of the project pipeline is shown. After having harmonized and consolidated the data sets into a common processable format one has to figure out which feature representations are commonly used in the area of hate speech detection and which classifiers are to be evaluated. This informationen will be based on the future lecture progress and further readings of the already introduced papers. The distribution of tasks can be done by feature-classifier combinations. In this sense the project can also be scaled without additional planning effort.  
 
 \vspace{12pt}
 To summarize the scope of the project the following subgoals were iden\-ti\-fied:
@@ -44,4 +44,4 @@ To summarize the scope of the project the following subgoals were iden\-ti\-fied
 	\item Show the boundaries of conventional machine learning approaches in comparison to deep learning approaches.
 \end{itemize}
 
-The results of the project can contribute to offer an easier way to detect hate speech without having to train deep neural networks. It furthermore gives a more holistic view on different approaches to handle hate speech detection with conventional machine learning and text analytics methods.
+The results of the project can contribute to offer an easier way to detect hate speech without having to train deep neural networks. It furthermore gives a more holistic view on different approaches to handle hate speech detection with conventional machine learning and text analytics methods and last but not least helps to fight hate speech on social media platforms.
