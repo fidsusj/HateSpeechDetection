@@ -81,18 +81,18 @@ exist in abundance.
 method | qualitative analysis | quantitative analysis (SequenceMatcher.ratio())
 ---|---|---
 online (https://pdftotext.com/de/) | Performed extraordinarily well. Got the whole file structure with separate text blocks right and as far as the considered file goes, did not make any mistake. So it correctly parsed german umlauts and all other characters as well as bullet points. It even managed to interpret word wrappings on line breaks correctly and pieced the word together. | 100% 
-online (https://www.pdf2go.com/de/pdf-in-text) | Did not perform very well, although it got the text structure right. It was not able to correctly parse german umlauts and misinterpreted bullet points as a "v". | 45.8%
-python module PyPDF2 | Performed quite well, especially compared to the online method pdf2go and the calibre approach. Correctly parsed german umlauts and got the structure of the pdf file right. One major drawback was, that it interpreted some characters wrongly, e.g. '-', '"' which is especially troublesome when trying to extract phone numbers. | 39.1%
-calibre ebook-convert | Looked promising as it correctly parsed german umlauts, but did really bad due to the multi-column structure. Here it did not recognize coherent text blocks, but parsed text in one line, which resulted in a not very useful text file, due to broken text paragraphs. | 35.4%
+pdfminer | Performs quite decently as it correctly interprets all relevant characters including german umlatus etc. Has some problems with line breaks and vertical text, as it does not convert this into one line. | 41.5%
+PyPDF2 | Performed quite well, especially compared to the online method pdf2go and the calibre approach. Correctly parsed german umlauts and got the structure of the pdf file right. One major drawback was, that it interpreted some characters wrongly, e.g. '-', '"' which is especially troublesome when trying to extract phone numbers. | 39.1%
+pdftotext | Did quite good in converting all the characters correctly from the pdf to txt including german umlauts, bullet points and so on. Correctly transformed vertical text as well. One drawback is that it converts the pdf to txt while maintaining the structure of the original file, which results in txt files where a line is not necessarily a coherent sentence. Can be bad for analyzing context. | 19.5%
 
 Comparison based on the conversion of file "FL_SYB_BetriebsaerztlicherDienst_ID8414.pdf".
-Based on the qualitative analysis, the online tool pdftotext was used as a baseline for the quantitative analysis.
+As a baseline an online tool was used: pdftotext.com.
 
-As can be seen in the quantitive analysis (see jupyter notebook file), the calibre ebook-convert method is the worst 
-performing and the online method pdf2go performed quite well, even though it did not correctly parse german umlauts.
+As one can see in the quantative analysis the pdftotext method achieve only 19.5%, probably due to it maintaining the structure of the original pdf, which is not what we want, actually.
+Both the pdfminer and PyPDF2 method did quite similarly well, with pdfminer being slightly better.
 
-Based on the qualitative analysis, we chose the online method pdftotext for all the other conversions.
-One drawback of this is that it is an online tool which has to be dealt with manually and cannot be automated.
+But all methods did not fare well compared to the online converte pdftotext, which is why we chose this for the following tasks.
+
 
 ### 3. 
 
