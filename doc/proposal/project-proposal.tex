@@ -1,6 +1,6 @@
 % This template was initially provided by Dulip Withanage.
 % Modifications for the database systems research group
-% were made by Conny Junghans,  Jannik Strötgen and Michael Gertz
+% were made by Conny Junghans, Jannik Stroetgen and Michael Gertz
 
 \documentclass[
      12pt,         % font size
@@ -13,11 +13,12 @@
 
 % PACKAGES:
 
-% Use German :
+% Use English :
 \usepackage[english]{babel}
 % Input and font encoding
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 % Index-generation
 \usepackage{makeidx}
 % Einbinden von URLs:
@@ -28,6 +29,15 @@
 \usepackage{graphicx}
 % Include doc++ generated tex-files:
 %\usepackage{docxx}
+\usepackage[english]{babel}
+\usepackage[
+backend=biber
+,style=ieee
+,backref
+,defernumbers=true
+]{biblatex}
+
+\addbibresource[datatype=bibtex]{references.bib}
 
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
@@ -36,24 +46,27 @@
 \PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
 %\usepackage{hyperref}
 
+% Choose language
+\newcommand{\setlang}[1]{\selectlanguage{#1}\nonfrenchspacing}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % OTHER SETTINGS:
 
-% Choose language
-\newcommand{\setlang}[1]{\selectlanguage{#1}\nonfrenchspacing}
+\usepackage{csquotes}
+\usepackage{float}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% DOCUMENT HEADER:
 
 \begin{document}
 
-% TITLE:
 \pagenumbering{roman} 
 \begin{titlepage}
 
-
 \vspace*{1cm}
 \begin{center}
-\vspace*{3cm}
 \textbf{ 
 \Large Heidelberg University\\
 \smallskip
@@ -69,72 +82,48 @@
 
 \vspace{0.5\baselineskip}
 {\huge
-\textbf{Working Title}
+\textbf{Hate Speech Detection}
 }
+\vspace{0.5cm}
+
+\url{https://github.com/fidsusj/HateSpeechDetection}
 \end{center}
 
 \vfill 
 
 {\large
 \begin{tabular}[l]{ll}
-Team Member: & Name, Matriculation Number, Course of Study\\
-  & email address\\
-Team Member: & Name, Matriculation Number, Course of Study\\
-  & email address\\
-Team Member: & Name, Matriculation Number, Course of Study\\
-  & email address\\
-
-% If the line goes too far to the right, you can alter this slightly, e.g.
-Team Member: & Very long Name, Matriculation Number\\
-  & Course of Study, email address\\
+Team Member: & Christopher Klammt, 3588474,\\
+  & Applied Computer Science\\
+  & iv249@stud.uni-heidelberg.de\\
+  & \\
+Team Member: & Felix Hausberger, 3661293,\\
+  & Applied Computer Science\\
+  & eb260@stud.uni-heidelberg.de\\
+  & \\
+Team Member: & Nils Krehl, 3664130,\\
+  & Applied Computer Science\\
+  & pu268@stud.uni-heidelberg.de\\
   
 \end{tabular}
 }
 
 \end{titlepage}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% DOCUMENT CONTENT:
+
 \pagenumbering{arabic} 
 
-\section{Introduction}
-Motivate your project and state the \textit{real-world problem} you want to solve.
-
-\section{Section}
-
-Use sections to organize your contents. Read the project proposal guidelines available on Moodle to get more information on the contents your proposal should cover. Do not forget to cite online sources~\cite{WFR2017}, books~\cite{goldberg2017neural} or articles you are referencing! It may also be useful to integrate charts or figures in your proposal as seen in Figure~\ref{fig:example}.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.3]{figures/example_barchart}
-  \caption[]{An example chart showing the change of popularity of various programming languages\footnotemark[1].}
-  \label{fig:example}
-\end{figure}
-
-\footnotetext[1]{\url{https://www.w3resource.com/w3r_images/matplotlib-barchart-exercise-4.png}}
-
-In the Latex source provided together with this PDF, you also find hints on how to work on one Latex project collaboratively.
-
+\input{content/motivation}
+\input{content/research}
+\input{content/description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% The following is especially useful if you work together on one proposal or report, and want to alter its content independently from each other (e.g., to keep your commit history clean).
-
-% Alternative: put content in separate files
-% Check the difference between including these files using \input{filename} and \include{filename} and see which one you like better
-%\chapter{Einleitung}\label{intro}
-%\input{introduction}
-%
-%\chapter{Voraussetzungen}\label{bg}
-%\input{background}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% References (Literaturverzeichnis):
-% see
-% https://de.wikibooks.org/wiki/LaTeX-W%C3%B6rterbuch:_bibliographystyle
-% for the different formats and styles
-
-\bibliographystyle{plain}
-% b) The File:
-\bibliography{references}
+% REFERENCES:
+\newpage
+\printbibliography
 
 \end{document}
