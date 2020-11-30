@@ -1,5 +1,10 @@
 # Assignment 1
 
+Felix Hausberger
+
+Christopher Klammt
+
+Nils Krehl
 ## Problem 1-1 Text Analytics Pipeline
 
 ### 1.
