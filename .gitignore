@@ -28,6 +28,8 @@ TODO.md
 src/data/*
 !src/data/.gitkeep
 
+**/.ipynb_checkpoints
+
 # latex
 *.aux
 *.bbl
