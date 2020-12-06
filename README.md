@@ -85,3 +85,9 @@ Goal of this project is to classify social media posts on hate speech using text
 7. Leave the virtual environment of pipenv
 
        exit
+       
+       
+ Please also run:
+ - python -m spacy download en
+ 
+ Remove Flake and pdftotext
