@@ -49,8 +49,8 @@ There are 13,335 neutral sentences and 2,490 hate speech examples in our merged 
 As a comparison one can see the bar charts of the 15 most common tokens for hate speech vs. non-hate speech.
 These do not really differ, because most of the words are stop words which are to be removed in the processing pipeline.
 
-![Bar Chart - Hate Speech - all tokens](figures/BarChart-HateSpeech-alltokens.png)
-![Bar Chart - Non-Hate Speech - all tokens](figures/BarChart-Non-HateSpeech-alltokens.png)
+![Bar Chart - Hate Speech - all tokens](figures/Barchart-HateSpeech-alltokens.png)
+![Bar Chart - Non-Hate Speech - all tokens](figures/Barchart-Non-HateSpeech-alltokens.png)
 
 
 The differences in hate speech and non-hate speech get more clear, when looking at the cleaned tokens.
@@ -61,8 +61,8 @@ This is illustrated in the following wordclouds, which are based on the 15 most 
 
 The word clouds are based on the following bar chart distributions:
 
-![Bar Chart - Hate Speech - cleaned tokens](figures/BarChart-HateSpeech-cleanedtokens.png)
-![Bar Chart - Non-Hate Speech - cleaned tokens](figures/BarChart-Non-HateSpeech-cleanedtokens.png)
+![Bar Chart - Hate Speech - cleaned tokens](figures/Barchart-HateSpeech-cleanedtokens.png)
+![Bar Chart - Non-Hate Speech - cleaned tokens](figures/Barchart-Non-HateSpeech-cleanedtokens.png)
 
 See the folder `figures` for more illustration or the jupyter notebook `data_visualization.ipynb` for the complete code.
 
