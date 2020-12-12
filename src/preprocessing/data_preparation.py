@@ -15,55 +15,65 @@ def prepare_and_merge_datasets():
 
 
 def _prepare_hate_speech_and_offensive_language():
-    # Create dataframe and drop some columns
-    df_dataset = pd.read_csv(
-        "data/original/hate-speech-and-offensive-language/labeled_data.csv", index_col=0
-    )
-    del df_dataset["count"]
-    del df_dataset["hate_speech"]
-    del df_dataset["offensive_language"]
-    del df_dataset["neither"]
-
-    # Filter and format
-    df_dataset = df_dataset.drop(
-        df_dataset[df_dataset["class"] == 1].index
-    )  # drop all offensive language documents
-    df_dataset.loc[
-        df_dataset["class"] == 2, "class"
-    ] = 1  # set "neither" to class label 1
-    df_dataset.rename(columns={"tweet": "content"}, inplace=True)
-
-    # Data preparation
-    for i, row in df_dataset.iterrows():
-        df_dataset.at[i, "content"] = re.sub(
-            "&.*?;", "", row["content"]
-        )  # delete all emojies
-        if re.search(r"\"[^\"].*\"", row["content"]):
-            df_dataset = df_dataset.drop(index=i)  # delete all tweet referencing tweets
-        elif re.search(r"\"", row["content"]):
-            df_dataset = df_dataset.drop(index=i)  # delete all citing tweets
-
+    df_dataset = _create_df_and_drop_columns("data/original/hate-speech-and-offensive-language/labeled_data.csv",
+                                             0,
+                                             ["count", "hate_speech", "offensive_language", "neither"])
+    df_dataset = _filter_and_format_hate_speech_and_offensive_language(df_dataset)
+    df_dataset = _data_preparation(df_dataset)
     return df_dataset
 
 
+def _create_df_and_drop_columns(path_to_csv, pd_index_col, list_columns_to_be_dropped):
+    df = pd.read_csv(path_to_csv, index_col=pd_index_col)
+    df.drop(list_columns_to_be_dropped, axis=1, inplace=True)
+    return df
+
+
+def _filter_and_format_hate_speech_and_offensive_language(df):
+    df = _drop_all_offensive_language_documents(df)
+    df = set_neither_to_class_label_1(df)
+    df.rename(columns={"tweet": "content"}, inplace=True)
+    return df
+
+
+def _drop_all_offensive_language_documents(df):
+    df = df.drop(df[df["class"] == 1].index)
+    return df
+
+
+def set_neither_to_class_label_1(df):
+    df.loc[df["class"] == 2, "class"] = 1
+    return df
+
+
+def _data_preparation(df):
+    for i, row in df.iterrows():
+        df.at[i, "content"] = re.sub(
+            "&.*?;", "", row["content"]
+        )  # delete all emojies
+        if re.search(r"\"[^\"].*\"", row["content"]):
+            df = df.drop(index=i)  # delete all tweet referencing tweets
+        elif re.search(r"\"", row["content"]):
+            df = df.drop(index=i)  # delete all citing tweets
+    return df
+
+
 def _prepare_hate_speech_dataset():
-    # Create dataframe and drop some columns
-    df_dataset = pd.read_csv(
-        "data/original/hate-speech-dataset/annotations_metadata.csv"
-    )
-    del df_dataset["user_id"]
-    del df_dataset["subforum_id"]
-    del df_dataset["num_contexts"]
+    df_dataset = _create_df_and_drop_columns("data/original/hate-speech-dataset/annotations_metadata.csv",
+                                             None,
+                                             ["user_id", "subforum_id", "num_contexts"])
+    df_dataset = _filter_and_format_hate_speech(df_dataset)
+    return df_dataset
 
-    # Filter and format
-    df_dataset.loc[df_dataset["label"] == "hate", "label"] = 0
-    df_dataset.loc[df_dataset["label"] == "noHate", "label"] = 1
-    df_dataset.rename(columns={"label": "class"}, inplace=True)
 
+def _filter_and_format_hate_speech(df):
+    df.loc[df["label"] == "hate", "label"] = 0
+    df.loc[df["label"] == "noHate", "label"] = 1
+    df.rename(columns={"label": "class"}, inplace=True)
     content = []
-    for i, row in df_dataset.iterrows():
+    for i, row in df.iterrows():
         if row["class"] == "idk/skip" or row["class"] == "relation":
-            df_dataset = df_dataset.drop(index=i)
+            df = df.drop(index=i)
             continue
         file = open(
             "data/original/hate-speech-dataset/all_files/{}.txt".format(row["file_id"]),
@@ -72,10 +82,6 @@ def _prepare_hate_speech_dataset():
         )
         content.append(file.read())
         file.close()
-
-    del df_dataset["file_id"]
-    df_dataset["content"] = content
-
-    # Data preparation
-
-    return df_dataset
+    del df["file_id"]
+    df["content"] = content
+    return df
