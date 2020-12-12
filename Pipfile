@@ -19,6 +19,7 @@ tika = "*"
 pdftotext = "*"
 pypdf2 = "*"
 scikit-learn = "*"
+seaborn = "*"
 
 [scripts]
 test = "coverage run -m unittest discover -s ./tests -p *_test.py"
