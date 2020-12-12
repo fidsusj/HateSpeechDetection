@@ -15,9 +15,11 @@ def prepare_and_merge_datasets():
 
 
 def _prepare_hate_speech_and_offensive_language():
-    df_dataset = _create_df_and_drop_columns("data/original/hate-speech-and-offensive-language/labeled_data.csv",
-                                             0,
-                                             ["count", "hate_speech", "offensive_language", "neither"])
+    df_dataset = _create_df_and_drop_columns(
+        "data/original/hate-speech-and-offensive-language/labeled_data.csv",
+        0,
+        ["count", "hate_speech", "offensive_language", "neither"],
+    )
     df_dataset = _filter_and_format_hate_speech_and_offensive_language(df_dataset)
     df_dataset = _data_preparation(df_dataset)
     return df_dataset
@@ -48,9 +50,7 @@ def set_neither_to_class_label_1(df):
 
 def _data_preparation(df):
     for i, row in df.iterrows():
-        df.at[i, "content"] = re.sub(
-            "&.*?;", "", row["content"]
-        )  # delete all emojies
+        df.at[i, "content"] = re.sub("&.*?;", "", row["content"])  # delete all emojis
         if re.search(r"\"[^\"].*\"", row["content"]):
             df = df.drop(index=i)  # delete all tweet referencing tweets
         elif re.search(r"\"", row["content"]):
@@ -59,9 +59,11 @@ def _data_preparation(df):
 
 
 def _prepare_hate_speech_dataset():
-    df_dataset = _create_df_and_drop_columns("data/original/hate-speech-dataset/annotations_metadata.csv",
-                                             None,
-                                             ["user_id", "subforum_id", "num_contexts"])
+    df_dataset = _create_df_and_drop_columns(
+        "data/original/hate-speech-dataset/annotations_metadata.csv",
+        None,
+        ["user_id", "subforum_id", "num_contexts"],
+    )
     df_dataset = _filter_and_format_hate_speech(df_dataset)
     return df_dataset
 
