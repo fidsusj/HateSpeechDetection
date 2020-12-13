@@ -20,6 +20,12 @@ pdftotext = "*"
 pypdf2 = "*"
 scikit-learn = "*"
 seaborn = "*"
+pandas = "*"
+matplotlib="*"
+spacy = "*"
+nltk = "*"
+wordcloud = "*"
+importlib_metadata = "*"
 
 [scripts]
 test = "coverage run -m unittest discover -s ./tests -p *_test.py"
