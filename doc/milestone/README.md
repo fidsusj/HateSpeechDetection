@@ -6,11 +6,45 @@
 
 ## Project State
 
-[ToDo]
-- Planning State
-- Future Planning
-- High-level Architecture Description
-- Experiments (baselines)
+### Planning State
+
+Following tasks are already finished:
+* Clarification of the project idea
+* Finding datasets
+* First version of a preprocessing pipeline
+* Get to know the dataset
+* Statistics on the prepared dataset
+
+Started, but not yet finished tasks:
+* Feature extraction
+
+### Future Planning
+
+The following table illustrates the future planning of the project with milestones and the corresponding dates:
+
+| Date         | Milestone                                        |
+|--------------|--------------------------------------------------|
+| early january| Feature extraction and data preparation finished |
+| early january| Handling of unbalanced dataset clarified         |
+| mid january  | Different classifiers selected                   |
+| mid january  | Start classification experiments                 |
+| mid february | Project coding finished                          |
+| 25.02.2021   | Project video deadline                           |
+| 15.03.2021   | Report deadline                                  |
+
+### High-level Architecture Description
+
+The High-Level architecture of our preprocessing pipeline is already described in the next chapter "Data Analysis". This chapter focuses on the High-Level architecture of the whole project.
+Mainly there are four steps:
+* **Preprocessing**: The groundtruth datasets are prepared for our purposes.
+* **Feature extraction**: Based on the preprocessed dataset different features are extracted (e.g. number of rather positive or negative words).
+* **Classification**: Experiments with different combination of  classifiers and features.
+* **Evaluation and comparison**: Results of the previous step are evaluated.
+
+### Experiments (baselines)
+
+One recommendation in the project kickoff meeting was to focus on the first two steps (Preprocessing and feature extraction). That is why first experiments are done in these two areas. The experiments for exploring the dataset are described in the next chapter.
+
 
 ## Data Analysis
 
@@ -23,7 +57,7 @@ As mentioned in the project proposal we are using two data sets for this project
 ### Preprocessing
 
 Due to the differences in the data sets - mainly one being binary labeled and the other being ternary labeled - the two data sets first have to be unified and merged into one data set.
-To do so, the function `_prepare_and_merge_datasets()` calls the specific function for the separate data sets.
+To do so, the function `prepare_and_merge_datasets()` calls the specific function for the separate data sets.
 The data from the Twitter API is preprocessed, such that all documents containing offensive language are dropped, as for now we want to concentrate on classifying hate speech.
 Both data sets are merged into one while standardizing them, so that all sentences containing hate speech are labeled with a `0` and the neutral samples are labeled with a `1`.
 
