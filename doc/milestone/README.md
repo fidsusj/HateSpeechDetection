@@ -80,6 +80,27 @@ The following image shows the distribution of the data points.
 As one can see, there are more sentences in the combined data set marked as neutral than labeled as containing hate speech.
 There are 13,335 neutral sentences and 2,490 hate speech examples in our merged data set.
 
+Another interesting perspective on the data is won by looking at the length of hate speech posts versus non-hate speech posts.
+This can be seen in the following visualization:
+
+![Post length density distribution](figures/post_length_density_distribution.png)
+
+Here one can see, that the hate speech posts contain more words (tokens before cleaning) than non-hate speech posts.
+In average a hate speech post contains 18.18 words, whereas a non-hate speech post only contains 15.85 words.
+Unlike expected, the hate speech posts are longer than the non-hate speech posts.
+But as one can see in the following boxplots, the hate speech posts have only one big outlier at 350 words and otherwise usually contain less than 50 words with only a few outliers between 50 and 100 words per post.
+On the other hand the non-hate speech posts also consists of outliers between 50 and 150 words (plus three extreme outliers above that). But in general also only consist of 50 words and less.
+
+![Post length boxplot - hate speech](figures/hate_speech-all_tokens-post_length_boxplot.png)
+![Post length boxplot - non-hate speech](figures/non_hate_speech-all_tokens-post_length_boxplot.png)
+
+This can also be seen in the respective histograms:
+
+![Post length histogram - hate speech](figures/hate_speech-all_tokens-post_length_histogram.png)
+![Post length histogram - non-hate speech](figures/non_hate_speech-all_tokens-post_length_histogram.png)
+
+In the following the words that occur the most in the respective classes are analyzed.
+
 As a comparison one can see the bar charts of the 15 most common tokens for hate speech vs. non-hate speech.
 These do not really differ, because most of the words are stop words which are to be removed in the processing pipeline.
 
