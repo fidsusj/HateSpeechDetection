@@ -79,6 +79,14 @@ The following image shows the distribution of the data points.
 
 As one can see, there are more sentences in the combined data set marked as neutral than labeled as containing hate speech.
 There are 13,335 neutral sentences and 2,490 hate speech examples in our merged data set.
+This therefore is an imbalanced dataset which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper ["Evaluating Machine Learning Techniques for Detecting Offensive and Hate Speech in South African Tweets"](https://ieeexplore.ieee.org/document/8963960) also recognizes the class imbalance and tried to reduce it by applying a synthetic minority oversampling technique called SMOTE (as presented [here](https://arxiv.org/pdf/1106.1813.pdf)).
+There are also some other approaches to tackle this challenge:
+
+- changing performance metric (don't simply use accuracy, better something like F1-score)
+- resampling the dataset (undersampling, i.e. deleting instances form the over-represented class, or oversampling, i.e. adding copies of instances from the under-represented class)
+- generating synthetic samples
+
+In general it is important to consider class imbalance and play with the different possibilities to eliminate the effect it has on performance.
 
 Another interesting perspective on the data is won by looking at the length of hate speech posts versus non-hate speech posts.
 This can be seen in the following visualization:
