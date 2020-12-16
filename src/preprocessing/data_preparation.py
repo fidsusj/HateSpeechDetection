@@ -1,9 +1,11 @@
+""" This module prepares the two datasets """
 import re
 
 import pandas as pd
 
 
 def prepare_and_merge_datasets():
+    """ Prepares and merges the datasets """
     dataset_csv = open("data/preprocessed/dataset.csv", encoding="utf-8", mode="w")
     df_first_dataset = _prepare_hate_speech_and_offensive_language()
     df_second_dataset = _prepare_hate_speech_dataset()
@@ -12,6 +14,9 @@ def prepare_and_merge_datasets():
 
     dataset_csv.write(df_dataset.to_csv())
     dataset_csv.close()
+
+
+# --- Hatespeech and Offensive Language ---
 
 
 def _prepare_hate_speech_and_offensive_language():
@@ -32,30 +37,22 @@ def _create_df_and_drop_columns(path_to_csv, pd_index_col, list_columns_to_be_dr
 
 
 def _filter_and_format_hate_speech_and_offensive_language(df):
-    df = _drop_all_offensive_language_documents(df)
-    df = set_neither_to_class_label_1(df)
-    df.rename(columns={"tweet": "content"}, inplace=True)
-    return df
-
-
-def _drop_all_offensive_language_documents(df):
-    df = df.drop(df[df["class"] == 1].index)
-    return df
-
-
-def set_neither_to_class_label_1(df):
+    df.loc[df["class"] == 1, "class"] = 0
     df.loc[df["class"] == 2, "class"] = 1
+    df.rename(columns={"tweet": "content"}, inplace=True)
     return df
 
 
 def _data_preparation(df):
     for i, row in df.iterrows():
-        df.at[i, "content"] = re.sub("&.*?;", "", row["content"])  # delete all emojis
         if re.search(r"\"[^\"].*\"", row["content"]):
             df = df.drop(index=i)  # delete all tweet referencing tweets
         elif re.search(r"\"", row["content"]):
             df = df.drop(index=i)  # delete all citing tweets
     return df
+
+
+# --- Hatespeech dataset ---
 
 
 def _prepare_hate_speech_dataset():
@@ -84,6 +81,7 @@ def _filter_and_format_hate_speech(df):
         )
         content.append(file.read())
         file.close()
-    del df["file_id"]
     df["content"] = content
+
+    df.drop(["file_id"], axis=1, inplace=True)
     return df

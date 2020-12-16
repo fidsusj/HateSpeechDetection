@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-flake8 = "*"
+pylint = "*"
 autopep8 = "*"
 coverage = "*"
 
@@ -16,7 +16,6 @@ regex = "*"
 pdfminer = "*"
 python-pdfbox = "*"
 tika = "*"
-pdftotext = "*"
 pypdf2 = "*"
 scikit-learn = "*"
 seaborn = "*"
@@ -25,7 +24,6 @@ matplotlib="*"
 spacy = "*"
 nltk = "*"
 wordcloud = "*"
-importlib_metadata = "*"
 
 [scripts]
 test = "coverage run -m unittest discover -s ./tests -p *_test.py"

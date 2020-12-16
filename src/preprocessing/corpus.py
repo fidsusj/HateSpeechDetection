@@ -1,48 +1,37 @@
-import spacy
-from nltk.stem import PorterStemmer
+""" This module builds the corpus """
+
+from spacy.lang.en import English
+
+
+def preprocessing(dataframe):
+    """ Makes all words lower case, removes the emojis and all other irrelevant characters """
+    dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.lower()
+    dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.replace("&.*?;", "")
+    dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.replace(
+        r"[^a-zA-Z\s.:!?/#]", ""
+    )
+    return dataframe
+
+
+def tokenization(dataframe):
+    """ Tokenization, stop word removal, white space removal and punctuation removal """
+    nlp = English()
+    tokenizer = nlp.Defaults.create_tokenizer(nlp)
+    dataframe.loc[:, "tokens"] = dataframe.loc[:, "content"].apply(
+        lambda cell: [
+            token.lemma_
+            for token in tokenizer(cell)
+            if token.is_stop is False
+            and token.is_space is False
+            and token.is_punct is False
+        ]
+    )
+    dataframe.loc[:, "tokens"] = dataframe.loc[:, "tokens"].apply(
+        lambda cell: [token for token in cell if len(token) >= 2]
+    )
+    return dataframe
 
 
 def build_corpus(dataframe):
-    nlp = spacy.load("en")
-    nlp.disable_pipes("tagger", "parser", "ner")
-    stopwords = spacy.lang.en.stop_words.STOP_WORDS
-    stemmer = PorterStemmer()
-
-    dataframe["content"] = (
-        dataframe["content"].str.lower().str.replace("[^a-zA-Z ]", "")
-    )
-
-    def tokenize(input_string):
-        doc = nlp(input_string)
-        tokens = []
-        for token in doc:
-            tokens.append(token.text)
-        return tokens
-
-    dataframe["all_tokens"] = dataframe["content"].apply(lambda cell: tokenize(cell))
-
-    def remove_stopwords(input_list_of_tokens):
-        return [token for token in input_list_of_tokens if not token in stopwords]
-
-    dataframe["tokens_without_stopwords"] = dataframe["all_tokens"].apply(
-        lambda cell: remove_stopwords(cell)
-    )
-
-    def remove_single_characters(input_list_of_tokens):
-        return [token for token in input_list_of_tokens if len(token) >= 3]
-
-    dataframe["cleaned_tokens"] = dataframe["tokens_without_stopwords"].apply(
-        lambda cell: remove_single_characters(cell)
-    )
-
-    def perform_stemming(input_list_of_tokens):
-        stems = []
-        for token in input_list_of_tokens:
-            stems.append(stemmer.stem(token))
-        return stems
-
-    dataframe["stems"] = dataframe["cleaned_tokens"].apply(
-        lambda cell: perform_stemming(cell)
-    )
-
-    return dataframe
+    """ Builds the corpus """
+    return tokenization(preprocessing(dataframe))
