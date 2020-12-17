@@ -7,13 +7,24 @@ class Dictionary:
         self.training_set_hate = training_set_hate
         self.training_set_neutral = training_set_neutral
 
-    def extract_features(self):
         tfidf = TfIdf(2, "english")
         list_hate = self._transform_df_column_to_one_list(self.training_set_hate)
         list_neutral = self._transform_df_column_to_one_list(self.training_set_neutral)
         df_tfidf = tfidf.calculate_tfidf([list_hate, list_neutral])
+        (
+            self.dictionary_hate_speech_words,
+            self.dictionary_neutral_words,
+        ) = self._create_dictionary(df_tfidf, 100)
 
-        self._create_dictionary(df_tfidf, 100)
+    def extract_features(self, df):
+        """Extract number of special characters per data instance
+        Parameters:
+            df with the columns: class and content
+        Return:
+            passed df with new feature columns containing the count of the hateful/neutral words per data instance
+        """
+        # todo: number of hateful words aufbauend auf dictionary als feature
+        print(df)
 
     def _transform_df_column_to_one_list(self, df):
         list = df["content"].tolist()
@@ -58,6 +69,4 @@ if __name__ == "__main__":
     list_neutral_speech = df_dataset[df_dataset["class"] == 1]
 
     dict = Dictionary(list_hate_speech, list_neutral_speech)
-    dict.extract_features()
-
-# todo: number of hateful words aufbauend auf dictionary als feature
+    dict.extract_features(df_dataset)
