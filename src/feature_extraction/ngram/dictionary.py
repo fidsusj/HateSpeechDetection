@@ -2,7 +2,6 @@
 typical hateful and neutral words """
 
 import pandas as pd
-
 from feature_extraction.ngram.tfidf import TfIdf
 from preprocessing.corpus import tokenization
 
@@ -49,7 +48,7 @@ class Dictionary:
         for word in dictionary:
             if word in word_list:
                 number_dictionary_matches_in_word_list = (
-                        number_dictionary_matches_in_word_list + word_list.count(word)
+                    number_dictionary_matches_in_word_list + word_list.count(word)
                 )
         return number_dictionary_matches_in_word_list
 
