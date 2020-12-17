@@ -37,6 +37,8 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: pip install pipenv
+      - uses: pipenv install --dev
       - uses: cclauss/GitHub-Action-for-pylint@0.7.0
         with:
-          args: pylint --rcfile="./.pylintrc"
+          args: pylint --rcfile="./.pylintrc" "**/*.py"
