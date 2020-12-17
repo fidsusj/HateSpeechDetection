@@ -5,15 +5,14 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
       matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
         python-version: [3.7]
     steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: actions/checkout@v2
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install build-essential libpoppler-cpp-dev pkg-config python-dev
       - name: Install pipenv

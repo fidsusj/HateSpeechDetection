@@ -90,4 +90,3 @@ Goal of this project is to classify social media posts on hate speech using text
  Please also run:
  - python -m spacy download en
  
- Remove Flake and pdftotext
