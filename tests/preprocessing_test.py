@@ -3,7 +3,8 @@
 import unittest
 
 import pandas as pd
-from preprocessing.corpus import build_corpus
+
+from src.preprocessing.corpus import build_corpus
 
 df = pd.DataFrame(
     data={

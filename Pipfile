@@ -4,28 +4,31 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
-autopep8 = "*"
 coverage = "*"
 
 [packages]
-pre-commit = "*"
-jupyterlab = "*"
-jupyter = "*"
-regex = "*"
-pdfminer = "*"
-python-pdfbox = "*"
-tika = "*"
+# Assignments-1
 pypdf2 = "*"
-scikit-learn = "*"
-seaborn = "*"
-pandas = "*"
-matplotlib="*"
-spacy = "*"
-nltk = "*"
+pdfminer = "*"
+regex = "*"
+
+# Assignments-2
 wordcloud = "*"
-word2vec = "*"
+seaborn = "*"
+
+# Project
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
+scikit-learn = "*"
+spacy = "*"
 gensim = "*"
+nltk = "*"
+
+# Infrastructure
+pre-commit = "*"
+jupyter = "*"
+
 
 [scripts]
 test = "coverage run -m unittest discover -s ./tests -p *_test.py"
