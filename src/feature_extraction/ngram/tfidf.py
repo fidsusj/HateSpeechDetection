@@ -1,3 +1,5 @@
+import pathlib
+
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
@@ -27,8 +29,8 @@ class TfIdf:
         )
         return df_tf_idf
 
-    def visualize_as_heatmap(self, df_tfifd, top_n_items):
-        df_tfidf_sorted = df_tfifd.sort_values(by=[0, 1], axis=1, ascending=False)
+    def visualize_as_heatmap(self, df_tfidf, top_n_items):
+        df_tfidf_sorted = df_tfidf.sort_values(by=[0, 1], axis=1, ascending=False)
         df_tfidf_sorted_top_n = df_tfidf_sorted[df_tfidf_sorted.columns[:top_n_items]]
         df_tfidf_sorted_top_n.index = ["hate", "neutral"]
 
@@ -42,11 +44,11 @@ class TfIdf:
             cmap="YlGnBu",
         )
         plt.show()
-        plt.savefig("../../doc/milestone/figures/Heatmap_tfidf.png")
+        plt.savefig("../../../doc/milestone/figures/Heatmap_tfidf.png")
 
 
 if __name__ == "__main__":
-    df_dataset = pd.read_csv("../data/preprocessed/dataset.csv", index_col=0)
+    df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
     list_hate_speech = df_dataset[df_dataset["class"] == 0]["content"].tolist()
     list_neutral_speech = df_dataset[df_dataset["class"] == 1]["content"].tolist()
 
