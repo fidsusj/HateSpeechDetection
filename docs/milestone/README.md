@@ -34,17 +34,77 @@ The following table illustrates the future planning of the project with mileston
 
 ### High-level Architecture Description
 
-The High-Level architecture of our preprocessing pipeline is already described in the next chapter "Data Analysis". This chapter focuses on the High-Level architecture of the whole project.
+The High-Level architecture of our preprocessing pipeline is already described in the next chapter "Data Analysis". This 
+chapter focuses on the High-Level architecture of the whole project.
 Mainly there are four steps:
 * **Preprocessing**: The groundtruth datasets are prepared for our purposes.
-* **Feature extraction**: Based on the preprocessed dataset different features are extracted (e.g. number of rather positive or negative words).
+* **Feature extraction**: Based on the preprocessed dataset different features are extracted (e.g. number of rather 
+positive or negative words).
 * **Classification**: Experiments with different combination of  classifiers and features.
 * **Evaluation and comparison**: Results of the previous step are evaluated.
 
 ### Experiments (baselines)
 
-One recommendation in the project kickoff meeting was to focus on the first two steps (Preprocessing and feature extraction). That is why first experiments are done in these two areas. The experiments for exploring the dataset are described in the next chapter.
+One recommendation in the project kickoff meeting was to focus on the first two steps (Preprocessing and feature 
+extraction). That is why first experiments are done in these two areas. The experiments for exploring the dataset are 
+described in the next chapter.
 
+## Dataset Preparation
+
+To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset 
+only the class and the text content of each tweet respectively each forum contribution was considered. 
+
+The first dataset "Automated Hate Speech Detection and the Problem of Offensive Language" was entirely given as a .csv 
+file and contains 25297 tweets, that were either labeled as hate speech, offensive language or neither of both. To 
+determine the right label three independent evaluators classified each tweet, the final label got assigned by the 
+majority vote. As for the first approach one is only interested in hate speech and neutral tweet classification, all 
+offensive language documents in the dataset were dropped. Some tweets were retweets that were commented additionally by 
+a user. As it could not be distinguished whether the original tweet or the retweet contains hate speech also these 
+documents were filtered out. An example is shown below:
+
+    """@jaimescudi_: ""@Tonybthrz_: ""@jaimescudi_: I swear if oomf try talking to me tomorrow.."" @"" @BarackObama"" pussy"
+
+The original tweets can be found in between the ""..."". Same goes for tweets that cite other users without using the 
+retweet option. 
+
+The second dataset "Hate speech dataset from a white supremacist forum" was not entirely given as a .csv file. Only the 
+document annotations were given in a .csv file, all forum contributions were stored in separated .txt files. Only 
+documents which could not be assigned to a single class (label "idk/skip") or refered to other docments (label 
+"relation") were dropped. 
+
+The resulting common dataset was stored in a .csv file. It contains 7470 hate speech documents and 40.005 non hate 
+speech documents. The dropped offensive language documents make up 51.939 instances. In case the classification results 
+are too poor, additional 2.818 offensive language documents can be added that were labeled as hate speech by one evaluator. 
+To sample a balanced dataset, all hate speech documents were chosen, non hate speech documents were randomly picked and 
+added to the same amount to the sample. The train and test split was done keeping the same class distribution over both 
+train and test set with a 2:1 ratio. 
+
+## Corpus Building
+
+The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing
+emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings 
+decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this 
+process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the 
+tokens, instead lemmatization was used as one can in this case lateron use pretrained word embeddings from i.e. Word2Vec. 
+Furthernore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not 
+["we", "'ll"]. Some examples are covered in the test written for the corpus building process.
+
+## Text Representation
+
+### Word Embeddings using Word2Vec
+
+During the training process of the Word2Vec model, the following hyperparameters were chosen:
+
+- Tokens with a frequency less than 20 were discarded
+- Window size is set to two in both directions
+- Word vectors contain a dimensionality of 300
+- Learning rate is set to 0.03 and decreases until 0.0007
+
+Note that these values are first experimental values and have not been evaluated yet. 
+The model was saves as a pickle file to avoid retraining in the following steps. 
+
+### TF-IDF
+... 
 
 ## Data Analysis
 
@@ -146,3 +206,17 @@ Examples for hate speech:
 - "why white people used to say that sex was a sin used to be a mystery to me until i saw the children of browns and mixed race children popping up all around me"
 
 One can clearly see the hate expressed in the hate speech examples and see their discriminating nature.
+
+
+## Topic Detection
+
+...
+
+## Classifier Design Thinking
+
+...
+
+## Current Code State
+
+...tomorrow by Felix...
+
