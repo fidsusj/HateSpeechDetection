@@ -7,6 +7,7 @@ import pandas as pd
 def prepare_and_merge_datasets():
     """ Prepares and merges the datasets """
     dataset_csv = open("data/preprocessed/dataset.csv", encoding="utf-8", mode="w")
+    dataset_copy = open("analysis/dataset.csv", encoding="utf-8", mode="w")
     df_first_dataset = _prepare_hate_speech_and_offensive_language()
     df_second_dataset = _prepare_hate_speech_dataset()
 
@@ -14,6 +15,9 @@ def prepare_and_merge_datasets():
 
     dataset_csv.write(df_dataset.to_csv())
     dataset_csv.close()
+
+    dataset_copy.write(df_dataset.to_csv())
+    dataset_copy.close()
 
 
 # --- Hatespeech and Offensive Language ---
@@ -37,7 +41,7 @@ def _create_df_and_drop_columns(path_to_csv, pd_index_col, list_columns_to_be_dr
 
 
 def _filter_and_format_hate_speech_and_offensive_language(df):
-    df.loc[df["class"] == 1, "class"] = 0
+    df = df.drop(df[df["class"] == 1].index)
     df.loc[df["class"] == 2, "class"] = 1
     df.rename(columns={"tweet": "content"}, inplace=True)
     return df

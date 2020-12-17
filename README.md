@@ -1,6 +1,49 @@
 # HateSpeechDetection
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Goal of this project is to classify social media posts on hate speech using text analytics methods. 
+Goal of this project is to classify social media posts on hate speech using text analytics methods. Therefore two
+datasets were chosen:
+
+- [Automated Hate Speech Detection and the Problem of Offensive Language](https://github.com/t-davidson/hate-speech-and-offensive-language)
+- [Hate speech dataset from a white supremacist forum](https://github.com/Vicomtech/hate-speech-dataset)
+
+For more detailed information about the project, please refer to the [project proposal](https://github.com/fidsusj/HateSpeechDetection/blob/main/docs/proposal/project-proposal.pdf)
+
+## Setup Instructions
+
+1. Install pipenv
+
+       pip install pipenv
+        
+2. Install all the dependencies defined in the Pipfile        
+        
+       pipenv install --dev
+       
+3. Install additional dependencies (optional):
+        
+   - [pdftotext](https://pypi.org/project/pdftotext/) (additional os dependencies needed) (Assignment 1)
+        
+   - python -m spacy download en (Assignment 2)
+        
+4. Enter the virtual environment of pipenv
+
+       pipenv shell
+
+5. Set up the git hook scripts
+       
+       pre-commit install
+
+6. Run the program
+
+       pipenv run main
+       
+7. Run the tests
+
+       pipenv run test && pipenv run report
+       
+8. Leave the virtual environment of pipenv
+
+       exit
 
 ## Datasets and papers
 
@@ -33,7 +76,7 @@ Goal of this project is to classify social media posts on hate speech using text
 - [Identifying Hate Speech in Social Media](https://dl.acm.org/doi/pdf/10.1145/3155212)
 - [A Survey on Automatic Detection of Hate Speech in Text](https://dl.acm.org/doi/pdf/10.1145/3232676)
 
-### IEEE
+### IEEE (VPN required for $$$ marked papers)
 
 - [Hate Speech Detection on Twitter Using Long Short-Term Memory (LSTM) Method](https://ieeexplore.ieee.org/document/9003992) [$$$]
 - [Automated Hate Speech Detection on Twitter](https://ieeexplore.ieee.org/document/9128428) [$$$]
@@ -55,38 +98,3 @@ Goal of this project is to classify social media posts on hate speech using text
 - [Detecting Hate Speech and Offensive Language on Twitter using Machine Learning: An N-gram and TFIDF based Approach](https://arxiv.org/pdf/1809.08651.pdf)
 - [Hate Speech Detection: A Solved Problem? The Challenging Case of Long Tail on Twitter](https://arxiv.org/pdf/1803.03662.pdf)
 - [Detecting Hate Speech in Social Media](https://arxiv.org/pdf/1712.06427.pdf)
-
-## Commands
-
-1. Install pipenv
-
-       pip install pipenv
-        
-2. Install all the dependencies defined in the Pipfile        
-        
-       pipenv install --dev
-        
-3. Enter the virtual environment of pipenv
-
-       pipenv shell
-
-4. Set up the git hook scripts
-       
-       pre-commit install
-
-5. Run the program
-
-       pipenv run main
-       
-6. Run the tests
-
-       pipenv run test && pipenv run report
-       
-7. Leave the virtual environment of pipenv
-
-       exit
-       
-       
- Please also run:
- - python -m spacy download en
- 

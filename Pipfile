@@ -5,17 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 coverage = "*"
+pylint = "*"
 
 [packages]
 # Assignments-1
 pypdf2 = "*"
 pdfminer = "*"
 regex = "*"
-
 # Assignments-2
 wordcloud = "*"
 seaborn = "*"
-
 # Project
 pandas = "*"
 numpy = "*"
@@ -24,14 +23,12 @@ scikit-learn = "*"
 spacy = "*"
 gensim = "*"
 nltk = "*"
-
 # Infrastructure
 pre-commit = "*"
 jupyter = "*"
 
-
 [scripts]
-test = "coverage run -m unittest discover -s ./tests -p *_test.py"
+test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p *_test.py"
 report = "coverage html"
 main = "python ./src/main.py"
 
