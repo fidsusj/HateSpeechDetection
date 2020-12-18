@@ -196,7 +196,13 @@ One can clearly see the hate expressed in the hate speech examples and see their
 
 ### Semantic features
 
-Semantic features could be the number of special characters such as "!" per data instance. Our feature_extraction module provides the possibility to count the number of any choosen character. In the current state the number of "!", "?" and "." per data instance is determined. The code is developed with the open closed pattern in mind, soit is easily possible to add more special characters to the feature extraction.
+#### Special characters
+
+Semantic features could be the number of special characters such as "!" per data instance. Our feature_extraction module provides the possibility to count the number of any choosen character. In the current state the number of "!", "?" and "." per data instance is determined. The code is developed with the open closed pattern in mind, so it is easily possible to add more special characters to the feature extraction.
+
+#### Topic Detection
+
+...
 
 ### Sentiment features
 
@@ -228,11 +234,6 @@ During the training process of the Word2Vec model, the following hyperparameters
 Note that these values are first experimental values and have not been evaluated yet. 
 The model was saves as a pickle file to avoid retraining in the following steps. 
 
-
-
-## Topic Detection
-
-...
 
 ## Classifier Design Thinking
 
