@@ -32,17 +32,6 @@ The following table illustrates the future planning of the project with mileston
 | 25.02.2021   | Project video deadline                           |
 | 15.03.2021   | Report deadline                                  |
 
-### High-level Architecture Description
-
-The High-Level architecture of our preprocessing pipeline is already described in the next chapter "Data Analysis". This 
-chapter focuses on the High-Level architecture of the whole project.
-Mainly there are four steps:
-* **Preprocessing**: The groundtruth datasets are prepared for our purposes.
-* **Feature extraction**: Based on the preprocessed dataset different features are extracted (e.g. number of rather 
-positive or negative words).
-* **Classification**: Experiments with different combination of  classifiers and features.
-* **Evaluation and comparison**: Results of the previous step are evaluated.
-
 ### Experiments (baselines)
 
 One recommendation in the project kickoff meeting was to focus on the first two steps (Preprocessing and feature 
@@ -241,5 +230,75 @@ The model was saves as a pickle file to avoid retraining in the following steps.
 
 ## Current Code State
 
-...tomorrow by Felix...
+### Project Architecture Description
+
+The project uses pipenv to maintain almost all project dependencies (using a Pipfile). For project setup instructions 
+please refer to the central README. The project stucture is shown below.  
+
+        +-- .github
+        |   +-- workflows
+        |   |   +-- code_quality.yml
+        |   |   +-- test.yml
+        +-- assignments
+        |   +-- 1
+        |   +-- 2
+        |   +-- ...
+        +-- docs
+        |   +-- milestone
+        |   +-- proposal
+        |   +-- ...
+        +-- htmlcov
+        +-- src
+        |   +-- analysis
+        |   +-- classifier
+        |   +-- data
+        |   +-- feature_extraction
+        |   +-- preprocessing
+        |   +-- main.py
+        +-- tests
+        |   +-- feature_extraction
+        |   +-- preprocessing
+        |   +-- ...
+        +-- index.html
+
+GitHub actions are used to run the logical and stylistic linter _PyLint_, the code formatter _Black_, the python 
+import sorter _Isort_ and the python _Unittest_ tests on every push or pull request. Each action runs on the latest 
+version of windows, macOS and ubuntu. The GitHub action are defined in the _.github_ folder. More detailed information 
+follows in the next chapter. 
+
+All assignments can be found in the _assignments_ folder, all submitted documents in the _docs_ folder, test coverage 
+reports in the _htmlcov_ folder. To inspect a coverage report open the _index.html_ file. 
+
+The _src_ and _tests_ folder are both recursively designed as python modules. This enables cross-module imports and 
+common _PyLint_ configuration on the project root level. In _src/analysis_ basic statistics about the used dataset and 
+extracted feature representations can be found in a jupyter notebook. All developed classifiers will be gathered in 
+_src/classifiers_ and evaluated in _src/evaluation_ in a later state of the project. The _data_ folder contains the 
+preprocessed common dataset. The original datasets need to be added manually according to the setup instructions. Coding 
+about word representations can be found in _src/feature_extraction_ whereas coding about buildung a central dataset and 
+corpus is located in _src/preprocessing_. Trained models are stored in _src/models_. 
+
+The _tests_ folder contains the unit tests for the project. Its structure equals to the _src_ folder. 
+
+### Code Quality
+
+To guarantee proper code quality, we use the _PyLint_ as a logical and stylistic linter. It makes sure, that variables 
+are written in snake case, docstrings are added for every module, class or function, and detects unused imports. For a 
+complete list of message codes from _PyLint_ please refer to the [documentation](https://docs.pylint.org/en/1.6.0/features.html).
+_PyLint_ can be integrated as an external plugin to almost every IDE. 
+
+_Black_ is a code formatter that keeps the format of code throughout the project consistent. It can be added as an external 
+programm to the IDE. One has to apply _Black_ using a keycode combination. 
+
+_Isort_ is the last dependency used to sort imports alphabetically, and automatically separated into sections and by type. 
+It provides a command line utility, python library and plugins for various editors. 
+
+All these checks are automatically applied when trying to commit and push changes to GitHub. We use the _pre-commit_ 
+module to add git hooks that automatically run these checks on every commit. After the changes were pushed to GitHub,
+an additional GitHub action is triggered that once again runs these code quality tools. The action is defined in 
+_.github/workflows/code_quality.yml_.
+
+Exluding _PyLint_ codes can be done in the central _.pylintrc_ file, configuration for the _Isort_ library is done the 
+_.isort.cfg_ file. 
+
+### Tests
 

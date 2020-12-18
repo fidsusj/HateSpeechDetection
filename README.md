@@ -32,16 +32,20 @@ For more detailed information about the project, please refer to the [project pr
 5. Set up the git hook scripts
        
        pre-commit install
+       
+6. Download and add the original datasets
 
-6. Run the program
+    ![data folder structure](./docs/img/data.png)
+
+7. Run the program
 
        pipenv run main
        
-7. Run the tests
+8. Run the tests
 
        pipenv run test && pipenv run report
        
-8. Leave the virtual environment of pipenv
+9. Leave the virtual environment of pipenv
 
        exit
 
