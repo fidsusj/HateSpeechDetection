@@ -17,20 +17,39 @@ Following tasks are already finished:
 Started, but not yet finished tasks:
 * Feature extraction
 
+### Task distribution:
+
+* Christopher Klammt: Basic statistics and visualization
+* Felix Hausberger: Data preparation, corpus building (+ tests), W2V model and GitHub actions (+ git hooks)
+* Nils Krehl: Feature extraction (TF-IDF, dictionary, special characters) (+ tests)
+
 ### Future Planning
 
 The following table illustrates the future planning of the project with milestones and the corresponding dates:
 
 | Date         | Milestone                         |
 |--------------|-----------------------------------|
-| early january| Feature extraction       finished |
+| early january| Feature extraction finished       |
 | mid january  | Different classifiers selected    |
 | mid january  | Start classification experiments  |
 | mid february | Project coding finished           |
 | 25.02.2021   | Project video deadline            |
 | 15.03.2021   | Report deadline                   |
 
-## Dataset Preparation
+### Experiments (Baselines)
+
+One recommendation in the project kickoff meeting was to focus on the first two steps (Preprocessing and feature 
+extraction). That is why first experiments are done in these two areas. The experiments for exploring the dataset are 
+described in the next chapter.
+
+### Other
+
+For the high-level architecture description and the data analysis, please refer to the individual chapters 
+in this milestone document. 
+
+## Data Analysis
+
+### Dataset Preparation
 
 To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset 
 only the class and the text content of each tweet respectively each forum contribution was considered. 
@@ -62,7 +81,7 @@ picked and added to the same amount to the sample. For other, better techniques 
 _Data Analysis_ chapter. The train and test split will be done keeping the same class distribution over both train and 
 test set with a 2:1 ratio. 
 
-## Corpus Building
+### Corpus Building
 
 The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing
 emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings 
@@ -72,7 +91,7 @@ tokens, instead lemmatization was used as one can in this case lateron use pretr
 Furthernore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not 
 ["we", "'ll"]. Some examples are covered in the test written for the corpus building process.
 
-## Data Analysis - Basic Statistics
+### Basic Statistics
 
 The following image shows the distribution of the data points.
 
@@ -213,7 +232,14 @@ The model was saves as a pickle file to avoid retraining in the following steps.
 
 ## Classifier Design Thinking
 
+The classifier first has to differ between a binary classification problem (hate speech and non hate speech). Optionally,
+depending on the performance of the first classifier the classification scenario can be expanded further. As one dataset 
+delivers additional data on offensive language, we could reuse the binary classifier architecture to build another 
+classifier on offensive lanugage. These classifiers can then be concatinated to a tenary classifier. 
 
+There has been a design thinking about possible classification methods including generative parametric models like 
+quadratic discriminant analysis or discriminative parametric models like logistic regression. The final decision which 
+classifiers to choose will be done in mid january after the according text analytics lecture. 
 
 ## Current Code State
 
