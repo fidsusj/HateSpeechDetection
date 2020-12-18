@@ -42,6 +42,11 @@ One recommendation in the project kickoff meeting was to focus on the first two 
 extraction). That is why first experiments are done in these two areas. The experiments for exploring the dataset are 
 described in the next chapter.
 
+Baselines are important to compare our classifiers against. As the beginning of this task is scheduled at mid january 
+and our focus was first to build a proper common dataset, preprocessing pipeline and text representations, no research
+inspite of the papers already gathered during the project proposal phase was done. The features chosen will actually be
+quite similar to the ones stated in the project proposal and its referenced feature and classifier papers. 
+
 ### Other
 
 For the high-level architecture description and the data analysis, please refer to the individual chapters 
@@ -265,7 +270,9 @@ please refer to the central README. The project stucture is shown below.
         |   +-- analysis
         |   +-- classifier
         |   +-- data
+        |   +-- evaluation
         |   +-- feature_extraction
+        |   +-- models
         |   +-- preprocessing
         |   +-- main.py
         +-- tests
