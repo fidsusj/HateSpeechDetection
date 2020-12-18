@@ -1,4 +1,4 @@
-""" This module builds a dictionary based on training data containing
+""" Module builds a dictionary based on training data containing
 typical hateful and neutral words """
 
 import pandas as pd
@@ -7,7 +7,12 @@ from preprocessing.corpus import tokenization
 
 
 class Dictionary:
-    """ Creates a Dictionary of hateful/neutral words based on passed training data """
+    """Creates a Dictionary of hateful/neutral words based on passed training data
+    Parameters:
+        - training_set_hate: one df column with one string per cell
+        - training_set_neutral: one df column with one string per cell
+        - dictionary_size: number
+    """
 
     def __init__(self, training_set_hate, training_set_neutral, dictionary_size):
         self.training_set_hate = training_set_hate
@@ -43,7 +48,8 @@ class Dictionary:
         )
         return df_tokens
 
-    def _check_if_list_contains_words(self, word_list, dictionary):
+    @staticmethod
+    def _check_if_list_contains_words(word_list, dictionary):
         number_dictionary_matches_in_word_list = 0
         for word in dictionary:
             if word in word_list:
@@ -52,7 +58,8 @@ class Dictionary:
                 )
         return number_dictionary_matches_in_word_list
 
-    def _transform_df_column_to_one_list(self, df):
+    @staticmethod
+    def _transform_df_column_to_one_list(df):
         content_column_as_list = df["content"].tolist()
         list_with_one_item = " ".join(content_column_as_list)
         return list_with_one_item
@@ -81,11 +88,13 @@ class Dictionary:
 
         return dictionary_hate_speech_words, dictionary_neutral_words
 
-    def _sort_df_by_column_and_return_top_n_items(self, df, column, axis, n):
+    @staticmethod
+    def _sort_df_by_column_and_return_top_n_items(df, column, axis, n):
         df_tfidf_sorted = df.sort_values(by=[column], axis=axis, ascending=False)
         return df_tfidf_sorted.columns.tolist()[:n]
 
-    def _get_distinct_list_elements(self, list_1, list_2):
+    @staticmethod
+    def _get_distinct_list_elements(list_1, list_2):
         return set(list_1) - set(list_2)
 
 

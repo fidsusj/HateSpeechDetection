@@ -1,7 +1,11 @@
+""" Module for feature extraction based on special characters (e.g. ? ! .) """
+
 import pandas as pd
 
 
 class SpecialCharacters:
+    """ Extract list of special characters (list is set in constructor) """
+
     def __init__(self):
         self.list_of_special_characters = {
             "exclamation_mark": "!",
@@ -29,7 +33,8 @@ class SpecialCharacters:
         )
         return df
 
-    def _count_character(self, sentence, character):
+    @staticmethod
+    def _count_character(sentence, character):
         return sentence.count(character)
 
 
