@@ -89,22 +89,6 @@ tokens, instead lemmatization was used as one can in this case lateron use pretr
 Furthernore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not 
 ["we", "'ll"]. Some examples are covered in the test written for the corpus building process.
 
-## Text Representation
-
-### Word Embeddings using Word2Vec
-
-During the training process of the Word2Vec model, the following hyperparameters were chosen:
-
-- Tokens with a frequency less than 20 were discarded
-- Window size is set to two in both directions
-- Word vectors contain a dimensionality of 300
-- Learning rate is set to 0.03 and decreases until 0.0007
-
-Note that these values are first experimental values and have not been evaluated yet. 
-The model was saves as a pickle file to avoid retraining in the following steps. 
-
-### TF-IDF
-... 
 
 ## Data Analysis
 
@@ -206,6 +190,43 @@ Examples for hate speech:
 - "why white people used to say that sex was a sin used to be a mystery to me until i saw the children of browns and mixed race children popping up all around me"
 
 One can clearly see the hate expressed in the hate speech examples and see their discriminating nature.
+
+## Feature extraction
+
+### Semantic features
+
+Semantic features could be the number of special characters such as "!" per data instance. Our feature_extraction module provides the possibility to count the number of any choosen character. In the current state the number of "!", "?" and "." per data instance is determined. The code is developed with the open closed pattern in mind, soit is easily possible to add more special characters to the feature extraction.
+
+### Sentiment features
+
+As already stated above the process of feature extraction is not finished yet. Currently no sentiment features are extracted. Sentiment feature extraction is going to be done until early january. Potential features are the number of rather positive/negative words and the number of slang words.
+
+### Ngram features
+
+#### TF-IDF
+The TF-IDF is determined on two documents. One containing all hate speech data instances and another document containing all neutral data instances. The TF-IDF analysis deliveres the typical hate speech and neutral words. The following heatmap shows the results:
+
+![Heatmap - Hate Speech (0) - Neutral (1)](figures/Heatmap_tfidf.png)
+
+#### Dictionary
+Based on the TF-IDF results a dictionary of typical hate speech and neutral words is built. Therefore the TF-IDF matrix is sorted foreach document (hate speech, neutral) in descending order and the top n items are selected. In the next step ensures, that both lists are distinct. If a word occurs in both lists it is deleted from both lists.
+
+As a feature the number of hate speech words and the number of neutral words is counted per data instance.
+
+### Pattern features
+
+#### Word Embeddings using Word2Vec
+
+During the training process of the Word2Vec model, the following hyperparameters were chosen:
+
+- Tokens with a frequency less than 20 were discarded
+- Window size is set to two in both directions
+- Word vectors contain a dimensionality of 300
+- Learning rate is set to 0.03 and decreases until 0.0007
+
+Note that these values are first experimental values and have not been evaluated yet. 
+The model was saves as a pickle file to avoid retraining in the following steps. 
+
 
 
 ## Topic Detection

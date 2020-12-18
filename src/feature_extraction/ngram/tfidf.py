@@ -43,8 +43,8 @@ class TfIdf:
             xticklabels=df_tfidf_sorted.columns[:top_n_items],
             cmap="YlGnBu",
         )
+        plt.savefig("../../../docs/milestone/figures/Heatmap_tfidf.png")
         plt.show()
-        plt.savefig("../../../doc/milestone/figures/Heatmap_tfidf.png")
 
 
 if __name__ == "__main__":
