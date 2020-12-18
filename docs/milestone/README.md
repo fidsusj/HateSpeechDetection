@@ -114,6 +114,7 @@ Based on these cleaned tokens, stemming is conducted. This simplifies the phrase
 ![Preprocessing pipeline example](figures/preprocessing-pipeline-example.png)
 
 In the image above this pipeline is illustrated by means of an example sentence.
+Stemming was initially implemented but for Word2Vec to work it was disabled.    
 
 ### Basic Statistics
 
@@ -163,13 +164,13 @@ These do not really differ, because most of the words are stop words which are t
 The differences in hate speech and non-hate speech get more clear, when looking at the cleaned tokens.
 This is illustrated in the following wordclouds, which are based on the 15 most common cleaned tokens for each class respectively.
 
-![Wordcloud - Hate Speech - cleaned tokens](figures/Wordcloud-HateSpeech-cleanedtokens.png)
-![Wordcloud - Non-Hate Speech - cleaned tokens](figures/Wordcloud-Non-HateSpeech-cleanedtokens.png)
+![Wordcloud - Hate Speech - cleaned tokens](figures/Wordcloud-HateSpeech-tokens.png)
+![Wordcloud - Non-Hate Speech - cleaned tokens](figures/Wordcloud-Non-HateSpeech-tokens.png)
 
 The word clouds are based on the following bar chart distributions:
 
-![Bar Chart - Hate Speech - cleaned tokens](figures/Barchart-HateSpeech-cleanedtokens.png)
-![Bar Chart - Non-Hate Speech - cleaned tokens](figures/Barchart-Non-HateSpeech-cleanedtokens.png)
+![Bar Chart - Hate Speech - cleaned tokens](figures/Barchart-HateSpeech-tokens.png)
+![Bar Chart - Non-Hate Speech - cleaned tokens](figures/Barchart-Non-HateSpeech-tokens.png)
 
 See the folder `figures` for more illustration or the jupyter notebook `data_visualization.ipynb` for the complete code.
 
