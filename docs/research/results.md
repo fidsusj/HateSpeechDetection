@@ -123,4 +123,4 @@ Table 6 for precision, recall and F1 also showed that word and character n-gram 
 - Define dataset
 - Define features
 - Define classifiers
-- Evaluate
+- Evaluation
