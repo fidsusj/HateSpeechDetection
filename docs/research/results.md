@@ -9,13 +9,11 @@
 - Feature extraction: sentiment polarity, all-capitalized words, set of words (unigrams), expressions (patterns)
 
 To conclude, mainly 4 sets of features are extracted which
-we qualify as ‘‘sentiment-based features‘‘, ‘‘semantic features,’’ ‘‘unigram features‘‘, and ‘‘pattern features.’’ By combining these sets, we believe it is possible to detect hate
-speech: ‘‘sentiment features‘‘ allow us to extract the polarity
-of the tweet, a very essential component of hate speech (given
-that hateful speeches are mostly negative ones). ‘‘Semantic features’’ allow us to find any emphasized expression.
-‘‘Unigram features’’ allow us to detect any explicit form of
-hate speech, whereas patterns allow the identification of any
-longer or implicit forms of hate speech.
+we qualify as ‘‘sentiment-based features‘‘, ‘‘semantic features,’’ ‘‘unigram features‘‘, and ‘‘pattern features.’’ By 
+combining these sets, we believe it is possible to detect hate speech: ‘‘sentiment features‘‘ allow us to extract the 
+polarity of the tweet, a very essential component of hate speech (given that hateful speeches are mostly negative ones). 
+‘‘Semantic features’’ allow us to find any emphasized expression. ‘‘Unigram features’’ allow us to detect any explicit 
+form of hate speech, whereas patterns allow the identification of any longer or implicit forms of hate speech.
 
 - Sentiment-based features
   - the total score of positive words (PW),
@@ -114,9 +112,51 @@ features. The optimized model of GB with word n-gram technique recorded the best
 speech, while the SVM with char n-gram technique had the best TPR of 0.894 for detection of hate speech. The results in 
 Table 6 for precision, recall and F1 also showed that word and character n-gram had the best performance.
 
+## III. A Survey on Automatic Detection of Hate Speech in Text
+
+- “generic text mining features” and “specific hate speech detection features”
+- Generic text mining features (see Fig. 8):
+  - Dictionaries: Gather term frequencies and use them as features (insults, swear words, reaction words (https://www.noswearing.com/)
+    profane words, verbal abuse, stereotypical utterances, words with negative connotations)
+  - Distance Metric: sh1t -> shit: distance=1
+  - Bag of Words: term frequencies, but may lead to misclassification
+  - N-grams: most used techniques in hate speech detection (also n-grams with characters or syllables => not so 
+    susceptible to spelling variations). Higher N values perform better than lower N values. N-gram features perform better
+    when combined with other features
+  - Profanity Windows: mixture of dictionary approach and n-grams
+  - TF-IDF
+  - Part-of-speech
+  - Lexical Syntactic Feature-based (LSF): capture grammatical dependencies within a sentence
+  - Rule based approaches
+  - Participant-vocabulary Consistency: tendency of each user to harass ot to be harassed
+  - Template Based Strategy: gather k words that appear around a specific word and build a template
+  - Word Sense Disambiguation Techniques
+  - Typed Dependencies: description of the grammatical relationships in a sentence => extract theme based grammatical 
+  patterns
+  - Topic classification
+  - Sentiment
+  - Word Embeddings: paragraph2vec, FastText. Problem: sentences must be classified and not words => average all word embeddings
+  - Deep Learning
+  - Named entity recognition, word sense disambiguation techniques to check polarity, frequencies of personal pronouns, 
+  emoticons, capital letters, URLs, hashtags, mentions, retweets, number of tags, terms used in the tags, number of notes 
+    (reblog and like count), 
+- Specific hate speech detection features:
+  - Othering Language: "us vs. them"
+  - Perpetrator characteristics
+  - Objectivity-Subjectivity of the language: hate speech is related with more subjective communication
+  - declarations of superiority of the ingroup
+  - focus on particular stereotypes
+  - intersectionism of oppression
+- majority of papers uses between 1.000 and 10.000 labeled instances
+- Paper contains a list of datasets! (In case our data is insufficient)
+- Most common algorithms used are SVM, Random Forest and Decision Trees, Logistic Regression, Naive Bayes
+- Most common metrics: Precision, Recall, F-measure, Accuracy and AUC
+- Best results were achieved when deep learning was used
+
 ## For our work
 
-- Define hate speech and offensive language
+- Motivation of HateSpeechDetection: See paper III.3
+- Define hate speech and offensive language See (See III.4)
 - Related work
 - Define Framework for hate speech detection
 - Introduce own dictionary of unigrams and patterns
