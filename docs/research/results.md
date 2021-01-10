@@ -163,6 +163,35 @@ Table 6 for precision, recall and F1 also showed that word and character n-gram 
 - Lowercase and removal of: space patterns, URLs, twitter mentions, retweet symbols, stopwords
 - N-gram range 1-3, L2 normalization, c=100 => 95.6% accuracy
 
+## V. Detecting Hate Speech in Social Media
+
+- Hate (2.399), Offensive (4.836) and OK (7.274) as classes
+- LIBLINEAR SVM
+- Features:
+  - n-grams: character n-grams (2-8) (across word boundaries), word n-grams (1-3) (similar to syntactic dependencies)
+  - 1-/2-/3-skip word bigrams
+- Character 4-grams perform best (accuracy of 78.0%)
+- Performance increases with #training instances
+
+## VI. Automated Hate Speech Detection and the Problem of Offensive Language
+
+- 25k tweets (5% hate speech, 77% offensive language, 18% non-offensive)
+- Features:
+  - TF-IDF weighted unigrams, bigrams and trigrams
+  - POS tag unigrams, bigrams and trigrams for syntactic structure
+  - To capture the quality of each tweet: modified Flesch-Kincaid Grade Level and Flesch Reading Ease scores, where the 
+    number of sentences is fixed at one
+  - Sentiment scores based on sentiment lexicon
+  - count indicators for hashtags, mentions, retweets and URLs
+  - number of characters, words and syllables in each tweet
+- Model: 
+  - Logistic regression with L1 regularization to reduce the dimensions
+  - Logistic regression, naive bayes, decision trees, random forests and linear SVMs. 
+- Logistic regression and linear SVM perform significantly better than the other models
+- One vs. rest framework => seperate logistic regression classifier with L2 normalization for every class
+- 0.91 overall precision, 0.9 recall and 0.9 F1-score, but model is biased towards classifying tweets as less hateful or
+offensive than the human coders
+
 ## For our work
 
 - Motivation of HateSpeechDetection: See paper III.3
