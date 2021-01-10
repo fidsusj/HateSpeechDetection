@@ -133,7 +133,7 @@ Table 6 for precision, recall and F1 also showed that word and character n-gram 
   - Word Sense Disambiguation Techniques
   - Typed Dependencies: description of the grammatical relationships in a sentence => extract theme based grammatical 
   patterns
-  - Topic classification
+  - Topic classification (Latent Dirichlet Allocation (LDA))
   - Sentiment
   - Word Embeddings: paragraph2vec, FastText. Problem: sentences must be classified and not words => average all word embeddings
   - Deep Learning
@@ -152,6 +152,16 @@ Table 6 for precision, recall and F1 also showed that word and character n-gram 
 - Most common algorithms used are SVM, Random Forest and Decision Trees, Logistic Regression, Naive Bayes
 - Most common metrics: Precision, Recall, F-measure, Accuracy and AUC
 - Best results were achieved when deep learning was used
+
+## IV. Detecting Hate Speech and Offensive Language on Twitter using Machine Learning: An N-gram and TFIDF based Approach
+
+- Classes: hateful, offensive and clean
+- Data: combination of three datasets, no metrics given
+- TF-IDF weighted n-grams as features (Related Work: have a look at Stanford Natural Language Processing Group)
+- L1 and L2 normalization
+- Logistic Regression (best), SVM and Naive Bayes
+- Lowercase and removal of: space patterns, URLs, twitter mentions, retweet symbols, stopwords
+- N-gram range 1-3, L2 normalization, c=100 => 95.6% accuracy
 
 ## For our work
 
