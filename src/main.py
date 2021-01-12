@@ -12,5 +12,5 @@ if __name__ == "__main__":
     prepare_and_merge_datasets()
     df_dataset = pd.read_csv("data/preprocessed/dataset.csv", index_col=0)
     df_dataset = build_corpus(df_dataset)
-    w2v_model = Word2Vec.load("./model.pickle")
+    w2v_model = Word2Vec.load("./models/model.pickle")
     print(w2v_model.wv.most_similar("niggas"))

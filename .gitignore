@@ -42,3 +42,6 @@ src/data/original/*
 **/__latexindent_temp.tex
 *.run.xml
 *.synctex.gz
+
+# large model files
+src/models/fasttext_model.bin
