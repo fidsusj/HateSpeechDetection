@@ -23,6 +23,7 @@ scikit-learn = "*"
 spacy = "*"
 gensim = "*"
 nltk = "*"
+fasttext = "*"
 # Infrastructure
 pre-commit = "*"
 jupyter = "*"
