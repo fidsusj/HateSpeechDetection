@@ -1,4 +1,4 @@
 [MASTER]
 
 ignore=tests
-disable=C0103, E0401, R0903
+disable=C0103, C0411, E0401, R0903
