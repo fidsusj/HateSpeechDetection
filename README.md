@@ -24,6 +24,8 @@ For more detailed information about the project, please refer to the [project pr
    - [pdftotext](https://pypi.org/project/pdftotext/) (additional os dependencies needed) (Assignment 1)
         
    - python -m spacy download en (Assignment 2)
+   
+   - python -m nltk.downloader vader_lexicon
         
 4. Enter the virtual environment of pipenv
 
