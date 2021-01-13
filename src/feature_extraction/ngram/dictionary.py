@@ -3,50 +3,62 @@ typical hateful and neutral words """
 
 import pandas as pd
 from feature_extraction.ngram.tfidf import TfIdf
-from preprocessing.corpus import tokenization
 
 
 class Dictionary:
     """Creates a Dictionary of hateful/neutral words based on passed training data
-    Parameters:
-        - training_set_hate: one df column with one string per cell
-        - training_set_neutral: one df column with one string per cell
-        - dictionary_size: number
+    and returns the dataframe with the new feature columns for the number of hate/neutral tokens
     """
 
-    def __init__(self, training_set_hate, training_set_neutral, dictionary_size):
-        self.training_set_hate = training_set_hate
-        self.training_set_neutral = training_set_neutral
-
-        tfidf = TfIdf(1, "english")
-        list_hate = self._transform_df_column_to_one_list(self.training_set_hate)
-        list_neutral = self._transform_df_column_to_one_list(self.training_set_neutral)
-        df_tfidf = tfidf.calculate_tfidf([list_hate, list_neutral])
-        (
-            self.dictionary_hate_speech_words,
-            self.dictionary_neutral_words,
-        ) = self._create_dictionary(df_tfidf, dictionary_size)
+    def __init__(self):
+        """Set dictionary parameters:
+        - dictionary_size: number
+        """
+        self.dictionary_size = 100
+        self.dictionary_hate_speech_words = []
+        self.dictionary_neutral_words = []
 
     def extract_features(self, df):
-        """Extract number of special characters per data instance
+        """Extract number of hateful/neutral tokens per data instance
         Parameters:
             df with the columns: class and content
         Return:
             passed df with new feature columns
             containing the count of the hateful/neutral words per data instance
         """
-        df_tokens = tokenization(df)
-        df_tokens["number_of_hateful_words"] = df_tokens["content"].apply(
+        self.transform_data_and_create_dictionary(df)
+        df["number_of_hateful_words"] = df["content"].apply(
             lambda cell: self._check_if_list_contains_words(
                 cell, self.dictionary_hate_speech_words
             )
         )
-        df_tokens["number_of_neutral_words"] = df_tokens["content"].apply(
+        df["number_of_neutral_words"] = df["content"].apply(
             lambda cell: self._check_if_list_contains_words(
                 cell, self.dictionary_neutral_words
             )
         )
-        return df_tokens
+        return df
+
+    def transform_data_and_create_dictionary(self, df):
+        """Transforms the input dataframe to the correct form
+        and builds the dictionary
+        Parameters:
+            df with the columns: class and content
+        Return:
+            no return values
+            but the two dictionaries (hate, neutral) are stored as instance variables
+        """
+        training_set_hate = df[df["class"] == 0]
+        training_set_neutral = df[df["class"] == 1]
+
+        tfidf = TfIdf(1, "english")
+        list_hate = self._transform_df_column_to_one_list(training_set_hate)
+        list_neutral = self._transform_df_column_to_one_list(training_set_neutral)
+        df_tfidf = tfidf.calculate_tfidf([list_hate, list_neutral])
+        (
+            self.dictionary_hate_speech_words,
+            self.dictionary_neutral_words,
+        ) = self._create_dictionary(df_tfidf, self.dictionary_size)
 
     @staticmethod
     def _check_if_list_contains_words(word_list, dictionary):
@@ -83,9 +95,6 @@ class Dictionary:
             top_neutral_words_based_on_tfidf, top_hate_speech_words_based_on_tfidf
         )
 
-        print(len(dictionary_hate_speech_words))
-        print(len(dictionary_neutral_words))
-
         return dictionary_hate_speech_words, dictionary_neutral_words
 
     @staticmethod
@@ -100,8 +109,6 @@ class Dictionary:
 
 if __name__ == "__main__":
     df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
-    list_hate_speech = df_dataset[df_dataset["class"] == 0]
-    list_neutral_speech = df_dataset[df_dataset["class"] == 1]
 
-    my_dictionary = Dictionary(list_hate_speech, list_neutral_speech, 100)
+    my_dictionary = Dictionary()
     my_dictionary.extract_features(df_dataset)
