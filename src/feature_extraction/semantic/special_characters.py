@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from path_helper import get_project_root
 
 
 class SpecialCharacters:
@@ -76,9 +77,9 @@ class SpecialCharacters:
             plt.xlabel("Number of " + character)
             plt.ylabel("Number of data instances")
             plt.legend(["hate speech", "neutral speech"])
-            plt.show()
             plt.savefig(
-                "../../analysis/features/semantic/barchart_special_character_"
+                str(get_project_root())
+                + "/analysis/features/semantic/barchart_special_character_"
                 + character
             )
 
