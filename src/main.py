@@ -1,8 +1,8 @@
 """ This is the main module """
 
 import pandas as pd
+from classifiers.classifier_executor import ClassifierExecutor
 from feature_extraction.feature_extractor import FeatureExtractor
-from gensim.models import Word2Vec
 from preprocessing.corpus import build_corpus
 from preprocessing.data_preparation import prepare_and_merge_datasets
 from sklearn.model_selection import train_test_split
@@ -17,6 +17,7 @@ if __name__ == "__main__":
 
     # extract features
     df_extracted_features = FeatureExtractor(df_dataset).get_df_with_all_features()
+    df_extracted_features = df_extracted_features.drop(["content", "tokens"], axis=1)
 
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(
@@ -30,7 +31,14 @@ if __name__ == "__main__":
     print(X_test.shape)
     print(y_test.shape)
 
-    # run classifiers
+    # print(X_train.columns)
 
-    w2v_model = Word2Vec.load("./models/model.pickle")
-    print(w2v_model.wv.most_similar("niggas"))
+    # run classifiers
+    classifier_executor = ClassifierExecutor(X_train, y_train, X_test, y_test)
+
+    print("\nEvaluation results:")
+    df_evaluation_results = classifier_executor.get_evaluation_results()
+    print(df_evaluation_results)
+
+    # w2v_model = Word2Vec.load("./models/model.pickle")
+    # print(w2v_model.wv.most_similar("niggas"))
