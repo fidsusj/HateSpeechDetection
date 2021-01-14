@@ -1,4 +1,5 @@
 [MASTER]
 
 ignore=tests
-disable=C0103, C0411, E0401, R0903
+disable=C0103, C0411, E0401, R0903, C0330, C0326
+max-line-length = 88
