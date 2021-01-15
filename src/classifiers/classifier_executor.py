@@ -13,6 +13,7 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 
@@ -20,8 +21,8 @@ class ClassifierExecutor:
     """ Extract all feature and return dataframe with all features """
 
     def __init__(self, X_train, y_train, X_test, y_test):
-        classifier_names = ["random_forest", "decision_tree"]
-        classifiers = [RandomForestClassifier(), DecisionTreeClassifier()]
+        classifier_names = ["random_forest", "decision_tree", "svm"]
+        classifiers = [RandomForestClassifier(), DecisionTreeClassifier(), SVC()]
         classifier_tuple = zip(classifier_names, classifiers)
 
         self.df_evaluation_results = self.run_classifiers(

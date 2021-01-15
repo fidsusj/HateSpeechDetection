@@ -17,7 +17,9 @@ if __name__ == "__main__":
 
     # extract features
     df_extracted_features = FeatureExtractor(df_dataset).get_df_with_all_features()
-    df_extracted_features = df_extracted_features.drop(["content", "tokens"], axis=1)
+    df_extracted_features = df_extracted_features.drop(
+        ["original_content", "content", "tokens"], axis=1
+    )
 
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(

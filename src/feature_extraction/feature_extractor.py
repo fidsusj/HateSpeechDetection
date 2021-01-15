@@ -2,13 +2,14 @@
 
 from feature_extraction.ngram.dictionary import Dictionary
 from feature_extraction.semantic.special_characters import SpecialCharacters
+from feature_extraction.semantic.words import Words
 
 
 class FeatureExtractor:
     """ Extract all feature and return dataframe with all features """
 
     def __init__(self, df):
-        feature_class_names = [SpecialCharacters, Dictionary]
+        feature_class_names = [SpecialCharacters, Dictionary, Words]
         self.df_with_all_extracted_features = self._extract_all_features(
             df, feature_class_names
         )

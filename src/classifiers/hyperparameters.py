@@ -1,6 +1,7 @@
 """ Module containing hyperparameter seacrh spaces for each classifier """
 
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 hyperparameter_search_space = {
@@ -16,5 +17,8 @@ hyperparameter_search_space = {
             "classifier": [DecisionTreeClassifier()],
             "classifier__criterion": ["gini", "entropy"],
         }
+    ],
+    "svm": [
+        {"classifier": [SVC()], "classifier__kernel": ["linear", "rbf", "sigmoid"]}
     ],
 }
