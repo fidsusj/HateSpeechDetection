@@ -5,11 +5,12 @@ from spacy.lang.en import English
 
 def preprocessing(dataframe):
     """ Makes all words lower case, removes the emojis and all other irrelevant characters """
-    dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.lower()
     dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.replace("&.*?;", "")
     dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.replace(
         r"[^a-zA-Z\s.:!?/#]", ""
     )
+    dataframe["original_content"] = dataframe["content"]
+    dataframe.loc[:, "content"] = dataframe.loc[:, "content"].str.lower()
     return dataframe
 
 
