@@ -1,5 +1,6 @@
 """ This module builds the corpus """
 
+import nltk
 from spacy.lang.en import English
 
 
@@ -15,7 +16,7 @@ def preprocessing(dataframe):
 
 
 def tokenization(dataframe):
-    """ Tokenization, stop word removal, white space removal and punctuation removal """
+    """ Tokenization, part of speech tagging, stop word removal, white space removal and punctuation removal """
     nlp = English()
     tokenizer = nlp.Defaults.create_tokenizer(nlp)
     dataframe.loc[:, "tokens"] = dataframe.loc[:, "content"].apply(
@@ -29,6 +30,11 @@ def tokenization(dataframe):
     )
     dataframe.loc[:, "tokens"] = dataframe.loc[:, "tokens"].apply(
         lambda cell: [token for token in cell if len(token) >= 2]
+    )
+    dataframe["pos"] = dataframe["tokens"].apply(
+        lambda cell: [
+            tag for (word, tag) in nltk.pos_tag(cell)
+        ]  # spacy pos tagger does work properly
     )
     return dataframe
 

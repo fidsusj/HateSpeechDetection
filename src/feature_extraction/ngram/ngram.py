@@ -1,6 +1,6 @@
 """ Module extracts counts of hate speech specific unigrams, bigrams and trigrams """
 
-import collections
+from collections import Counter
 
 import pandas as pd
 from nltk.util import ngrams
@@ -24,7 +24,7 @@ class NGram:
         corpus = flatten(corpus)
 
         unigrams = list(ngrams(corpus, 1))
-        unigram_frequencies = collections.Counter(unigrams)
+        unigram_frequencies = Counter(unigrams)
         self.dictionary_unigrams = [
             unigram
             for unigram in list(set(unigrams))
@@ -32,7 +32,7 @@ class NGram:
         ]
 
         bigrams = list(ngrams(corpus, 2))
-        bigram_frequencies = collections.Counter(bigrams)
+        bigram_frequencies = Counter(bigrams)
         self.dictionary_bigrams = [
             bigram
             for bigram in list(set(bigrams))
@@ -40,7 +40,7 @@ class NGram:
         ]
 
         trigrams = list(ngrams(corpus, 3))
-        trigram_frequencies = collections.Counter(trigrams)
+        trigram_frequencies = Counter(trigrams)
         self.dictionary_trigrams = [
             trigram
             for trigram in list(set(trigrams))
