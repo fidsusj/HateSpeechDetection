@@ -3,6 +3,8 @@
 import nltk
 from spacy.lang.en import English
 
+nltk.download("averaged_perceptron_tagger")
+
 
 def preprocessing(dataframe):
     """ Makes all words lower case, removes the emojis and all other irrelevant characters """
