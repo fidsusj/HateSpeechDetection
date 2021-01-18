@@ -26,6 +26,8 @@ For more detailed information about the project, please refer to the [project pr
    - python -m spacy download en (Assignment 2)
    
    - python -m nltk.downloader vader_lexicon
+   
+   - python -m nltk.downloader averaged_perceptron_tagger
         
 4. Enter the virtual environment of pipenv
 
