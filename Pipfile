@@ -28,6 +28,7 @@ fasttext = "*"
 # Infrastructure
 pre-commit = "*"
 jupyter = "*"
+setuptools = "*"
 
 [scripts]
 test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"

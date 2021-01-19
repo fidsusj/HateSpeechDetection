@@ -23,33 +23,35 @@ For more detailed information about the project, please refer to the [project pr
         
    - [pdftotext](https://pypi.org/project/pdftotext/) (additional os dependencies needed) (Assignment 1)
         
-   - python -m spacy download en (Assignment 2)
-   
-   - python -m nltk.downloader vader_lexicon
-   
-   - python -m nltk.downloader averaged_perceptron_tagger
-        
 4. Enter the virtual environment of pipenv
 
        pipenv shell
 
-5. Set up the git hook scripts
+5. Install models
+
+   - sudo pipenv run spacy download en (Assignment 2)
+   
+   - sudo pipenv run nltk.downloader vader_lexicon
+   
+   - sudo pipenv run nltk.downloader averaged_perceptron_tagger
+
+6. Set up the git hook scripts
        
        pre-commit install
        
-6. Download and add the original datasets
+7. Download and add the original datasets
 
     ![data folder structure](./docs/img/data.png)
 
-7. Run the program
+8. Run the program
 
        pipenv run main
        
-8. Run the tests
+9. Run the tests
 
        pipenv run test && pipenv run report
        
-9. Leave the virtual environment of pipenv
+10. Leave the virtual environment of pipenv
 
        exit
 
