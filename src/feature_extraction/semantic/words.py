@@ -1,4 +1,4 @@
-""" 
+"""
 Module for feature extraction based on words
 (e.g. all-capitalized words, interjections, number of words)
 """
@@ -6,7 +6,6 @@ Module for feature extraction based on words
 from collections import Counter
 
 import nltk
-import pandas as pd
 
 nltk.download("averaged_perceptron_tagger")
 nltk.download("punkt")
@@ -37,11 +36,8 @@ class Words:
             for text in df["original_content"]
         ]
 
+        # count number of quotation mark characters (approximation for number of quotes)
+        quote_pattern = r"(\")|('')|(``)"
+        df["number_of_quotations"] = df["content"].str.count(quote_pattern)
+
         return df
-
-
-if __name__ == "__main__":
-    df_dataset = pd.read_csv("data/preprocessed/dataset.csv", index_col=0)
-
-    words = Words()
-    df_with_extracted_features = words.extract_features(df_dataset)
