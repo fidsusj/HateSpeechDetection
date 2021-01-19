@@ -30,7 +30,7 @@ pre-commit = "*"
 jupyter = "*"
 
 [scripts]
-test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p *_test.py"
+test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"
 report = "coverage html"
 main = "python ./src/main.py"
 
