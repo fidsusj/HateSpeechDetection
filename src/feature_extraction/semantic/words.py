@@ -5,10 +5,10 @@ Module for feature extraction based on words
 
 from collections import Counter
 
-import nltk
+from nltk import RegexpTokenizer, download, pos_tag_sents, word_tokenize
 
-nltk.download("averaged_perceptron_tagger")
-nltk.download("punkt")
+download("averaged_perceptron_tagger")
+download("punkt")
 
 
 class Words:
@@ -26,7 +26,8 @@ class Words:
         """
 
         # get Parts of Speech (POS) Tagging from nltk and counting interjections ("UH")
-        tag_list = nltk.pos_tag_sents(df["content"].apply(nltk.word_tokenize).tolist())
+        tokens = df["content"].apply(word_tokenize).tolist()
+        tag_list = pos_tag_sents(tokens)
         count_list = [Counter(tag for word, tag in tags) for tags in tag_list]
         df["number_of_interjections"] = [counts.get("UH", 0) for counts in count_list]
 
@@ -39,5 +40,10 @@ class Words:
         # count number of quotation mark characters (approximation for number of quotes)
         quote_pattern = r"(\")|('')|(``)"
         df["number_of_quotations"] = df["content"].str.count(quote_pattern)
+
+        # count number of words
+        tokenizer = RegexpTokenizer(r"\w+")
+        word_tokens = df["content"].apply(tokenizer.tokenize)
+        df["number_of_words"] = list(map(len, word_tokens))
 
         return df
