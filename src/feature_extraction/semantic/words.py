@@ -1,6 +1,6 @@
 """
 Module for feature extraction based on words
-(e.g. all-capitalized words, interjections, number of words)
+(e.g. all-capitalized words, interjections, number of words, laughing expressions)
 """
 
 from collections import Counter
@@ -14,7 +14,7 @@ download("punkt")
 class Words:
     """
     Extract features based on words
-    (all-capitalized, interjections, number of words)
+    (all-capitalized, interjections, number of words, laughing expressions)
     """
 
     def extract_features(self, df):
@@ -39,11 +39,16 @@ class Words:
 
         # count number of quotation mark characters (approximation for number of quotes)
         quote_pattern = r"(\")|('')|(``)"
-        df["number_of_quotations"] = df["content"].str.count(quote_pattern)
+        df["number_of_quotation_marks"] = df["content"].str.count(quote_pattern)
 
         # count number of words
         tokenizer = RegexpTokenizer(r"\w+")
         word_tokens = df["content"].apply(tokenizer.tokenize)
         df["number_of_words"] = list(map(len, word_tokens))
+
+        # count number of laughing expressions
+        # such as: haha, hahaha, lol, loool, lololol, ahaha, lmao
+        laughter_pattern = r"(a*ha+h[ha]*|o?l+o+l+[ol]*)|(lmao)"
+        df["number_of_laughing_expressions"] = df["content"].str.count(laughter_pattern)
 
         return df
