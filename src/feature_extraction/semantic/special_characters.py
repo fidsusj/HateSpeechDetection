@@ -28,7 +28,7 @@ class SpecialCharacters:
             df = self._count_number_of_special_characters(
                 key, self.list_of_special_characters[key], df
             )
-        if visualize == True:
+        if visualize:
             self.visualize_special_characters(df)
         return df
 
