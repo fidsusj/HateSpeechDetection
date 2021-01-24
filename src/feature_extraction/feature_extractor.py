@@ -1,8 +1,8 @@
 """ Module extracts all features in this package and returns one dataframe with all feature """
 
-from feature_extraction.ngram.dictionary import Dictionary
-from feature_extraction.semantic.special_characters import SpecialCharacters
-from feature_extraction.semantic.words import Words
+from src.feature_extraction.ngram.dictionary import Dictionary
+from src.feature_extraction.semantic.special_characters import SpecialCharacters
+from src.feature_extraction.semantic.words import Words
 
 
 class FeatureExtractor:

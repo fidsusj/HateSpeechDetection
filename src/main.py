@@ -2,10 +2,11 @@
 import warnings
 
 import pandas as pd
-from classifiers.classifier_executor import ClassifierExecutor
-from feature_extraction.feature_extractor import FeatureExtractor
-from preprocessing.corpus import build_corpus
 from sklearn.model_selection import train_test_split
+
+from src.classifiers.classifier_executor import ClassifierExecutor
+from src.feature_extraction.feature_extractor import FeatureExtractor
+from src.preprocessing.corpus import build_corpus
 
 # Configs
 pd.options.mode.chained_assignment = None
@@ -24,7 +25,7 @@ if __name__ == "__main__":
     print("\nExtracting features ...")
     df_extracted_features = FeatureExtractor(df_dataset).get_df_with_all_features()
     df_extracted_features = df_extracted_features.drop(
-        ["original_content", "content", "tokens", "pos"], axis=1
+        ["original_content", "content", "tokens", "pos", "stems"], axis=1
     )
 
     # run classifiers

@@ -1,6 +1,7 @@
 """ This module builds the corpus """
 
 import nltk
+from nltk.stem.snowball import SnowballStemmer
 from spacy.lang.en import English
 
 nltk.download("averaged_perceptron_tagger")
@@ -18,9 +19,11 @@ def preprocessing(dataframe):
 
 
 def tokenization(dataframe):
-    """ Tokenization, part of speech tagging, stop word removal, white space removal and punctuation removal """
+    """ Tokenization, POS tagging, stemming, stop word removal, white space removal and punctuation removal """
     nlp = English()
     tokenizer = nlp.Defaults.create_tokenizer(nlp)
+    stemmer = SnowballStemmer("english")
+
     dataframe.loc[:, "tokens"] = dataframe.loc[:, "content"].apply(
         lambda cell: [
             token.lemma_
@@ -33,10 +36,14 @@ def tokenization(dataframe):
     dataframe.loc[:, "tokens"] = dataframe.loc[:, "tokens"].apply(
         lambda cell: [token for token in cell if len(token) >= 2]
     )
-    dataframe["pos"] = dataframe["tokens"].apply(
+    dataframe["pos"] = dataframe["content"].apply(
         lambda cell: [
-            tag for (word, tag) in nltk.pos_tag(cell)
-        ]  # spacy pos tagger does work properly
+            tag for (word, tag) in nltk.pos_tag(cell.split())
+        ]  # spacy pos tagger does work properly, use content as important words like "I" or "He" are removed in
+        # tokens (stopwords)
+    )
+    dataframe.loc[:, "stems"] = dataframe.loc[:, "tokens"].apply(
+        lambda cell: [stemmer.stem(token) for token in cell]
     )
     return dataframe
 

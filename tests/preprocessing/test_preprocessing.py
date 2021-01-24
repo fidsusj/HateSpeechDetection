@@ -1,13 +1,12 @@
-"""  This module tests the preprocessing module """
-
-import unittest
+from unittest import TestCase
 
 import pandas as pd
 
 from src.preprocessing.corpus import build_corpus
 
-df = pd.DataFrame(
-    data={
+
+class Test_Preprocessing(TestCase):
+    raw_data = {
         "class": [1, 1, 1],
         "content": [
             "The U.S. Marshals Service said Barion A. Blake was killed about 12:30 p.m. at "
@@ -17,15 +16,9 @@ df = pd.DataFrame(
             "http://www.spamlaws.com/state/summary.html the site lists all 50 states I believe .",
         ],
     }
-)
-
-
-class Test_Preprocessing(unittest.TestCase):
-    """ Test class for preprocessing module """
 
     def test_corpus(self):
-        """ Test method for building the corpus """
-        corpus = build_corpus(df)
+        corpus = build_corpus(pd.DataFrame(data=self.raw_data))
         self.assertTrue(
             "p.m." in corpus.iloc[0]["tokens"]
         )  # check correct punctuation removal
@@ -35,7 +28,3 @@ class Test_Preprocessing(unittest.TestCase):
         self.assertTrue(
             "http://www.spamlaws.com/state/summary.html" in corpus.iloc[2]["tokens"]
         )
-
-
-if __name__ == "__main__":
-    unittest.main()

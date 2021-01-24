@@ -1,7 +1,8 @@
 from unittest import TestCase
 
 import pandas as pd
-from feature_extraction.semantic.special_characters import SpecialCharacters
+
+from src.feature_extraction.semantic.special_characters import SpecialCharacters
 
 
 class TestSpecialCharacters(TestCase):
@@ -38,6 +39,6 @@ class TestSpecialCharacters(TestCase):
 
     def test__count_character(self):
         sentence = "Hello ??? this is a test?!!!"
-        self.assertEqual(SpecialCharacters()._count_character(sentence, "!"), 3)
-        self.assertEqual(SpecialCharacters()._count_character(sentence, "?"), 4)
-        self.assertEqual(SpecialCharacters()._count_character(sentence, "."), 0)
+        self.assertEqual(3, SpecialCharacters()._count_character(sentence, "!"))
+        self.assertEqual(4, SpecialCharacters()._count_character(sentence, "?"))
+        self.assertEqual(0, SpecialCharacters()._count_character(sentence, "."))

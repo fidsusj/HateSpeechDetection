@@ -3,7 +3,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from path_helper import get_project_root
+
+from src.path_helper import get_project_root
 
 
 class SpecialCharacters:
@@ -66,8 +67,7 @@ class SpecialCharacters:
             x = np.arange(11)
             plt.bar(x + 0.0, hate_bincount_summarized, color="r", width=0.2)
             plt.bar(x + 0.2, neutral_bincount_summarized, color="b", width=0.2)
-            x_ticks = []
-            [x_ticks.append(str(x)) for x in range(10)]
+            x_ticks = [str(x) for x in range(10)]
             x_ticks.append(">10")
             plt.xticks(x, x_ticks)
             plt.title(
