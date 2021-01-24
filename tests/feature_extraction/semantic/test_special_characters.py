@@ -21,7 +21,7 @@ class TestSpecialCharacters(TestCase):
             "number_of_full_stop_mark": [0, 1],
         }
         expected_df = pd.DataFrame(data=expected_data)
-        new_df = SpecialCharacters().extract_features(df)
+        new_df = SpecialCharacters().extract_features(df, False)
         self.assertTrue(new_df.equals(expected_df))
 
     def test__count_number_of_special_characters(self):

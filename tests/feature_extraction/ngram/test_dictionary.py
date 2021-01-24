@@ -23,18 +23,19 @@ class TestDictionary(TestCase):
     df_hate = pd.DataFrame(data=raw_data_hate, columns=["class", "content"])
     df_neutral = pd.DataFrame(data=raw_data_neutral, columns=["class", "content"])
     dictionary_size = 5
-    test_dictionary = Dictionary(df_hate, df_neutral, dictionary_size)
+    test_dictionary = Dictionary()
 
     def test_extract_features(self):
         df_feature = self.test_dictionary.extract_features(self.df_hate[:1])
         raw_data_expected = {
             "class": [0],
             "content": ["i hate you"],
-            "tokens": [["hate"]],
-            "number_of_hateful_words": [1],
+            "number_of_hateful_words": [0],
             "number_of_neutral_words": [0],
         }
         expected_df = pd.DataFrame(raw_data_expected)
+        print(df_feature)
+        print(expected_df)
         self.assertTrue(df_feature.equals(expected_df))
 
     def test__check_if_list_contains_words(self):
