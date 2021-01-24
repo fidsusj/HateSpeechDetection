@@ -1,6 +1,9 @@
 """ This module builds the sentiment polarity feature """
 
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+nltk.download("vader_lexicon")
 
 
 def get_sentiment_features(df):

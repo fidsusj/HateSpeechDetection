@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sns
 from classifiers.hyperparameters import hyperparameter_search_space
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
@@ -21,8 +22,19 @@ class ClassifierExecutor:
     """ Extract all feature and return dataframe with all features """
 
     def __init__(self, X_train, y_train, X_test, y_test):
-        classifier_names = ["random_forest", "decision_tree", "svm"]
-        classifiers = [RandomForestClassifier(), DecisionTreeClassifier(), SVC()]
+        classifier_names = [
+            "random_forest",
+            "decision_tree",
+            "svm",
+            "logistic_regression",
+        ]
+        classifiers = [
+            RandomForestClassifier(),
+            DecisionTreeClassifier(),
+            SVC(),
+            LogisticRegression(),
+        ]
+
         classifier_tuple = zip(classifier_names, classifiers)
 
         self.df_evaluation_results = self.run_classifiers(
