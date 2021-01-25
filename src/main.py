@@ -13,7 +13,6 @@ from src.preprocessing.corpus import build_corpus
 pd.options.mode.chained_assignment = None
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
-
 if __name__ == "__main__":
     # prepare corpus
     print("\nPreparing data ...")
@@ -22,12 +21,16 @@ if __name__ == "__main__":
         str(get_project_root()) + "/data/preprocessed/dataset.csv", index_col=0
     )
     df_dataset = build_corpus(df_dataset)
+    df_dataset.to_csv(str(get_project_root()) + "/data/extracted_features/corpus.csv")
 
     # extract features
     print("\nExtracting features ...")
     df_extracted_features = FeatureExtractor(df_dataset).get_df_with_all_features()
     df_extracted_features = df_extracted_features.drop(
         ["original_content", "content", "tokens", "pos", "stems"], axis=1
+    )
+    df_extracted_features.to_csv(
+        str(get_project_root()) + "/data/extracted_features/extracted_features.csv"
     )
 
     # run classifiers
