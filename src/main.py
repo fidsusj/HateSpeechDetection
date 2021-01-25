@@ -2,6 +2,7 @@
 import warnings
 
 import pandas as pd
+from path_helper import get_project_root
 from sklearn.model_selection import train_test_split
 
 from src.classifiers.classifier_executor import ClassifierExecutor
@@ -14,11 +15,12 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 
 
 if __name__ == "__main__":
-
     # prepare corpus
     print("\nPreparing data ...")
     # prepare_and_merge_datasets()
-    df_dataset = pd.read_csv("./src/data/preprocessed/dataset.csv", index_col=0)
+    df_dataset = pd.read_csv(
+        str(get_project_root()) + "/data/preprocessed/dataset.csv", index_col=0
+    )
     df_dataset = build_corpus(df_dataset)
 
     # extract features
@@ -40,6 +42,3 @@ if __name__ == "__main__":
 
     print("\nEvaluation results:")
     print(classifier_executor.get_evaluation_results())
-
-    # w2v_model = Word2Vec.load("./models/model.pickle")
-    # print(w2v_model.wv.most_similar("niggas"))

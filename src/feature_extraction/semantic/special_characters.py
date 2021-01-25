@@ -17,7 +17,7 @@ class SpecialCharacters:
             "full_stop_mark": ".",
         }
 
-    def extract_features(self, df):
+    def extract_features(self, df, visualize=True):
         """Extract number of special characters per data instance
         Parameters:
             df with the columns: class and content
@@ -28,7 +28,8 @@ class SpecialCharacters:
             df = self._count_number_of_special_characters(
                 key, self.list_of_special_characters[key], df
             )
-        # self.visualize_special_characters(df)
+        if visualize:
+            self.visualize_special_characters(df)
         return df
 
     def _count_number_of_special_characters(self, character_name, character, df):
