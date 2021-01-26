@@ -1,14 +1,28 @@
 """ Module extracts all features in this package and returns one dataframe with all feature """
 from src.feature_extraction.ngram.dictionary import Dictionary
+from src.feature_extraction.ngram.ngram import NGram
+from src.feature_extraction.pattern.pattern import Pattern
 from src.feature_extraction.semantic.special_characters import SpecialCharacters
 from src.feature_extraction.semantic.words import Words
+from src.feature_extraction.sentiment.vader import Vader
+from src.feature_extraction.topic.lda import LDATopic
+from src.feature_extraction.word_embeddings.fasttext.fasttext_train import Fasttext
 
 
 class FeatureExtractor:
     """ Extract all feature and return dataframe with all features """
 
     def __init__(self, df):
-        feature_class_names = [SpecialCharacters, Dictionary, Words]  # Fasttext
+        feature_class_names = [
+            SpecialCharacters,
+            Dictionary,
+            Words,
+            NGram,
+            Pattern,
+            Vader,
+            LDATopic,
+            Fasttext,
+        ]
         self.df_with_all_extracted_features = self._extract_all_features(
             df, feature_class_names
         )

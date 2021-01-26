@@ -31,6 +31,7 @@ class LDATopic:
                 [prob for (topic, prob) in lda_model[id2word.doc2bow(tokens)]]
             )
         )
+        return df
 
 
 if __name__ == "__main__":

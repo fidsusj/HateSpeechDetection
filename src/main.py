@@ -1,5 +1,6 @@
 """ This is the main module """
 import warnings
+from datetime import datetime
 
 import pandas as pd
 from path_helper import get_project_root
@@ -41,7 +42,9 @@ if __name__ == "__main__":
         test_size=0.1,
         random_state=42,
     )
+    print(datetime.now())
     classifier_executor = ClassifierExecutor(X_train, y_train, X_test, y_test)
+    print(datetime.now())
 
     print("\nEvaluation results:")
     print(classifier_executor.get_evaluation_results())

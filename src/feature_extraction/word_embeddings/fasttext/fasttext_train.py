@@ -22,7 +22,7 @@ class Fasttext:
         model = fasttext.train_unsupervised(path_to_csv_dataset_file, model="skipgram")
         model.save_model(str(get_project_root()) + "/models/fasttext_model.bin")
 
-    def extract_features(self, df, visualize=True):
+    def extract_features(self, df, visualize=False):
         """Extract vector representation of the data instance based on word embeddings trained by fasttext
         Parameters:
             df with the column containing the tokens of each data instance
