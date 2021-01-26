@@ -54,6 +54,7 @@ class Pattern:
                     & set(self.patterns)
                 )
             )
+        return df
 
 
 if __name__ == "__main__":

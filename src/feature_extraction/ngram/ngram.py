@@ -77,6 +77,7 @@ class NGram:
                 set(list(ngrams(tokens, 3))) & set(self.dictionary_trigrams)
             )
         )
+        return df
 
 
 if __name__ == "__main__":
