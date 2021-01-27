@@ -3,12 +3,12 @@ import warnings
 from datetime import datetime
 
 import pandas as pd
+from classifiers.classifier_executor import ClassifierExecutor
+from feature_extraction.feature_extractor import FeatureExtractor
 from path_helper import get_project_root
+from preprocessing.class_balancer import ClassBalancer
+from preprocessing.corpus import build_corpus
 from sklearn.model_selection import train_test_split
-
-from src.classifiers.classifier_executor import ClassifierExecutor
-from src.feature_extraction.feature_extractor import FeatureExtractor
-from src.preprocessing.corpus import build_corpus
 
 # Configs
 pd.options.mode.chained_assignment = None
@@ -36,15 +36,29 @@ if __name__ == "__main__":
 
     # run classifiers
     print("\nRunning classifiers ...")
-    X_train, X_test, y_train, y_test = train_test_split(
-        df_extracted_features.loc[:, df_extracted_features.columns != "class"],
-        df_extracted_features["class"],
-        test_size=0.1,
-        random_state=42,
-    )
-    print(datetime.now())
-    classifier_executor = ClassifierExecutor(X_train, y_train, X_test, y_test)
-    print(datetime.now())
+    features = df_extracted_features.loc[:, df_extracted_features.columns != "class"]
+    labels = df_extracted_features["class"]
 
-    print("\nEvaluation results:")
-    print(classifier_executor.get_evaluation_results())
+    # do balancing, i.e. over- and undersampling
+    balancer = ClassBalancer(features, labels)
+    # undersampled_x, undersampled_y = balancer.undersample()
+    # oversampled_x, oversampled_y = balancer.oversample()
+    datasets = [
+        ("unchanged", (features, labels)),
+        ("undersampled", balancer.undersample()),
+        ("oversampled", balancer.oversample()),
+    ]
+    for title, (features, labels) in datasets:
+        print("\n", title)
+        X_train, X_test, y_train, y_test = train_test_split(
+            features,
+            labels,
+            test_size=0.1,
+            random_state=42,
+        )
+        print(datetime.now())
+        classifier_executor = ClassifierExecutor(X_train, y_train, X_test, y_test)
+        print(datetime.now())
+
+        print("\nEvaluation results:")
+        print(classifier_executor.get_evaluation_results())
