@@ -46,3 +46,8 @@ assignments/3/data/*
 
 # large model files
 src/models/fasttext_model.bin
+
+# assignment corrections
+assignments/1/correction/*
+assignments/2/correction/*
+assignments/3/correction/*
