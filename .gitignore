@@ -27,6 +27,7 @@ TODO.md
 # data
 src/data/original/*
 assignments/3/data/*
+assignments/4/data/*
 !src/data/.gitkeep
 
 **/.ipynb_checkpoints
