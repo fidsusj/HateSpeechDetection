@@ -1,0 +1,122 @@
+% This template was initially provided by Dulip Withanage.
+% Modifications for the database systems research group
+% were made by Conny Junghans,  Jannik Strötgen and Michael Gertz
+
+\documentclass[
+     12pt,         % font size
+     a4paper,      % paper format
+     BCOR10mm,     % binding correction
+     DIV14,        % stripe size for margin calculation
+     ]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% PACKAGES:
+
+% Use German :
+\usepackage[english]{babel}
+% Input and font encoding
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+% Index-generation
+\usepackage{makeidx}
+% Einbinden von URLs:
+\usepackage{url}
+% Special \LaTex symbols (e.g. \BibTeX):
+%\usepackage{doc}
+% Include Graphic-files:
+\usepackage{graphicx}
+% Include doc++ generated tex-files:
+%\usepackage{docxx}
+
+% Fuer anderthalbzeiligen Textsatz
+\usepackage{setspace}
+
+% hyperrefs in the documents
+\PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
+%\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OTHER SETTINGS:
+
+% Choose language
+\newcommand{\setlang}[1]{\selectlanguage{#1}\nonfrenchspacing}
+
+
+\begin{document}
+
+% TITLE:
+\pagenumbering{roman} 
+\begin{titlepage}
+
+\vspace*{1cm}
+\begin{center}
+\textbf{ 
+\Large Heidelberg University\\
+\smallskip
+\Large Institute of Computer Science\\
+\smallskip
+\Large Database Systems Research Group\\
+\smallskip
+}
+
+\vspace{3cm}
+
+\textbf{\large Report for the lecture Text Analytics}
+
+\vspace{0.5\baselineskip}
+{\huge
+\textbf{Hate Speech Detection}
+}
+\vspace{0.5cm}
+
+\url{https://github.com/fidsusj/HateSpeechDetection}
+
+\vspace{1cm}
+Mentor: John Ziegler
+\end{center}
+
+\vfill 
+
+{\large
+\begin{tabular}[l]{ll}
+Team Member: & Christopher Klammt, 3588474,\\
+  & Applied Computer Science\\
+  & iv249@stud.uni-heidelberg.de\\
+  & \\
+Team Member: & Felix Hausberger, 3661293,\\
+  & Applied Computer Science\\
+  & eb260@stud.uni-heidelberg.de\\
+  & \\
+Team Member: & Nils Krehl, 3664130,\\
+  & Applied Computer Science\\
+  & pu268@stud.uni-heidelberg.de\\
+  
+\end{tabular}
+}
+
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\input{content/abstract.tex}
+\input{content/anti-plagiarism-statement.tex}
+
+\newpage
+\tableofcontents
+\newpage
+
+\input{content/introduction.tex}
+\input{content/related-work.tex}
+\input{content/approach.tex}
+\input{content/experimental-setup.tex}
+\input{content/conclusion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
