@@ -28,13 +28,22 @@
 \usepackage{graphicx}
 % Include doc++ generated tex-files:
 %\usepackage{docxx}
-
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
+
+\usepackage{subcaption}
+
+\usepackage{biblatex}
+\bibliography{references.bib}
 
 % hyperrefs in the documents
 \PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
 %\usepackage{hyperref}
+
+
+% CUSTOM:
+
+\usepackage{csquotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -111,12 +120,12 @@ Team Member: & Nils Krehl, 3664130,\\
 \input{content/related-work.tex}
 \input{content/approach.tex}
 \input{content/experimental-setup.tex}
+\input{content/analysis.tex}
 \input{content/conclusion.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\bibliographystyle{plain}
-\bibliography{references}
+\printbibliography
 
 \end{document}
