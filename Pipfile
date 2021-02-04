@@ -26,7 +26,6 @@ pre-commit = "*"
 jupyter = "*"
 setuptools = "*"
 isort = "*"
-black = "*"
 
 [scripts]
 test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"
