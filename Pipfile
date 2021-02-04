@@ -8,27 +8,25 @@ coverage = "*"
 pylint = "*"
 
 [packages]
-# Assignments-1
 pypdf2 = "*"
 pdfminer = "*"
 regex = "*"
-# Assignments-2
 wordcloud = "*"
 seaborn = "*"
-# Project
 pandas = "*"
 numpy = "*"
 matplotlib = "*"
 scikit-learn = "*"
-imbalanced-learn= "*"
+imbalanced-learn = "*"
 spacy = "*"
 gensim = "*"
 nltk = "*"
 fasttext = "*"
-# Infrastructure
 pre-commit = "*"
 jupyter = "*"
 setuptools = "*"
+isort = "*"
+black = "*"
 
 [scripts]
 test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"

@@ -21,7 +21,7 @@ class FeatureExtractor:
             Pattern,
             Vader,
             LDATopic,
-            Fasttext,
+            # Fasttext,
         ]
         self.df_with_all_extracted_features = self._extract_all_features(
             df, feature_class_names
