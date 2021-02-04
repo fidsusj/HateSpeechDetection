@@ -15,42 +15,40 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 
 
 def run_preprocessing(run_from_scratch):
+    """ Run data preprocessing if run_from_scratch=True """
     if run_from_scratch:
         # prepare corpus
         print("\nPreparing data ...")
         # prepare_and_merge_datasets()
-        df_dataset = pd.read_csv(
+        df = pd.read_csv(
             str(get_project_root()) + "/data/preprocessed/dataset.csv", index_col=0
         )
-        df_dataset = build_corpus(df_dataset)
-        df_dataset.to_csv(
-            str(get_project_root()) + "/data/extracted_features/corpus.csv"
-        )
-        return df_dataset
+        df = build_corpus(df)
+        df.to_csv(str(get_project_root()) + "/data/extracted_features/corpus.csv")
+        return df
     else:
-        df_dataset = pd.read_csv(
+        df = pd.read_csv(
             str(get_project_root()) + "/data/extracted_features/corpus.csv"
         )
-        return df_dataset
+        return df
 
 
 def run_feature_extraction(run_from_scratch):
+    """ Run feature extraction if run_from_scratch=True """
     if run_from_scratch:
         # extract features
         print("\nExtracting features ...")
-        df_extracted_features = FeatureExtractor(df_dataset).get_df_with_all_features()
-        df_extracted_features = df_extracted_features.drop(
-            ["original_content", "content", "tokens", "pos", "stems"], axis=1
-        )
-        df_extracted_features.to_csv(
+        df = FeatureExtractor(df_dataset).get_df_with_all_features()
+        df = df.drop(["original_content", "content", "tokens", "pos", "stems"], axis=1)
+        df.to_csv(
             str(get_project_root()) + "/data/extracted_features/extracted_features.csv"
         )
-        return df_extracted_features
+        return df
     else:
-        df_extracted_features = pd.read_csv(
+        df = pd.read_csv(
             str(get_project_root()) + "/data/extracted_features/extracted_features.csv"
         )
-        return df_extracted_features
+        return df
 
 
 if __name__ == "__main__":
