@@ -30,6 +30,12 @@
 %\usepackage{docxx}
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
+
+\usepackage{subcaption}
+
+\usepackage{biblatex}
+\bibliography{references.bib}
+
 % hyperrefs in the documents
 \PassOptionsToPackage{hyphens}{url}\usepackage[bookmarks=true,colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black,urlcolor=black]{hyperref}
 %\usepackage{hyperref}
@@ -120,47 +126,6 @@ Team Member: & Nils Krehl, 3664130,\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\bibliographystyle{plain}
-% \bibliography{references}
-\begin{thebibliography}{9}
-	
-\bibitem{Dorris2020} Dorris, W., Hu, R., Vishwamitra, R., Luo, F., Costello, M.: Towards Automatic Detection and Explanation of Hate Speech and Offensive Language.
-In: Proceedings of the Sixth International Workshop on Security and Privacy Analytics (2020).
-https://doi.org/10.1145/3375708.3380312
-
-\bibitem{Syam2019} Syam, S., Irawan, B., Setianingsih, C.: Hate Speech Detection on Twitter Using Long Short-Term Memory (LSTM) Method.
-In: 4th International Conference on Information Technology, Information Systems and Electrical Engineering (ICITISEE) (2019).
-https://doi.org/10.1109/ICITISEE48480.2019.9003992
-
-\bibitem{Saksesi2018} Saksesi, A., Nasrun, M., Setianingsih, C.: Analysis Text of Hate Speech Detection Using Recurrent Neural
-Network.
-In: International Conference on Control, Electronics, Renewable Energy and Communications (ICCEREC) (2018).
-https://doi.org/10.1109/ICCEREC.2018.8712104
-
-\bibitem{Founta2019} Founta, A., Chatzakou, D., Kourtellis, N., Blackburn, J., Vakali, A., Leontiadis, I.: A Unified Deep Learning Architecture for Abuse Detection.
-In: Proceedings of the 10th ACM Conference on Web Science (2019).
-https://doi.org/10.1145/3292522.3326028
-
-\bibitem{Saleh2020} Saleh, H., Alhothali, A., Moria, K.: Detecting White Supremacist Hate Speech using Domain Specific Word Embedding with Deep Learning and BERT.
-In: arXiv (2020).
-https://arxiv.org/abs/2010.00357
-
-\bibitem{Badjatiya2017} Badjatiya, P., Gupta, S., Gupta, M., Varma, V.: Deep Learning for Hate Speech Detection in Tweets.
-In: Proceedings of the 26th International Conference on World Wide Web Companion (2017).
-https://doi.org/10.1145/3041021.3054223
-
-\bibitem{Roy2020} Roy, P., Tripathy, A., Das, T., Gao, X.: A Framework for Hate Speech Detection Using Deep Convolutional Neural Network.
-In: IEEE Access (Volume: 8) (2020).
-https://doi.org/10.1109/ACCESS.2020.3037073
-
-\bibitem{Kapil2020} Kapil, P., Ekbal, A., Das, D.: Investigating Deep Learning Approaches for Hate Speech Detection in Social Media.
-In: arXiv (2020).
-https://arxiv.org/abs/2005.14690
-
-\bibitem{Muhammad2020} Muhammad, I., Nasrun, M., Setianingsih, C.: Hate Speech Detection using Global Vector and Deep Belief Network Algorithm.
-In: 1st International Conference on Big Data Analytics and Practices (IBDAP) (2020).
-https://doi.org/10.1109/IBDAP50342.2020.9245467
-
-\end{thebibliography}
+\printbibliography
 
 \end{document}

@@ -1,1 +1,95 @@
 \section{Experimental setup and results} \label{results}
+
+\subsection{Data}
+
+There are two data sets used for the project. The first one uses data from the \textit{Twitter API} \cite{ThomasDavidson2020}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary classification style. The workers were instructed to follow predefined definitions of each category and to take context information into consideration. Each tweet was assessed and labeled by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
+
+The second data set uses data from the \textit{White Supremacy Forum} \cite{OnadeGibert2020}\footnote{https://github.com/Vicomtech/hate-speech-dataset}. One document represents a sentence that is either labeled as hate or not hate. In total, 1.119 sentences containing hate and 8.537 sentences being non-hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information was provided. The documents are given offline as normal text files with annotations stored in a separate CSV file. 
+
+\subsubsection{Data preparation}
+
+To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset only the class and the text content of each tweet respectively each forum contribution was considered.
+
+The first dataset \citetitle{ThomasDavidson2020} was entirely given as a .csv file and contains 25.297 tweets, that were either labeled as hate speech, offensive language or neither of both. To determine the right label three independent evaluators classified each tweet, the final label got assigned by the majority vote. As for the first approach, one is only interested in hate speech and neutral tweet classification, all offensive language documents in the dataset were dropped. Some tweets were retweets that were commented additionally by a user. As it could not be distinguished whether the original tweet or the retweet contains hate speech, these documents were filtered out as well. An example is shown below:
+
+\begin{quote}
+    """@jaimescudi\_: ""@Tonybthrz\_: ""@jaimescudi\_: I swear if oomf try talking to me tomorrow.."" @"" @BarackObama"" pussy"
+\end{quote}
+
+The original tweets can be found in between the ""..."". Same goes for tweets that cite other users without using the retweet option.
+
+\vspace{0.5cm}
+
+The second dataset \citetitle{OnadeGibert2020} was not entirely given as a .csv file. Only the document annotations were given in a .csv file, all forum contributions were stored in separate .txt files. Only documents which could not be assigned to a single class (label "idk/skip") or referred to other documents (label "relation") were dropped.
+
+The resulting common dataset was stored in a .csv file. It contains 2.491 hate speech documents and 13.336 non hate speech documents. The dropped offensive language documents make up 17.505 instances. In case the classification results are too poor, additional 2.818 offensive language documents can be added that were labeled as hate speech by one evaluator.
+
+\subsubsection{Corpus building}
+
+The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
+
+\subsubsection{Data analysis}
+
+As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Bowyer2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
+
+\begin{itemize}
+    \item changing the performance metric (e.g. F1-score instead of accuracy)
+    \item undersampling, i.e. deleting instances from the over-represented class
+    \item oversampling, i.e. adding copies of instances from the under-represented class
+    \item generating synthetic samples (e.g by using SMOTE)
+\end{itemize}
+
+In our experiments we chose to try the different approaches and applied a simple undersampling, as well as an oversampling using SMOTE. Additionally, we used the imbalanced dataset to train a classifier to compare how this affects the performance.
+
+\vspace{1cm}
+
+In further analysis of the data, we had a look at the length of hate speech posts versus non-hate speech posts. This can be seen in \autoref{fig:post_length_density_distribution}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/post_length_density_distribution.png}
+    \caption{Density distribution of the length of a post (tweet or forum post)}
+    \label{fig:post_length_density_distribution}
+\end{figure}
+
+Here one can see, that the hate speech posts contain more words (tokens before cleaning) than non-hate speech posts. In average a hate speech post contains 18.18 words, whereas a non-hate speech post only contains 15.85 words. Unlike expected, the hate speech posts are longer than the non-hate speech posts.
+
+A more interesting look at the data are the most commonly used words per class. As can be seen in the word clouds in \autoref{fig:wordclouds} there are some obvious differences, such that the hate speech posts use words like \enquote{bitch}, \enquote{faggot} or \enquote{nigga}. But interestingly enough, the non-hate speech posts also often consist of the words \enquote{trash} or \enquote{white}.
+
+\begin{figure}[ht]
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Wordcloud-HateSpeech-tokens.png}
+        \caption{hate speech}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/Wordcloud-Non-HateSpeech-tokens.png}
+        \caption{non-hate speech}
+    \end{subfigure}
+    \hfill
+    \caption{Word clouds}
+    \label{fig:wordclouds}
+\end{figure}
+
+For a better insight with what data we are dealing, a few examples are shown in the following.
+
+\noindent
+Examples for non-hate speech (neutral sentences):
+\begin{itemize}
+    \item "billy that guy would nt leave me alone so i gave him the trudeau salute"
+    \item "this is after a famous incident of former prime minister pierre trudeau who gave the finger to a group of protesters who were yelling antifrench sayings at him"
+    \item "askdems arent you embarrassed that charlie rangel remains in your caucus"
+\end{itemize}
+
+\noindent
+Examples for hate speech:
+\begin{itemize}
+    \item "california is full of white trash"
+    \item "and yes they will steal anything from whites because they think whites owe them something so it s ok to steal"
+    \item "why white people used to say that sex was a sin used to be a mystery to me until i saw the children of browns and mixed race children popping up all around me"
+\end{itemize}
+
+One can clearly see the hate expressed in the hate speech examples and see their discriminating nature.
