@@ -26,6 +26,7 @@ pre-commit = "*"
 jupyter = "*"
 setuptools = "*"
 isort = "*"
+importlib-metadata = "*"
 
 [scripts]
 test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"
