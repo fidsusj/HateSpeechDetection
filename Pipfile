@@ -27,6 +27,8 @@ jupyter = "*"
 setuptools = "*"
 isort = "*"
 importlib-metadata = "*"
+tensorflow = "*"
+data = "*"
 
 [scripts]
 test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"
