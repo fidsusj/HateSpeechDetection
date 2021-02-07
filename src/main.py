@@ -1,9 +1,10 @@
 """ This is the main module """
 import warnings
+from datetime import datetime
 
 import pandas as pd
 from classifiers.classifier_executor import ClassifierExecutor
-from classifiers.neural_network_executor import NeuralNetworkExecutor
+from classifiers.input_data import InputData
 from feature_extraction.feature_extractor import FeatureExtractor
 from path_helper import get_project_root
 from preprocessing.class_balancer import ClassBalancer
@@ -77,8 +78,7 @@ if __name__ == "__main__":
     df_corpus = run_feature_extraction_create_corpus(corpus, df_preprocessed)
     df_extracted_features = run_feature_extraction(feature_extraction, df_corpus)
 
-    # run classifiers
-    print("\nRunning classifiers ...")
+    # unchanged dataset
     raw_text_features = df_preprocessed["content"]
     raw_text_labels = df_preprocessed["class"]
     extracted_features = df_extracted_features.loc[
@@ -86,61 +86,13 @@ if __name__ == "__main__":
     ]
     labels = df_extracted_features["class"]
 
-    def run_classifiers(features, labels, executor):
-        # do balancing, i.e. over- and undersampling
-        balancer = ClassBalancer(features, labels)
-        # undersampled_x, undersampled_y = balancer.undersample()
-        try:
-            oversampled_x, oversampled_y = balancer.oversample()
-        except:
-            # TODO: hacky, needs to be adapted
-            oversampled_x, oversampled_y = features, labels
-        datasets = [
-            ("unchanged", (features, labels)),
-            ("undersampled", balancer.undersample()),
-            ("oversampled", (oversampled_x, oversampled_y)),
-        ]
-
-        results = []
-        for title, (features, labels) in datasets:
-            print(
-                " -> Run executor: {} with dataset: {}".format(executor.__name__, title)
-            )
-            X_train, X_test, y_train, y_test = train_test_split(
-                features,
-                labels,
-                test_size=0.2,
-                random_state=42,
-            )
-            classifier_executor = executor(X_train, y_train, X_test, y_test)
-
-            print(classifier_executor.get_evaluation_results())
-            results.append(classifier_executor.get_evaluation_results())
-
-        return results[0], results[1], results[2]
-
-    df_unchanged0, df_undersampled0, df_oversampled0 = run_classifiers(
-        extracted_features, labels, ClassifierExecutor
-    )
-    df_unchanged1, df_undersampled1, df_oversampled1 = run_classifiers(
-        [[i] for i in raw_text_features.values.tolist()],
-        raw_text_labels,
-        NeuralNetworkExecutor,
+    # do balancing, i.e. over- and undersampling
+    input_data = InputData(
+        raw_text_features, raw_text_labels, extracted_features, labels
     )
 
-    df_results_unchanged = pd.concat([df_unchanged0, df_unchanged1])
-    df_results_undersampled = pd.concat([df_undersampled0, df_undersampled1])
-    df_results_oversampled = pd.concat([df_oversampled0, df_oversampled1])
-
-    print("\nEvaluation results:")
-    print("-> unchanged:")
-    print(df_results_unchanged)
-    df_results_unchanged.to_csv(str(get_project_root()) + "/results/unchanged.csv")
-    print("-> undersampled:")
-    print(df_results_undersampled)
-    df_results_undersampled.to_csv(
-        str(get_project_root()) + "/results/undersampled.csv"
-    )
-    print("-> oversampled:")
-    print(df_results_oversampled)
-    df_results_oversampled.to_csv(str(get_project_root()) + "/results/oversampled.csv")
+    # run classifiers
+    print("\nRunning classifiers ...")
+    classifier_executor = ClassifierExecutor(input_data.get_datasets())
+    df_results = classifier_executor.get_results()
+    df_results.to_csv(str(get_project_root()) + "/results/results.csv")

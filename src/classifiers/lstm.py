@@ -73,10 +73,9 @@ class LSTMClassifier:
         plt.subplot(1, 2, 2)
         plot_graphs(history_lstm, "loss")
         plt.ylim(0, None)
-        plt.show()
+        # plt.show()
 
     def predict(self, X_test):
         """ predict """
         y_hat = self.model.predict(X_test)
-        # TODO: ok like this? continuous -> class labels
         return np.around(y_hat)
