@@ -2,14 +2,19 @@
 import re
 
 import pandas as pd
+from path_helper import get_project_root
 
 
 def prepare_and_merge_datasets():
     """ Prepares and merges the datasets """
     dataset_csv = open(
-        "./src/data/preprocessed/dataset.csv", encoding="utf-8", mode="w"
+        str(get_project_root()) + "/data/preprocessed/dataset.csv",
+        encoding="utf-8",
+        mode="w",
     )
-    dataset_copy = open("./src/analysis/dataset.csv", encoding="utf-8", mode="w")
+    dataset_copy = open(
+        str(get_project_root()) + "/analysis/dataset.csv", encoding="utf-8", mode="w"
+    )
     df_first_dataset = _prepare_hate_speech_and_offensive_language()
     df_second_dataset = _prepare_hate_speech_dataset()
 
@@ -27,7 +32,8 @@ def prepare_and_merge_datasets():
 
 def _prepare_hate_speech_and_offensive_language():
     df_dataset = _create_df_and_drop_columns(
-        "./src/data/original/hate-speech-and-offensive-language/labeled_data.csv",
+        str(get_project_root())
+        + "/data/original/hate-speech-and-offensive-language/labeled_data.csv",
         0,
         ["count", "hate_speech", "offensive_language", "neither"],
     )
@@ -63,7 +69,8 @@ def _data_preparation(df):
 
 def _prepare_hate_speech_dataset():
     df_dataset = _create_df_and_drop_columns(
-        "./src/data/original/hate-speech-dataset/annotations_metadata.csv",
+        str(get_project_root())
+        + "/data/original/hate-speech-dataset/annotations_metadata.csv",
         None,
         ["user_id", "subforum_id", "num_contexts"],
     )
@@ -81,7 +88,8 @@ def _filter_and_format_hate_speech(df):
             df = df.drop(index=i)
             continue
         file = open(
-            "./src/data/original/hate-speech-dataset/all_files/{}.txt".format(
+            str(get_project_root())
+            + "/data/original/hate-speech-dataset/all_files/{}.txt".format(
                 row["file_id"]
             ),
             encoding="utf-8",
