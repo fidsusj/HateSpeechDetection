@@ -2,6 +2,7 @@
 import warnings
 
 import pandas as pd
+from analysis.feature_importance.feature_importance import FeatureImportance
 from classifiers.classifier_executor import ClassifierExecutor
 from classifiers.input_data import InputData
 from feature_extraction.feature_extractor import FeatureExtractor
@@ -89,6 +90,13 @@ if __name__ == "__main__":
     input_data = InputData(
         raw_text_features, raw_text_labels, extracted_features, labels
     )
+
+    # feature importances
+    print("\nFeature importances ...")
+    feature_importance = FeatureImportance(
+        extracted_features, labels, extracted_features.columns.values
+    )
+    feature_importance.get_importance_scores()
 
     # run classifiers
     print("\nRunning classifiers ...")
