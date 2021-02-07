@@ -1,18 +1,15 @@
 """ This is the main module """
 import warnings
-from datetime import datetime
 
 import pandas as pd
 from classifiers.classifier_executor import ClassifierExecutor
 from classifiers.input_data import InputData
 from feature_extraction.feature_extractor import FeatureExtractor
 from path_helper import get_project_root
-from preprocessing.class_balancer import ClassBalancer
 from preprocessing.corpus import build_corpus
 
 # Configs
 from preprocessing.data_preparation import prepare_and_merge_datasets
-from sklearn.model_selection import train_test_split
 
 pd.options.mode.chained_assignment = None
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -74,17 +71,19 @@ if __name__ == "__main__":
     corpus = False
     feature_extraction = False
 
-    df_preprocessed = run_preprocessing(preprocessing)
-    df_corpus = run_feature_extraction_create_corpus(corpus, df_preprocessed)
-    df_extracted_features = run_feature_extraction(feature_extraction, df_corpus)
+    df_preprocessed_data = run_preprocessing(preprocessing)
+    df_data_corpus = run_feature_extraction_create_corpus(corpus, df_preprocessed_data)
+    df_data_extracted_features = run_feature_extraction(
+        feature_extraction, df_data_corpus
+    )
 
     # unchanged dataset
-    raw_text_features = df_preprocessed["content"]
-    raw_text_labels = df_preprocessed["class"]
-    extracted_features = df_extracted_features.loc[
-        :, df_extracted_features.columns != "class"
+    raw_text_features = df_preprocessed_data["content"]
+    raw_text_labels = df_preprocessed_data["class"]
+    extracted_features = df_data_extracted_features.loc[
+        :, df_data_extracted_features.columns != "class"
     ]
-    labels = df_extracted_features["class"]
+    labels = df_data_extracted_features["class"]
 
     # do balancing, i.e. over- and undersampling
     input_data = InputData(
