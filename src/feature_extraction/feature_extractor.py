@@ -1,12 +1,13 @@
 """ Module extracts all features in this package and returns one dataframe with all feature """
-from src.feature_extraction.ngram.dictionary import Dictionary
-from src.feature_extraction.ngram.ngram import NGram
-from src.feature_extraction.pattern.pattern import Pattern
-from src.feature_extraction.semantic.special_characters import SpecialCharacters
-from src.feature_extraction.semantic.words import Words
-from src.feature_extraction.sentiment.vader import Vader
-from src.feature_extraction.topic.lda import LDATopic
-from src.feature_extraction.word_embeddings.fasttext.fasttext_train import Fasttext
+from feature_extraction.ngram.dictionary import Dictionary
+from feature_extraction.ngram.ngram import NGram
+from feature_extraction.pattern.pattern import Pattern
+from feature_extraction.semantic.special_characters import SpecialCharacters
+from feature_extraction.semantic.words import Words
+from feature_extraction.sentiment.vader import Vader
+from feature_extraction.topic.lda import LDATopic
+
+# from feature_extraction.word_embeddings.fasttext.fasttext_train import Fasttext
 
 
 class FeatureExtractor:

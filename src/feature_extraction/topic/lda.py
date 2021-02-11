@@ -5,8 +5,7 @@ import gensim.corpora as corpora
 import numpy as np
 import pandas as pd
 from gensim.models import LdaMulticore
-
-from src.preprocessing.corpus import build_corpus
+from preprocessing.corpus import build_corpus
 
 
 class LDATopic:

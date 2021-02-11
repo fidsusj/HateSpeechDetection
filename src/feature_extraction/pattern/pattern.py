@@ -3,8 +3,7 @@
 from collections import Counter
 
 import pandas as pd
-
-from src.preprocessing.corpus import build_corpus
+from preprocessing.corpus import build_corpus
 
 
 class Pattern:
