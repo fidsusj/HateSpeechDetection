@@ -2,7 +2,8 @@
 typical hateful and neutral words """
 
 import pandas as pd
-from feature_extraction.ngram.tfidf import TfIdf
+
+from src.feature_extraction.ngram.tfidf import TfIdf
 
 
 class Dictionary:

@@ -3,7 +3,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from path_helper import get_project_root
+
+from src.path_helper import get_project_root
 
 
 class SpecialCharacters:
