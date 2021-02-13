@@ -6,6 +6,8 @@ from multiprocessing import Pool
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from classifiers.hyperparameters import hyperparameter_search_space
+from classifiers.lstm import LSTMClassifier
 from imblearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -17,10 +19,8 @@ from sklearn.metrics import (
     recall_score,
 )
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-
-from src.classifiers.hyperparameters import hyperparameter_search_space
-from src.classifiers.lstm import LSTMClassifier
 
 
 class ClassifierExecutor:
@@ -30,7 +30,7 @@ class ClassifierExecutor:
         classical_ml_methods = [
             ["random_forest", RandomForestClassifier()],
             ["decision_tree", DecisionTreeClassifier()],
-            # ["svm", SVC()],
+            ["svm", SVC()],
             ["logistic_regression", LogisticRegression()],
         ]
         neural_network_methods = [["lstm", LSTMClassifier()]]

@@ -5,7 +5,7 @@ import pandas as pd
 from path_helper import get_project_root
 
 
-def prepare_and_merge_datasets():
+def prepare_and_merge_datasets(include_offensive_language=False):
     """ Prepares and merges the datasets """
     dataset_csv = open(
         str(get_project_root()) + "/data/preprocessed/dataset.csv",
@@ -15,10 +15,13 @@ def prepare_and_merge_datasets():
     dataset_copy = open(
         str(get_project_root()) + "/analysis/dataset.csv", encoding="utf-8", mode="w"
     )
-    df_first_dataset = _prepare_hate_speech_and_offensive_language()
-    df_second_dataset = _prepare_hate_speech_dataset()
 
-    df_dataset = pd.concat([df_first_dataset, df_second_dataset], ignore_index=True)
+    if include_offensive_language:
+        df_dataset = _prepare_hate_speech_and_offensive_language(True)
+    else:
+        df_first_dataset = _prepare_hate_speech_and_offensive_language()
+        df_second_dataset = _prepare_hate_speech_dataset()
+        df_dataset = pd.concat([df_first_dataset, df_second_dataset], ignore_index=True)
 
     dataset_csv.write(df_dataset.to_csv())
     dataset_csv.close()
@@ -30,14 +33,19 @@ def prepare_and_merge_datasets():
 # --- Hatespeech and Offensive Language ---
 
 
-def _prepare_hate_speech_and_offensive_language():
+def _prepare_hate_speech_and_offensive_language(include_offensive_language=False):
     df_dataset = _create_df_and_drop_columns(
         str(get_project_root())
         + "/data/original/hate-speech-and-offensive-language/labeled_data.csv",
         0,
         ["count", "hate_speech", "offensive_language", "neither"],
     )
-    df_dataset = _filter_and_format_hate_speech_and_offensive_language(df_dataset)
+
+    if include_offensive_language:
+        df_dataset.rename(columns={"tweet": "content"}, inplace=True)
+    else:
+        df_dataset = _filter_and_format_hate_speech_and_offensive_language(df_dataset)
+
     df_dataset = _data_preparation(df_dataset)
     return df_dataset
 

@@ -4,8 +4,7 @@ from collections import Counter
 
 import pandas as pd
 from nltk.util import ngrams
-
-from src.preprocessing.corpus import build_corpus
+from preprocessing.corpus import build_corpus
 
 
 class NGram:
