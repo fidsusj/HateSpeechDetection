@@ -46,7 +46,7 @@ def _prepare_hate_speech_and_offensive_language(include_offensive_language=False
     else:
         df_dataset = _filter_and_format_hate_speech_and_offensive_language(df_dataset)
 
-    df_dataset = _data_preparation(df_dataset)
+    # df_dataset = _data_preparation(df_dataset)
     return df_dataset
 
 

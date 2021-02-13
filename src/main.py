@@ -68,9 +68,9 @@ def run_feature_extraction(run_from_scratch, df_corpus):
 
 
 if __name__ == "__main__":
-    preprocessing = False
-    corpus = False
-    feature_extraction = False
+    preprocessing = True
+    corpus = True
+    feature_extraction = True
 
     df_preprocessed_data = run_preprocessing(preprocessing)
     df_data_corpus = run_feature_extraction_create_corpus(corpus, df_preprocessed_data)
