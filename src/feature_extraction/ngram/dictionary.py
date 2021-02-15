@@ -1,7 +1,6 @@
 """ Module builds a dictionary based on training data containing
 typical hateful and neutral words """
 
-import pandas as pd
 from feature_extraction.ngram.tfidf import TfIdf
 
 
@@ -105,10 +104,3 @@ class Dictionary:
     @staticmethod
     def _get_distinct_list_elements(list_1, list_2):
         return set(list_1) - set(list_2)
-
-
-if __name__ == "__main__":
-    df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
-
-    my_dictionary = Dictionary()
-    my_dictionary.extract_features(df_dataset)

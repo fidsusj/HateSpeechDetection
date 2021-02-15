@@ -1,9 +1,8 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.feature_extraction.pattern.pattern import Pattern
-from src.preprocessing.corpus import build_corpus
+from feature_extraction.pattern.pattern import Pattern
+from preprocessing.corpus import build_corpus
 
 
 class Test_Pattern(TestCase):

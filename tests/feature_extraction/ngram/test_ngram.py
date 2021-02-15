@@ -1,9 +1,8 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.feature_extraction.ngram.ngram import NGram
-from src.preprocessing.corpus import build_corpus
+from feature_extraction.ngram.ngram import NGram
+from preprocessing.corpus import build_corpus
 
 
 class Test_Ngram(TestCase):

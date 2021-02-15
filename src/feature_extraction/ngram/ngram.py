@@ -2,9 +2,7 @@
 
 from collections import Counter
 
-import pandas as pd
 from nltk.util import ngrams
-from preprocessing.corpus import build_corpus
 
 
 class NGram:
@@ -77,13 +75,3 @@ class NGram:
             )
         )
         return df
-
-
-if __name__ == "__main__":
-    df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
-    df_dataset = build_corpus(df_dataset)
-
-    ngram_extractor = NGram()
-    ngram_extractor.extract_features(df_dataset)
-
-    print(df_dataset["hate_speech_bigrams"])

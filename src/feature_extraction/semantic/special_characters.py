@@ -2,7 +2,6 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from path_helper import get_project_root
 
 
@@ -88,10 +87,3 @@ class SpecialCharacters:
 
     def _summarize_bincount_data(self, array):
         return np.append(array[:10], array[10:].sum())
-
-
-if __name__ == "__main__":
-    df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
-
-    special_characters = SpecialCharacters()
-    df_with_extracted_features = special_characters.extract_features(df_dataset)

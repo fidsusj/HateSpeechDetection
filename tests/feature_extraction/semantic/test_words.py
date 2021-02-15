@@ -1,8 +1,7 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.feature_extraction.semantic.words import Words
+from feature_extraction.semantic.words import Words
 
 
 class TestWords(TestCase):

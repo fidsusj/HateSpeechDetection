@@ -1,8 +1,7 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.preprocessing.corpus import build_corpus
+from preprocessing.corpus import build_corpus
 
 
 class Test_Preprocessing(TestCase):

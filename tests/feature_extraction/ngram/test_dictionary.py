@@ -1,8 +1,7 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.feature_extraction.ngram.dictionary import Dictionary
+from feature_extraction.ngram.dictionary import Dictionary
 
 
 class TestDictionary(TestCase):

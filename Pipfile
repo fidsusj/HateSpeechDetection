@@ -29,9 +29,10 @@ isort = "*"
 importlib-metadata = "*"
 tensorflow = "*"
 data = "*"
+nose = "*"
 
 [scripts]
-test = "coverage run --source \"./src\" -m unittest discover -s ./tests -p test_*.py"
+test = "coverage run --source \"./src\" setup.py test"
 report = "coverage html"
 main = "python ./src/main.py"
 debug = "python -m pdb ./src/main.py"

@@ -1,8 +1,7 @@
 from unittest import TestCase
 
 import pandas as pd
-
-from src.feature_extraction.semantic.special_characters import SpecialCharacters
+from feature_extraction.semantic.special_characters import SpecialCharacters
 
 
 class TestSpecialCharacters(TestCase):

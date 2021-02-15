@@ -66,19 +66,3 @@ class TfIdf:
         )
         plt.savefig("../../../docs/milestone/figures/Heatmap_tfidf.png")
         plt.show()
-
-
-if __name__ == "__main__":
-    df_dataset = pd.read_csv("../../data/preprocessed/dataset.csv", index_col=0)
-    list_hate_speech = df_dataset[df_dataset["class"] == 0]["content"].tolist()
-    list_neutral_speech = df_dataset[df_dataset["class"] == 1]["content"].tolist()
-
-    list_hate_speech_as_one_doc = " ".join(list_hate_speech)
-    list_neutral_speech_as_one_doc = " ".join(list_neutral_speech)
-
-    list_of_documents = [list_hate_speech_as_one_doc, list_neutral_speech_as_one_doc]
-
-    tfidf = TfIdf(2, "english")
-
-    df_tfifd = tfidf.calculate_tfidf(list_of_documents)
-    tfidf.visualize_as_heatmap(df_tfifd, 20)

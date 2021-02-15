@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.classifiers.classifier_executor import ClassifierExecutor
+from classifiers.classifier_executor import ClassifierExecutor
 
 
 class TestClassifierExecutor(TestCase):

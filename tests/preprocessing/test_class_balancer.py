@@ -1,7 +1,7 @@
 from collections import Counter
 from unittest import TestCase
 
-from src.preprocessing.class_balancer import ClassBalancer
+from preprocessing.class_balancer import ClassBalancer
 
 
 class TestClassBalancer(TestCase):
