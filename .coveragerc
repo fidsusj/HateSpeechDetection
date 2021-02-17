@@ -1,4 +1,5 @@
 [run]
 omit =
     src/classifiers/hyperparameters.py
+    src/feature_extraction/word_embeddings/*
     tests/*

@@ -7,8 +7,6 @@ from feature_extraction.semantic.words import Words
 from feature_extraction.sentiment.vader import Vader
 from feature_extraction.topic.lda import LDATopic
 
-# from feature_extraction.word_embeddings.fasttext.fasttext_train import Fasttext
-
 
 class FeatureExtractor:
     """ Extract all feature and return dataframe with all features """
@@ -22,7 +20,6 @@ class FeatureExtractor:
             Pattern,
             Vader,
             LDATopic,
-            # Fasttext,
         ]
         self.df_with_all_extracted_features = self._extract_all_features(
             df, feature_class_names

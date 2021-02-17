@@ -15,7 +15,7 @@ class SpecialCharacters:
             "full_stop_mark": ".",
         }
 
-    def extract_features(self, df, visualize=True):
+    def extract_features(self, df, visualize=False):
         """Extract number of special characters per data instance
         Parameters:
             df with the columns: class and content

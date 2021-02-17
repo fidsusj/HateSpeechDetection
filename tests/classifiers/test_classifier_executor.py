@@ -17,6 +17,11 @@ class TestClassifierExecutor(TestCase):
     }
     executor = object.__new__(ClassifierExecutor)
 
+    def test_get_results(self):
+        expected = "Hello world"
+        self.executor.results = expected
+        self.assertEqual(self.executor.get_results(), expected)
+
     def test__create_run_parameters(self):
         datasets = {"Hello": "world"}
         expected = [
