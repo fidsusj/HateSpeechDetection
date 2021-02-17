@@ -53,3 +53,7 @@ src/models/fasttext_model.bin
 assignments/1/correction/*
 assignments/2/correction/*
 assignments/3/correction/*
+assignments/4/correction/*
+
+# src folder as package for tests with nose
+HateSpeechDetectionSrc.egg-info/*
