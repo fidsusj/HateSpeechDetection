@@ -5,7 +5,7 @@
 Our epistemic research interest is to clarify the question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches.
 
 Figure \ref{fig:overall_pipeline} visualizes our approach. The following chapters describe the different steps in detail. First the data is preprocessed (chapter \ref{ch:approachA}, \ref{ch:approachB}). 
-The next step differs between classical Machine Learning methods and neural network based approaches. For classical Machine Learning methods an explicit feature extraction is necessary. Furthermore the feature importance is ex\-am\-ined (chapter \ref{ch:approachC}). Due to the fact that our dataset unbalanced, we further create an unchanged, oversampled and undersampled dataset (chapter \ref{ch:approachD}). Finally the classifiers are trained, evaluated and the results are compared (chapter \ref{ch:approachE}, \ref{ch:approachF}). 
+The next step differs between classical Machine Learning methods and neural network based approaches. For classical Machine Learning methods an explicit feature extraction is necessary. Furthermore the feature importance is ex\-am\-ined (chapter \ref{ch:approachC}). Due to the fact that our dataset unbalanced, we further create an unbalanced, oversampled and undersampled dataset (chapter \ref{ch:approachD}). Finally the classifiers are trained, evaluated and the results are compared (chapter \ref{ch:approachE}, \ref{ch:approachF}). 
 
 \begin{figure}[ht]
 	\centering
@@ -45,7 +45,7 @@ Then we perform the dataset balancing.
 TODO: Dataset balancing
 
 
-Finally we receive unchanged, undersampled and oversampled datasets.
+Finally we receive unbalanced, undersampled and oversampled datasets.
 
 TODO: name that oversampling currently not present for nn approaches
 
@@ -74,7 +74,7 @@ For neural network based approaches the dataset is again split into training (0.
 
 To enable a performant execution we use Pythons multiprocessing library to parallelize the execution.
 
-In this work we compare five classifiers on the different datasets (unchanged, undersampled, oversampled). Four of them are classical Machine Learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
+In this work we compare five classifiers on the different datasets (unbalanced, undersampled, oversampled). Four of them are classical Machine Learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
 
 
 \subsection{Evaluation}
