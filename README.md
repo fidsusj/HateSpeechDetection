@@ -29,7 +29,8 @@ and are not directly connected to this project.
 
 1. Install Python 3.7
 
-2. If the operating system is Windows, install the Microsoft build tools für C++ (needed for fastText installation)
+2. If the operating system is Windows, install the [Microsoft build tools für C++](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) 
+   (needed for fastText installation)
 
 3. Install pipenv
 
