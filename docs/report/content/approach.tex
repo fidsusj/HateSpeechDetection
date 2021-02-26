@@ -4,8 +4,8 @@
 % Research question
 Our epistemic research interest is to clarify the question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches.
 
-Figure \ref{fig:overall_pipeline} visualizes our approach. The following chapters describe the different steps in detail. First the data is preprocessed (chapter \ref{ch:approachA}, \ref{ch:approachB}). 
-The next step differs between classical Machine Learning methods and neural network based approaches. For classical Machine Learning methods an explicit feature extraction is necessary. Furthermore the feature importance is ex\-am\-ined (chapter \ref{ch:approachC}). Due to the fact that our dataset unbalanced, we further create an unbalanced, oversampled and undersampled dataset (chapter \ref{ch:approachD}). Finally the classifiers are trained, evaluated and the results are compared (chapter \ref{ch:approachE}, \ref{ch:approachF}). 
+Figure \ref{fig:overall_pipeline} visualizes our approach (on the top) and the resulting novelties achieved through our work (at the bottom). The following chapters describe the different steps in detail. First the data is preprocessed (chapter \ref{ch:approachA}, \ref{ch:approachB}). 
+The next step differs between classical Machine Learning methods and neural network based approaches. For classical Machine Learning methods an explicit feature extraction is necessary. Due to the fact that our dataset unbalanced, we further create an unbalanced, oversampled and undersampled datasets (chapter \ref{ch:approachD}). Finally the classifiers are trained, evaluated and the results are compared (chapter \ref{ch:approachE}, \ref{ch:approachF}). 
 
 \begin{figure}[ht]
 	\centering
@@ -23,12 +23,40 @@ The next step differs between classical Machine Learning methods and neural netw
 \subsection{Features}
 \label{ch:approachC}
 
+For the conventional Machine Learning methods we built a hand-crafted feature set. The selection of features is based on recent works \cite{Watanabe2018} and \cite{Fortuna2018}. In the following the feature groups, the extraction process and the evaluation approach for the feature importances are introduced.
+
 \subsubsection*{Feature groups}
-% Feature groups
+
+Our feature set consists of features from the following five groups:
+\begin{itemize}
+	\item Unigram features \cite{ThomasDavidson2020, Fortuna2018, Gaydhani2018, Malmasi2017, Oriola2020}
+	\begin{itemize}
+		\item N-grams
+		\item Dictionaries based on TF-IDF
+	\end{itemize}
+	\item Semantic features \cite{ThomasDavidson2020, Watanabe2018}
+	\begin{itemize}
+		\item Number of exclamation/question/full stop marks
+		\item Number of capitalized words
+		\item Number of laughing expressions
+	\end{itemize}
+	\item Pattern features \cite{Fortuna2018, Oriola2020}
+	\begin{itemize}
+		\item PoS-tag patterns
+	\end{itemize}
+	\item Topic classification \cite{Fortuna2018}
+	\begin{itemize}
+		\item Latent Dirichlet Allocation
+	\end{itemize}
+	\item Sentiment-based features \cite{Fortuna2018, Oriola2020}
+	\begin{itemize}
+		\item Polarity scores based on Vader
+	\end{itemize}
+\end{itemize}
 
 \subsubsection*{Feature extraction}
 % Reusable pipeline
-The feature extraction is done within a reusable pipeline, which makes it easy to add new features. Each feature is implemented as a class following a predefined structure. By adding the feature class to a list in the Feature\-Extractor the feature is automatically extracted as part of the pipeline. The pipelines input are the data instances as text and the output is a dataframe containing all extracted features as numerical values.
+The feature extraction of the previously mentioned features is done within a reusable pipeline, which makes it easy to add new features. Each feature is implemented as a class following a predefined structure. By adding the feature class to a list in the Feature\-Extractor the feature is automatically extracted as part of the pipeline. The pipelines input are the data instances as text and the output is a dataframe containing all extracted features as numerical values.
 
 \subsubsection*{Feature importances}
 % Feature importances
