@@ -104,7 +104,32 @@ F1-score = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
 
 \subsection{Experimental details}
 
-TODO: chosen best hyperparameters of the models
+The optimal hyperparameters of the conventional Machine Learning methods are learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in this chapter to enable the replication of our results. For readability only the hyperparameters, which differ from the default values are listed.
+
+Optimal hyperparameters for the unbalanced dataset:
+\begin{itemize}
+	\item Decision Tree: max\_leaf\_nodes=15, min\_samples\_leaf=10
+	\item Random Forest: criterion='entropy', max\_depth=10, max\_features='log2'
+	\item SVM: kernel='linear'
+	\item Logistic Regression: C=1.2, max\_iter=1500
+\end{itemize}
+
+Optimal hyperparameters for the undersampled dataset:
+\begin{itemize}
+	\item Decision Tree: class\_weight='balanced', criterion='entropy', max\_depth=10, max\_leaf\_nodes=15, min\_samples\_split=40
+	\item Random Forest: max\_depth=10, max\_features='sqrt'
+	\item SVM: kernel='linear'
+	\item Logistic Regression: C=1.2, max\_iter=1500, solver='saga'
+\end{itemize}
+
+Optimal hyperparameters for the oversampled dataset:
+\begin{itemize}
+	\item Decision Tree: class\_weight='balanced', criterion='entropy'
+	\item Random Forest: criterion='entropy', max\_features='sqrt'
+	\item SVM: all default parameters
+	\item Logistic Regression: C=1.2, max\_iter=1500
+\end{itemize}
+
 
 \subsection{Results}
 
