@@ -1,11 +1,7 @@
 \section{Approach} 
 \label{approach}
 
-% Research question
-Our epistemic research interest is to clarify the question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches.
-
-Figure \ref{fig:overall_pipeline} visualizes our approach (on the top) and the resulting novelties achieved through our work (at the bottom). The following chapters describe the different steps in detail. First the data is preprocessed (chapter \ref{ch:approachA}, \ref{ch:approachB}). 
-The next step differs between classical Machine Learning methods and neural network based approaches. For classical Machine Learning methods an explicit feature extraction is necessary. Due to the fact that our dataset unbalanced, we further create an unbalanced, oversampled and undersampled datasets (chapter \ref{ch:approachD}). Finally the classifiers are trained, evaluated and the results are compared (chapter \ref{ch:approachE}, \ref{ch:approachF}). 
+The epistemic research interest in this work is to clarify the question, whether conventional machine learning methods combined with suitable features can outperform neural network based approaches.
 
 \begin{figure}[ht]
 	\centering
@@ -14,11 +10,34 @@ The next step differs between classical Machine Learning methods and neural netw
 	\label{fig:overall_pipeline}
 \end{figure}
 
+Figure \ref{fig:overall_pipeline} visualizes our approach (on the top) and the resulting novelties achieved through this work (at the bottom). The following chapters describe the different steps in detail. First the data is merged and preprocessed resulting in a preprocessed training corpus. The next step differs between conventional machine learning methods and neural network based approaches. For conventional machine Learning methods an explicit feature extraction is necessary. Therefore achievements of recent publications were combined to build a holistic, hand-crafted feature set. Based on these features, hate speech statictics could be further analyzed. Due to the fact that the common preprocessed corpus is unbalanced, an unbalanced, oversampled and undersampled datasets was created for further investigation. Finally the classifiers are trained, evaluated and the results are compared. Now not only the question whether conventional machine learning methods can outperform neural network based approaches could be answered, but as well which feature were most important for which classifier.
+
 \subsection{Definition of Hate Speech} 
 \label{ch:approachA}
 
+Various definitions exist to define hate speech. This work complies with the definitions provided by the two datasets used to label the documents. 
+
+\begin{defStrich}[Ona De Gibert et al.]
+	Hate speech is commonly defined as any communication that disparages a target group of people based on some characteristic such as race, color, ethnicity, gender, sexual orientation, nationality, religion, or other characteristic \cite{DeGibert2020}.
+\end{defStrich}
+
+\begin{defStrich}[Thomas Davidson et al.]
+	A language that is used to expresses hatred towards a targeted group or is intended to be derogatory, to humiliate, or to insult the members of the group \cite{ThomasDavidson2020}.
+\end{defStrich}
+
+One can conclude that hate speech is always targeted towards a specific group with the intention to infringe others dignity, often based on group characteristics like race, color or gender. 
+
+\subsection{Data}
+\label{ch:approachD}
+
+There are two data sets used for the project. The first one uses data from the \textit{Twitter API} \cite{ThomasDavidson2020}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary clas\-si\-fi\-ca\-tion style. The workers were instructed to follow predefined definitions of each category and to take context information into consideration. Each tweet was assessed and labeled by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
+
+The second data set uses data from the \textit{White Supremacy Forum} \cite{DeGibert2020}\footnote{https://github.com/Vicomtech/hate-speech-dataset}. One document represents a sentence that is either labeled as hate or not hate. In total, 1.119 sentences containing hate and 8.537 sentences being non-hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information was provided. The documents are given offline as normal text files with annotations stored in a separate CSV file. 
+
 \subsection{Preprocessing}
 \label{ch:approachB}
+
+
 
 \subsection{Features}
 \label{ch:approachC}
@@ -60,23 +79,6 @@ The feature extraction of the previously mentioned features is done within a reu
 
 \subsubsection*{Feature importances}
 % Feature importances
-
-
-\subsection{Dataset}
-\label{ch:approachD}
-
-TODO: Intro
-
-Depending on the method the inputs vary. For the classical Machine Learning methods the inputs are the extracted features as numerical values, whereas in neural network based approaches the inputs are the raw textual features. The labels are in both cases numerical values.
-
-Then we perform the dataset balancing.
-TODO: Dataset balancing
-
-
-Finally we receive unbalanced, undersampled and oversampled datasets.
-
-TODO: name that oversampling currently not present for nn approaches
-
 
 \subsection{Classifiers}
 \label{ch:approachE}

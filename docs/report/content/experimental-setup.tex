@@ -1,11 +1,5 @@
 \section{Experimental setup and results} \label{results}
 
-\subsection{Data}
-
-There are two data sets used for the project. The first one uses data from the \textit{Twitter API} \cite{ThomasDavidson2020}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary clas\-si\-fi\-ca\-tion style. The workers were instructed to follow predefined definitions of each category and to take context information into consideration. Each tweet was assessed and labeled by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
-
-The second data set uses data from the \textit{White Supremacy Forum} \cite{DeGibert2020}\footnote{https://github.com/Vicomtech/hate-speech-dataset}. One document represents a sentence that is either labeled as hate or not hate. In total, 1.119 sentences containing hate and 8.537 sentences being non-hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information was provided. The documents are given offline as normal text files with annotations stored in a separate CSV file. 
-
 \subsubsection{Data preparation}
 
 To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset only the class and the text content of each tweet respectively each forum contribution was considered.
@@ -27,6 +21,19 @@ The resulting common dataset was stored in a .csv file. It contains 2.491 hate s
 \subsubsection{Corpus building}
 
 The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
+
+
+%% TODO:
+
+Depending on the method the inputs vary. For the classical Machine Learning methods the inputs are the extracted features as numerical values, whereas in neural network based approaches the inputs are the raw textual features. The labels are in both cases numerical values.
+
+Then we perform the dataset balancing.
+TODO: Dataset balancing
+
+
+Finally we receive unbalanced, undersampled and oversampled datasets.
+
+TODO: name that oversampling currently not present for nn approaches
 
 \subsubsection{Data analysis} \label{sec:data_analysis}
 

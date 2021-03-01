@@ -13,20 +13,20 @@
 
 % PACKAGES:
 
-% Use German :
+% Use German
 \usepackage[english]{babel}
 % Input and font encoding
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 % Index-generation
 \usepackage{makeidx}
-% Einbinden von URLs:
+% Embedding of URLs
 \usepackage{url}
-% Special \LaTex symbols (e.g. \BibTeX):
+% Special \LaTex symbols (e.g. \BibTeX)
 %\usepackage{doc}
-% Include Graphic-files:
+% Include Graphic-files
 \usepackage{graphicx}
-% Include doc++ generated tex-files:
+% Include doc++ generated tex-files
 %\usepackage{docxx}
 % Fuer anderthalbzeiligen Textsatz
 \usepackage{setspace}
@@ -46,7 +46,35 @@
 
 % CUSTOM:
 
+% For quotes:
 \usepackage{csquotes}
+
+% For Definitions:                   						
+\usepackage{amsthm}
+\usepackage[framemethod=tikz]{mdframed}
+
+\newtheoremstyle{defi}
+{\topsep}         % Abstand oben
+{\topsep}         % Abstand unten
+{\normalfont}     % Schrift des Bodys
+{0pt}             % Einschub der ersten Zeile
+{\bfseries}       % Darstellung von der Schrift in der Überschrift
+{:}               % Trennzeichen zwischen Überschrift und Body
+{.5em}            % Abstand nach dem Trennzeichen zum Body Text
+{\thmname{#3}}    % Name in eckigen Klammern
+\theoremstyle{defi}
+
+\newmdtheoremenv[
+hidealllines = true,       % Rahmen komplett ausblenden
+leftline = true,           % Linie links einschalten
+innertopmargin = 0pt,      % Abstand oben
+innerbottommargin = 4pt,   % Abstand unten
+innerrightmargin = 0pt,    % Abstand rechts
+linewidth = 3pt,           % Linienbreite
+linecolor = gray!40,       % Linienfarbe
+]{defStrich}{Definition}     % Name der des formats "defStrich"
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
