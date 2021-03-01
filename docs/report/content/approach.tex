@@ -28,60 +28,31 @@ Various definitions exist to define hate speech. This work complies with the def
 One can conclude that hate speech is always targeted towards a specific group with the intention to infringe others dignity, often based on group characteristics like race, color or gender. 
 
 \subsection{Data}
-\label{ch:approachD}
-
-There are two data sets used for the project. The first one uses data from the \textit{Twitter API} \cite{ThomasDavidson2020}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. Therefore the data set follows a classical ternary clas\-si\-fi\-ca\-tion style. The workers were instructed to follow predefined definitions of each category and to take context information into consideration. Each tweet was assessed and labeled by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. The data is provided offline as a CSV or pickle file. 
-
-The second data set uses data from the \textit{White Supremacy Forum} \cite{DeGibert2020}\footnote{https://github.com/Vicomtech/hate-speech-dataset}. One document represents a sentence that is either labeled as hate or not hate. In total, 1.119 sentences containing hate and 8.537 sentences being non-hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information was provided. The documents are given offline as normal text files with annotations stored in a separate CSV file. 
-
-\subsection{Preprocessing}
 \label{ch:approachB}
 
+There are two data sets used for the project. The first one uses data from the \textit{Twitter API} \cite{ThomasDavidson2020}\footnote{https://github.com/t-davidson/hate-speech-and-offensive-language}. It consists of a sample of around 25k tweets that were identified as hate speech based on a previously composed hate speech lexicon without regarding context information. Subsequently, each document in the corpus got labeled with one of the three categories \textit{hate speech}, \textit{offensive language} or \textit{neutral}. The workers were instructed to follow predefined definitions of each category and to take context information into consideration. Each tweet was assessed and labeled by three or more workers. The majority of tweets were classified as offensive language (76\% at 2/3, 53\% at 3/3), only 5\% were coded as hate speech. In the end 1430 hate speech documents, 4175 neutral documents and 19196 offensive language documents make up the entire dataset. The data is provided offline as a CSV or pickle file. 
 
+The second data set uses data from \textit{Stormfront}, a white supremacy forum \cite{DeGibert2020}\footnote{https://github.com/Vicomtech/hate-speech-dataset}. One document represents a sentence that is either labeled as hate or not hate. In total, 1.119 sentences containing hate and 8.537 sentences being non-hate are provided. Once again the documents were labeled manually by human actors following previously specified guidelines, on request additional context information was provided. The documents are given offline as normal text files with annotations stored in a separate CSV file. 
 
 \subsection{Features}
 \label{ch:approachC}
 
-For the conventional Machine Learning methods we built a hand-crafted feature set. The selection of features is based on recent works \cite{Watanabe2018} and \cite{Fortuna2018}. In the following the feature groups, the extraction process and the evaluation approach for the feature importances are introduced.
+The choice of features to use can be divided into five groups inspired by \cite{Watanabe2018}. 
 
-\subsubsection*{Feature groups}
+One group of features is the unigrams features group inspired by \cite{ThomasDavidson2020, Oriola2020, Fortuna2018, Gaydhani2018, Malmasi2017}. During the training phase we extract the top 100 words for hate speech and neutral speech based on the TFIDF scores. These words are given as dictionaries during the feature extraction phase. We therefore count the occurences of typical hate speech and neutral speech words in each document as a feature. A similar approach extracts typical hate speech n-grams based on word stems using with NLTK during the training phase and builds n-gram dictionaries. In case n-grams surpass a certain threshold they are added to the dictionary. This threshold is 10 for unigrams, 8 for bigrams and 2 for trigrams. The number of typical hate speech unigrams, bigrams and trigrams detected is added as a feature. 
 
-Our feature set consists of features from the following five groups:
-\begin{itemize}
-	\item Unigram features \cite{ThomasDavidson2020, Fortuna2018, Gaydhani2018, Malmasi2017, Oriola2020}
-	\begin{itemize}
-		\item N-grams
-		\item Dictionaries based on TF-IDF
-	\end{itemize}
-	\item Semantic features \cite{ThomasDavidson2020, Watanabe2018}
-	\begin{itemize}
-		\item Number of exclamation/question/full stop marks
-		\item Number of capitalized words
-		\item Number of laughing expressions
-	\end{itemize}
-	\item Pattern features \cite{Fortuna2018, Oriola2020}
-	\begin{itemize}
-		\item PoS-tag patterns
-	\end{itemize}
-	\item Topic classification \cite{Fortuna2018}
-	\begin{itemize}
-		\item Latent Dirichlet Allocation
-	\end{itemize}
-	\item Sentiment-based features \cite{Fortuna2018, Oriola2020}
-	\begin{itemize}
-		\item Polarity scores based on Vader
-	\end{itemize}
-\end{itemize}
+Another feature group are the semantic features taken from \cite{ThomasDavidson2020, Watanabe2018}. They comprise the number of exclamation marks, question marks, full stop marks, interjections\footnote{recognized by NLTKs PoS tags}, all capital words, quotation marks as an approximation for the number of quotes, laughing expressions\footnote{based on the regular expression \textit{r"(a*ha+h[ha]*|o?l+o+l+[ol]*)|(lmao)"}} and the number of words in general. 
 
-\subsubsection*{Feature extraction}
-% Reusable pipeline
-The feature extraction of the previously mentioned features is done within a reusable pipeline, which makes it easy to add new features. Each feature is implemented as a class following a predefined structure. By adding the feature class to a list in the Feature\-Extractor the feature is automatically extracted as part of the pipeline. The pipelines input are the data instances as text and the output is a dataframe containing all extracted features as numerical values.
+The expand the set of features with features that cover syntactical characteristics of hate speech documents, PoS tag patterns were extracted belonging to the group of pattern features \cite{Oriola2020, Fortuna2018}. A sliding window approach with a custom definable window size range is used to extract PoS tag patterns for each document during the training phase. In case a hate speech pattern occurs more than 500 times in the training set it is added to a hate speech pattern dictionary. The number of hate speech patterns detected in each document in taken as a feature.
 
-\subsubsection*{Feature importances}
-% Feature importances
+Sentiment-based features inspired by \cite{Oriola2020, Fortuna2018} were implemented by extracting the polarity scores for each document using NLTKs SentimentIntensityAnalyzer from VADER (Valence Aware Dictionary and sEntiment Reasoner). VADER is a lexicon and rule-based sentiment analysis tool specifically developed for social media sentiment analysis. 
+
+The last feature added to the holistic, hand-crafted feature set is the topic detected from gensims latent dirichlet allocation algorithm \cite{Fortuna2018}. For each document a numerical topic of either zero or one is added to the set of features based on which topic received the highest probability score. 
+
+The feature extraction of the previously mentioned features is done within a reusable pipeline, which makes it easy to add new features. Each feature is implemented as a class following a predefined interface. By adding the feature class to a list in the Feature\-Extractor the feature is automatically extracted as part of the pipeline. The pipelines input are raw text documents, stemmed documents, lemmatized documents and PoS tags each in its own dataframe column and the output is a dataframe containing all extracted features as numerical values.
 
 \subsection{Classifiers}
-\label{ch:approachE}
+\label{ch:approachD}
 
 This chapter deals with the classifiers and their integration into the project.
 
@@ -108,7 +79,7 @@ In this work we compare five classifiers on the different datasets (unbalanced, 
 
 
 \subsection{Evaluation}
-\label{ch:approachF}
+\label{ch:approachE}
 
 For evaluating the classifiers standard metrics such as accuracy, precision, recall and F1 score are used.
 
