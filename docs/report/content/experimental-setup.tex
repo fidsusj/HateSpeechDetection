@@ -1,6 +1,6 @@
 \section{Experimental setup and results} \label{results}
 
-\subsubsection{Data preparation}
+\subsection{Data preparation}
 
 To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset only the class and the text content of each tweet respectively each forum contribution was considered.
 
@@ -18,7 +18,7 @@ The second dataset \citetitle{DeGibert2020} was not entirely given as a .csv fil
 
 The resulting common dataset was stored in a .csv file. It contains 2.491 hate speech documents and 13.336 non hate speech documents. The dropped offensive language documents make up 17.505 instances. In case the classification results are too poor, additional 2.818 offensive language documents can be added that were labeled as hate speech by one evaluator.
 
-\subsubsection{Corpus building}
+\subsection{Corpus building}
 
 The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
 
@@ -35,7 +35,9 @@ Finally we receive unbalanced, undersampled and oversampled datasets.
 
 TODO: name that oversampling currently not present for nn approaches
 
-\subsubsection{Data analysis} \label{sec:data_analysis}
+\subsection{Data analysis} \label{sec:data_analysis}
+
+%TODO: Mit Hate Speech Statistics mergen?
 
 As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
 
@@ -101,15 +103,9 @@ Examples for hate speech:
 
 One can clearly see the hate expressed in the hate speech examples and see their discriminating nature.
 
-
-\subsection{Evaluation method}
-
-As part of the approach chapter \ref{ch:approachF} possible evaluation metrics were already introduced. Our evaluation is built upon existing quantitative metrics. Especially the F1 score is relevant, because it takes the precision (risk of censorship) and the recall (risk of ineffectiveness) into account. The f1 score is defined as follows:
-\begin{equation}
-F1-score = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
-\end{equation}
-
 \subsection{Experimental details}
+
+%TODO: Hyperparameter vielleicht in den Anhang?
 
 The optimal hyperparameters of the conventional Machine Learning methods are learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in this chapter to enable the replication of our results. For readability only the hyperparameters, which differ from the default values are listed.
 
@@ -137,64 +133,10 @@ Optimal hyperparameters for the oversampled dataset:
 	\item Logistic Regression: C=1.2, max\_iter=1500
 \end{itemize}
 
-
-\subsection{Results}
-
-For answering our research question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches, following results were achieved:
-\begin{itemize}
-	\item Investigation of feature importances (chapter \ref{ch:experimentDa})
-	\item Hate speech statistics (chapter \ref{ch:experimentDb})
-	\item Comparison of the classifier results (classical Machine Learning methods vs neural network based approaches) (chapter \ref{ch:experimentDc})
-	\item Oversampled and undersampled datasets (chapter \ref{ch:experimentDd})
-\end{itemize}
-
-\subsubsection{Feature importances}
-\label{ch:experimentDa}
-
-
-\subsubsection{Hate speech statistics}
-\label{ch:experimentDb}
-
-After extracting all the features, we had a closer look at them to identify which features are characteristic for hate speech.
-Firstly, the semantic features in general do not signify whether a post is hate speech or not. Neither the number of exclamation marks, question marks, full stop marks, interjections or all caps words show any sign of signifying hate speech. These features are evenly distributed regarding hate speech versus non-hate speech.
-The only semantic features which indicate hate speech are the number of words and - to a very small degree - the number of laughing expressions.
-As already mentioned in \autoref{sec:data_analysis} the more words a post consists of, the likelier it is to be classified as hate speech (illustrated in \autoref{fig:wordclouds}).
-Although, there are only very few laughing expressions identified per post (most do not contain any), there is a tendency for hate speech posts to contain more laughing expressions, such as \enquote{haha}, \enquote{lol} or similar.
-
-Slightly more telling is the topic feature we trained using LDA with only 2 topics. It seems to have somewhat trained to classify into hate and non-hate - as we hoped. The hate speech posts are more likely to be classified as topic 0 than non-hate speech posts. But this difference is not really significant.
-
-A more interesting and characteristic feature seems to be sentiment-based. As described, we extracted a sentiment-score (polarity) for each post using vader and this clearly differentiates between hate speech and non-hate speech, as shown in \autoref{fig:statistics_sentiment}.
-This shows, that a negative sentiment-score indicates a post being rather likely to contain hate speech. The more positive the sentiment-score is, the less probable it is classified as hate speech.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/statistics_sentiment.png}
-	\caption{Normalized distribution of sentiment score for hate speech vs. non-hate speech}
-	\label{fig:statistics_sentiment}
-\end{figure}
-
-Further meaningful features were found using a dictionary approach by using the training data to generate a dictionary for hate speech and neutral words. The number of hateful words is distributed such that hate speech posts contain significantly more, whereas the number of neutral words does not differ much.
-Examples for the most common hateful words found in hate speech posts are \enquote{fag}, \enquote{bitch}, \enquote{ass} or \enquote{nigga}. These words basically did not occur in non-hate speech posts. The most common neutral words are less informative, as the suffixes \enquote{ll} and \enquote{ve} are the most common ones for hate speech and non-hate speech posts.
-
-Furthermore, we had an extensive look at unigrams, bigrams and trigrams for hate speech and these are significantly overrepresented in hate speech posts compared to non-hate speech posts. This especially holds true for the unigrams such as \enquote{white} which appears in 15\% of hate speech posts or \enquote{not} appearing in 9\% of hate speech posts. Both of these appear only half as often in non-hate speech posts.
-The identified bigrams only show up in a very small percentage of posts, but significantly less in non-hate speech posts. Most common bigrams for hate speech are \enquote{white trash}, \enquote{look like} and \enquote{ass nigga}.
-
-Lastly, the feature pattern-count can somewhat indicate hate speech, as the mean amount is higher for hate speech compared to non-hate speech. As one can see in \autoref{fig:statistics_pattern_count} hate speech tends to contain more patterns (which of course were trained by using the hate speech data).
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.7\linewidth]{figures/statistics_pattern_count.png}
-	\caption{Boxplots comparing the number of patterns occurring in hate speech vs. non-hate speech}
-	\label{fig:statistics_pattern_count}
-\end{figure}
-
-But maybe it would be worthwhile to have a closer look at the patterns and adjust them for some future work. Because when we look at single patterns, some occur more often in hate speech and some more often in non-hate speech (in our dataset). For example the pattern \enquote{adjective, noun (JJ, NN)} occurs in 56\% of hate speech and in 48\% of non-hate speech, whereas the pattern \enquote{determiner, noun} occurs in 5\% less hate speech posts than non-hate speech posts. So a more thorough analysis of these patterns could benefit this feature a lot, maybe by using individual features for each pattern. For example the biggest difference in occurrences is achieved by the pattern \enquote{personal pronoun, non-3rd person singular present verb (PRP, VBP)} with a 10\% difference.
-
-
-\subsubsection{Comparison of the classifier results}
+\subsection{Classifier metrics}
 \label{ch:experimentDc}
 
-Table \ref{Tab:unchanged} shows the performance metrices of the classifiers for the unbalanced dataset. All classifiers perform about equally well. And the achieved results are good with about 93\% for the F1-score. So in this unbalanced case the conventional Machine Learning methods can definitely keep up with the neural network baseline. 
+Table \ref{Tab:unchanged} shows the performance metrices of the classifiers for the unbalanced dataset. 
 
 \begin{table}[hbt!]
 	\caption{Classifier results for unbalanced dataset}
@@ -210,12 +152,10 @@ Table \ref{Tab:unchanged} shows the performance metrices of the classifiers for 
 	\end{tabular}
 \end{table}
 
-\subsubsection{Oversampled and undersampled datasets}
+\subsection{Oversampled and undersampled datasets}
 \label{ch:experimentDd}
 
 Table \ref{Tab:undersampled} shows the performance metrices of the classifiers for the undersampled dataset and table \ref{Tab:oversampled} for the oversampled dataset. 
-
-In the undersampled case all conventional Machine Learning methods perform about equally well. Compared to the results from unbalanced dataset the conventional classifiers perform worse. In contrast the neural network baseline can keep up with the results from the unbalanced case. So in this undersampled case the conventional Machine Learning methods cannot keep up with the neural network baseline.
 
 \begin{table}[hbt!]
 	\caption{Classifier results for undersampled dataset}
@@ -230,9 +170,6 @@ In the undersampled case all conventional Machine Learning methods perform about
 		LSTM                & \gradient{0.9219} & \gradient{0.9567} & \gradient{0.8950} & \gradient{0.9390} \\ \hline
 	\end{tabular}
 \end{table}
-
-In the oversampled case the results are located between the undersampled and the unbalanced case. 
-An outstanding result is the Random Forest, which performs better then the other conventional Machine Learning methods. As already mentioned the SMOTE is not able to generate new textual features for generating an oversampled dataset for the neural network baseline. That is why these results are not measured.
 
 \begin{table}[hbt!]
 	\caption{Classifier results for oversampled dataset}

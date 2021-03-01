@@ -54,11 +54,9 @@ The feature extraction of the previously mentioned features is done within a reu
 \subsection{Classifiers}
 \label{ch:approachD}
 
-This chapter deals with the classifiers and their integration into the project.
+Each classifier is trained on the training set and evaluated on the test set. So the same steps are necessary for each classifier. That is why a reusable pipeline is developed. The pipeline is developed with the open-closed principle in mind. It is open for extensions and closed for changes. So when adding a new classifier only a few lines of code need to be adapted and steps such as finding the optimal model through hyperparameter tuning and the evaluation are done automatically as part of the pipeline.
 
-Each classifier is trained on the training set and evaluated on the test set. So the same steps are necessary for each classifier. That is why a reusable pipeline is developed. The pipeline is developed with the Open Closed principle in mind. It is open for extensions and closed for changes. So when adding a new classifier only a few lines of code need to be adapted and steps such as finding the optimal model through hyperparameter tuning and the evaluation are done automatically as part of the pipeline.
-
-As the methods need it, there are slight differences between the training of the classical Machine Learning methods and the neural network based approaches. Figure \ref{fig:classifier_pipeline} illustrates this.
+As the methods need it, there are slight differences between the training of the conventional machine learning methods and the neural network based approaches. Figure \ref{fig:classifier_pipeline} illustrates this.
 
 \begin{figure}[ht]
 	\centering
@@ -67,25 +65,20 @@ As the methods need it, there are slight differences between the training of the
 	\label{fig:classifier_pipeline}
 \end{figure}
 
-For the classical Machine Learning methods the dataset is split into training (0.8) and test set (0.2). For finding the optimal model Randomized\-SearchCV is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. Finally the model is evaluated on the test set.
+For the conventional machine learning methods the dataset is split into training (0.8) and test set (0.2). In order to find the optimal model Randomized\-SearchCV is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. Finally the model is evaluated on the test set.
 
-TODO: Description for LR, SVM how is the hyperparameter search space set?
+%TODO: Description for LR, SVM how is the hyperparameter search space set?
 
-For neural network based approaches the dataset is again split into training (0.8) and test set (0.2). Then the training set is further split up into training (0.8) and validation (0.2). In the next step the optimal model is found by using the training and the validation set. The final step is equal to the final step in classical Machine Learning, were the model is evaluated.
+For neural network based approaches the dataset is again split into training (0.8) and test set (0.2). Then the training set is further split up into training (0.8) and validation (0.2). In the next step the optimal model is found by using the training and the validation set. The final step is equal to the final step in conventional machine learning, were the model is evaluated.
 
-To enable a performant execution we use Pythons multiprocessing library to parallelize the execution.
+To enable a performant execution Pythons multiprocessing library is used to parallelize the execution.
 
-In this work we compare five classifiers on the different datasets (unbalanced, undersampled, oversampled). Four of them are classical Machine Learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
-
+In this work five classifiers are compared on the different datasets (unbalanced, undersampled, oversampled). Four of them are conventional machine learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
 
 \subsection{Evaluation}
 \label{ch:approachE}
 
 For evaluating the classifiers standard metrics such as accuracy, precision, recall and F1 score are used.
 
-The accuracy specifies how many data instances are correctly classified. Only looking at the accuracy, is not that informative, because generally lots of instances are correctly classified as non hate speech, which leads to a high accuracy.
-
-That is why also precision and recall are observed. Precision specifies how many of the predicted hate speech instances are really hate speech. A low precision means that there are lots of instances classified as hate speech, although they are not. So looking at the precision enables to detect if the trained model could built a censoring system and undermine the freedom of speech. The recall specifies how many hate speech instances are correctly classified by the model. A low recall means that there are lots of false negatives (lots of hate speech instances are not detected).
-
-For taking into account precision and recall one can look at the F1 score. 
+The accuracy specifies how many data instances are correctly classified. Only looking at the accuracy, is not that informative, because generally lots of instances are correctly classified as non hate speech, which leads to a high accuracy. That is why also precision and recall are observed. Precision specifies how many of the predicted hate speech instances are really hate speech. A low precision means that there are lots of instances classified as hate speech, although they are not. So looking at the precision enables to detect if the trained model could built a censoring system and undermine the freedom of speech. The recall specifies how many hate speech instances are correctly classified by the model. A low recall means that there are lots of false negatives (lots of hate speech instances are not detected). For taking into account precision and recall one can look at the F1 score.
 
