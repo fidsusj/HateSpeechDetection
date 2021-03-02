@@ -11,6 +11,30 @@ For answering our research question, whether classical Machine Learning methods 
 \subsection{Feature importances}
 \label{ch:experimentDa}
 
+\begin{table}[hbt!]
+	\caption{Feature importance scores per classifier}
+	\label{Tab:featureimportances}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|}
+		\hline
+		\textbf{feature}     & \textbf{Decision Tree} & \textbf{Random Forest} & \textbf{SVM} & \textbf{Logistic Regression} \\ \hline
+		Unigrams      		 & \gradient{0.096833} & \gradient{0.110481} & \gradient{-0.116233} & \gradient{-0.340829} \\ \hline
+		Bigrams       		 & \gradient{0.010989} & \gradient{0.030529} & \gradient{-0.163003} & \gradient{-0.288648} \\ \hline
+		Trigrams       		 & \gradient{0.015111} & \gradient{0.041289} & \gradient{-1.389380} & \gradient{-2.009609} \\ \hline
+		Hateful Words        & \gradient{0.165297} & \gradient{0.238533} & \gradient{-0.281878} & \gradient{-0.550001} \\ \hline
+		Neutral Words        & \gradient{0.078015} & \gradient{0.060794} & \gradient{-0.092602} & \gradient{0.211546} \\ \hline
+		Exclamation Marks    & \gradient{0.015078} & \gradient{0.014925} & \gradient{-0.16408} & \gradient{-0.39866} \\ \hline
+		Question Marks       & \gradient{0.015837} & \gradient{0.012568} & \gradient{0.077828} & \gradient{0.034885} \\ \hline
+		Full Stop Marks      & \gradient{0.050472} & \gradient{0.039024} & \gradient{0.015701} & \gradient{0.018517} \\ \hline
+		Interjections        & \gradient{0.001223} & \gradient{0.002545} & \gradient{0.084760} & \gradient{-0.255209} \\ \hline
+		All Caps Words       & \gradient{0.030842} & \gradient{0.025809} & \gradient{0.036716} & \gradient{0.119023} \\ \hline
+		Quotation Marks      & \gradient{0.007124} & \gradient{0.011336} & \gradient{-0.083534} & \gradient{-0.197908} \\ \hline
+		Words Total          & \gradient{0.176739} & \gradient{0.107484} & \gradient{0.023188} & \gradient{0.048423} \\ \hline
+		Laughing Expressions & \gradient{0.002860} & \gradient{0.006506} & \gradient{-0.172888} & \gradient{-0.150478} \\ \hline
+		Pattern Count        & \gradient{0.094512} & \gradient{0.056026} & \gradient{0.005469} & \gradient{-0.017724} \\ \hline
+		Topic       		 & \gradient{0.030162} & \gradient{0.012664} & \gradient{-0.024878} & \gradient{0.002830} \\ \hline
+		Sentiment     	     & \gradient{0.208907} & \gradient{0.229479} & \gradient{0.447129} & \gradient{1.180669} \\ \hline
+	\end{tabular}
+\end{table}
 
 \subsection{Hate speech statistics}
 \label{ch:experimentDb}
