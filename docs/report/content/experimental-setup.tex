@@ -4,25 +4,25 @@
 
 To prepare a central dataset, both single datasets had to be transformed into a common format. For the central dataset only the class and the text content of each tweet respectively each forum contribution was considered.
 
-The first dataset \citetitle{ThomasDavidson2020} was entirely given as a .csv file and contains 25.297 tweets, that were either labeled as hate speech, offensive language or neither of both. To determine the right label three independent evaluators classified each tweet, the final label got assigned by the majority vote. As for the first approach, one is only interested in hate speech and neutral tweet classification, all offensive language documents in the dataset were dropped. Some tweets were retweets that were commented additionally by a user. As it could not be distinguished whether the original tweet or the retweet contains hate speech, these documents were filtered out as well. An example is shown below:
+The first dataset \citetitle{ThomasDavidson2020} was entirely given as a .csv file and contains around 25k tweets, that were either labeled as hate speech, offensive language or neither of both. To determine the right label three independent evaluators classified each tweet, the final label got assigned by the majority vote. As for the first approach, one is only interested in hate speech and neutral tweet classification, all offensive language documents in the dataset were dropped. Some tweets were retweets that were commented additionally by a user. An example is shown below:
 
 \begin{quote}
-    """@jaimescudi\_: ""@Tonybthrz\_: ""@jaimescudi\_: I swear if oomf try talking to me tomorrow.."" @"" @BarackObama"" pussy"
+    """@DevilGrimz: @VigxRArts you're fucking gay, blacklisted hoe"" Holding out for \#TehGodClan anyway http://t.co/xUCcwoetmn"
 \end{quote}
 
-The original tweets can be found in between the ""..."". Same goes for tweets that cite other users without using the retweet option.
-
-\vspace{0.5cm}
+The original tweets can be found in between the ""..."". As it could not be distinguished whether the original tweet or the retweet contains hate speech, these documents were filtered out in the first version of the preprocessing pipeline. Same goes for tweets that cite other users without using the retweet option. Once the semantic feature for the number of quotes was added, the removal of quoting tweets was reverted again. Probably it is still expected behavior in social media platforms to remove contributions that build up on hate speech. 
 
 The second dataset \citetitle{DeGibert2020} was not entirely given as a .csv file. Only the document annotations were given in a .csv file, all forum contributions were stored in separate .txt files. Only documents which could not be assigned to a single class (label "idk/skip") or referred to other documents (label "relation") were dropped.
 
-The resulting common dataset was stored in a .csv file. It contains 2.491 hate speech documents and 13.336 non hate speech documents. The dropped offensive language documents make up 17.505 instances. In case the classification results are too poor, additional 2.818 offensive language documents can be added that were labeled as hate speech by one evaluator.
+The resulting common dataset was stored in a .csv file. It contains 2.626 hate speech documents and 13.670 non hate speech documents. The dropped offensive language documents make up 19.196 instances. 
 
 \subsection{Corpus building}
 
-The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
+The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like lowercasing and removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. 
 
-Depending on the method the inputs vary. For the classical Machine Learning methods the inputs are the extracted features as numerical values, whereas in neural network based approaches the inputs are the raw textual features. The labels are in both cases numerical values.
+Regarding tokenization using the lemmas instead of word stems works better as for instance \textit{we'll} becomes \textit{["we","will"]} and not \textit{["we", "'ll"]}. The lemmatized tokens were later on stemmed as well in order to keep the range of possible unigrams for one and the same semantic word instance restricted for the task of n-gram feature extraction. PoS tags are added to the dataframe using NLTKs PoS tagger as problems using spacys PoS tagger were encountered. PoS-tags are necessary for the hate speech pattern extraction.
+
+Depending on the method the inputs vary. For the conventional machine learning methods the inputs are the extracted features as numerical values added to the dateframe by the already mentioned \textit{Feature\-Extractor} class, whereas in neural network based approaches the inputs are the raw textual contents of each document. The labels are in both cases numerical values.
 
 Then we perform the dataset balancing. As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
 
@@ -35,6 +35,7 @@ Then we perform the dataset balancing. As already mentioned, the acquired datase
 
 In our experiments we chose to try the different approaches and applied a simple undersampling by randomly deleting instances from the over-represented class (neutral posts), as well as an oversampling using SMOTE. SMOTE does an oversampling by generating synthetic samples in the feature-space of the under-represented class, resulting in posts that statistically fall in between the different hate speech posts. Additionally, we used the imbalanced dataset to train a classifier to compare how this affects the performance.
 Finally we receive unbalanced, undersampled and oversampled datasets, which we use for the further experiments. In addition for all experiments, we use the F1-score instead of the accuracy as our performance metric, which should somewhat handle unbalanced classes by itself.
+
 Unfortunately, SMOTE only works in feature space, so we could not provide an oversampled balanced dataset for our neural network approach as this works directly on the hate speech and non-hate speech posts. This could be addressed in future work.
 
 \subsection{Data analysis} \label{sec:data_analysis}
