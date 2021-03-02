@@ -54,6 +54,8 @@ The feature extraction of the previously mentioned features is done within a reu
 \subsection{Classifiers}
 \label{ch:approachD}
 
+In this work five classifiers are compared on the different datasets (unbalanced, undersampled, oversampled). Four of them are conventional machine learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
+
 Each classifier is trained on the training set and evaluated on the test set. So the same steps are necessary for each classifier. That is why a reusable pipeline is developed. The pipeline is developed with the open-closed principle in mind. It is open for extensions and closed for changes. So when adding a new classifier only a few lines of code need to be adapted and steps such as finding the optimal model through hyperparameter tuning and the evaluation are done automatically as part of the pipeline.
 
 As the methods need it, there are slight differences between the training of the conventional machine learning methods and the neural network based approaches. Figure \ref{fig:classifier_pipeline} illustrates this.
@@ -65,16 +67,11 @@ As the methods need it, there are slight differences between the training of the
 	\label{fig:classifier_pipeline}
 \end{figure}
 
-For the conventional machine learning methods the dataset is split into training (0.8) and test set (0.2). In order to find the optimal model Randomized\-SearchCV is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. For SVM we used the sklearn C-Support Vector Classification implementation and concentrated the grid search on the kernel (linear, poly, rbf or sigmoid) as this has the biggest impact on performance. Tuning the kernel already used up quite some computational time, so we did not look into further parameters. In future work one could have a closer look at parameters such as the regularization parameter C or some kernel specific coefficients.
-Finally the model is evaluated on the test set.
-
-%TODO: Description for LR how is the hyperparameter search space set?
+For the conventional machine learning methods the dataset is split into training (0.8) and test set (0.2). In order to find the optimal model \textit{Randomized\-SearchCV} is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. For SVM we used the sklearn C-Support Vector Classification implementation and concentrated the grid search on the kernel (linear, poly, rbf or sigmoid) as this has the biggest impact on performance. Tuning the kernel already used up quite some computational time, so we did not look into further parameters. In future work one could have a closer look at parameters such as the regularization parameter C or some kernel specific coefficients. To train the logistic regression model, hyperparameters were set according to the recommendations from sklearns documentation page. To try out different solver algorithms, the L2-norm penality for regularization was chosen. As the number of samples surpass the number of features the normal primal formulation of the regression problem was used. The search space for solver algorithms was restricted to \textit{lbfgs}, \textit{sag} and \textit{saga} as others did not make sense in the training circumstances. Also different regularization strength were tested with parameter C between 0.8 and 1.2 with step width 0.1. Finally the model is evaluated on the test set.
 
 For neural network based approaches the dataset is again split into training (0.8) and test set (0.2). Then the training set is further split up into training (0.8) and validation (0.2). In the next step the optimal model is found by using the training and the validation set. The final step is equal to the final step in conventional machine learning, were the model is evaluated.
 
 To enable a performant execution Pythons multiprocessing library is used to parallelize the execution.
-
-In this work five classifiers are compared on the different datasets (unbalanced, undersampled, oversampled). Four of them are conventional machine learning methods (Decision Tree, Random Forest, SVM, Logistic Regression) and one neural network based approach (LSTM).
 
 \subsection{Evaluation}
 \label{ch:approachE}

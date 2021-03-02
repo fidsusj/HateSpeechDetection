@@ -22,7 +22,7 @@ The common dataset is loaded from the .csv file into a pandas dataframe. After d
 
 Regarding tokenization using the lemmas instead of word stems works better as for instance \textit{we'll} becomes \textit{["we","will"]} and not \textit{["we", "'ll"]}. The lemmatized tokens were later on stemmed as well in order to keep the range of possible unigrams for one and the same semantic word instance restricted for the task of n-gram feature extraction. PoS tags are added to the dataframe using NLTKs PoS tagger as problems using spacys PoS tagger were encountered. PoS-tags are necessary for the hate speech pattern extraction.
 
-Depending on the method the inputs vary. For the conventional machine learning methods the inputs are the extracted features as numerical values added to the dateframe by the already mentioned \textit{Feature\-Extractor} class, whereas in neural network based approaches the inputs are the raw textual contents of each document. The labels are in both cases numerical values.
+Depending on the method the inputs vary. For the conventional machine learning methods the inputs are the extracted features as numerical values added to the dateframe by the already mentioned \textit{Feature\-Extractor} class, whereas in neural network based approaches the inputs are the raw textual contents of each document and the embeddings are learned automatically. The labels are in both cases numerical values.
 
 Then we perform the dataset balancing. As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
 
@@ -104,7 +104,7 @@ Optimal hyperparameters for the unbalanced dataset:
 	\item Decision Tree: max\_leaf\_nodes=15, min\_samples\_leaf=10
 	\item Random Forest: criterion='entropy', max\_depth=10, max\_features='log2'
 	\item SVM: kernel='linear'
-	\item Logistic Regression: C=1.2, max\_iter=1500
+	\item Logistic Regression: C=1.2, solver='lbfgs'
 \end{itemize}
 
 Optimal hyperparameters for the undersampled dataset:
@@ -112,7 +112,7 @@ Optimal hyperparameters for the undersampled dataset:
 	\item Decision Tree: class\_weight='balanced', criterion='entropy', max\_depth=10, max\_leaf\_nodes=15, min\_samples\_split=40
 	\item Random Forest: max\_depth=10, max\_features='sqrt'
 	\item SVM: kernel='linear'
-	\item Logistic Regression: C=1.2, max\_iter=1500, solver='saga'
+	\item Logistic Regression: C=1.2, solver='saga'
 \end{itemize}
 
 Optimal hyperparameters for the oversampled dataset:
@@ -120,7 +120,7 @@ Optimal hyperparameters for the oversampled dataset:
 	\item Decision Tree: class\_weight='balanced', criterion='entropy'
 	\item Random Forest: criterion='entropy', max\_features='sqrt'
 	\item SVM: all default parameters
-	\item Logistic Regression: C=1.2, max\_iter=1500
+	\item Logistic Regression: C=1.2, solver='lbfgs'
 \end{itemize}
 
 \subsection{Classifier metrics}
