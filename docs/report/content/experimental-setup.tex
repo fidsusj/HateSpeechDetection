@@ -22,24 +22,9 @@ The resulting common dataset was stored in a .csv file. It contains 2.491 hate s
 
 The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
 
-
-%% TODO:
-
 Depending on the method the inputs vary. For the classical Machine Learning methods the inputs are the extracted features as numerical values, whereas in neural network based approaches the inputs are the raw textual features. The labels are in both cases numerical values.
 
-Then we perform the dataset balancing.
-TODO: Dataset balancing
-
-
-Finally we receive unbalanced, undersampled and oversampled datasets.
-
-TODO: name that oversampling currently not present for nn approaches
-
-\subsection{Data analysis} \label{sec:data_analysis}
-
-%TODO: Mit Hate Speech Statistics mergen?
-
-As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
+Then we perform the dataset balancing. As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison the paper \cite{Oriola2020} also recognizes the class imbalance and tries to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
 
 \begin{itemize}
     \item changing the performance metric (e.g. F1-score instead of accuracy)
@@ -48,11 +33,15 @@ As already mentioned, the acquired dataset is an imbalanced one, which can lead 
     \item generating synthetic samples (e.g by using SMOTE)
 \end{itemize}
 
-In our experiments we chose to try the different approaches and applied a simple undersampling, as well as an oversampling using SMOTE. Additionally, we used the imbalanced dataset to train a classifier to compare how this affects the performance.
+In our experiments we chose to try the different approaches and applied a simple undersampling by randomly deleting instances from the over-represented class (neutral posts), as well as an oversampling using SMOTE. SMOTE does an oversampling by generating synthetic samples in the feature-space of the under-represented class, resulting in posts that statistically fall in between the different hate speech posts. Additionally, we used the imbalanced dataset to train a classifier to compare how this affects the performance.
+Finally we receive unbalanced, undersampled and oversampled datasets, which we use for the further experiments. In addition for all experiments, we use the F1-score instead of the accuracy as our performance metric, which should somewhat handle unbalanced classes by itself.
+Unfortunately, SMOTE only works in feature space, so we could not provide an oversampled balanced dataset for our neural network approach as this works directly on the hate speech and non-hate speech posts. This could be addressed in future work.
 
-\vspace{1cm}
+\subsection{Data analysis} \label{sec:data_analysis}
 
-In further analysis of the data, we had a look at the length of hate speech posts versus non-hate speech posts. This can be seen in \autoref{fig:post_length_density_distribution}.
+%TODO: Mit Hate Speech Statistics mergen?
+
+In an in-depth analysis of the data, we had a look at the length of hate speech posts versus non-hate speech posts. This can be seen in \autoref{fig:post_length_density_distribution}.
 
 \begin{figure}[ht]
     \centering
@@ -88,7 +77,7 @@ For a better insight with what data we are dealing, a few examples are shown in 
 \noindent
 Examples for non-hate speech (neutral sentences):
 \begin{itemize}
-    \item "billy that guy would'nt leave me alone so i gave him the trudeau salute"
+    \item "billy that guy wouldn't leave me alone so i gave him the trudeau salute"
     \item "this is after a famous incident of former prime minister pierre trudeau who gave the finger to a group of protesters who were yelling antifrench sayings at him"
     \item "askdems aren't you embarrassed that charlie rangel remains in your caucus"
 \end{itemize}
@@ -136,7 +125,7 @@ Optimal hyperparameters for the oversampled dataset:
 \subsection{Classifier metrics}
 \label{ch:experimentDc}
 
-Table \ref{Tab:unchanged} shows the performance metrices of the classifiers for the unbalanced dataset. 
+Table \ref{Tab:unchanged} shows the performance metrics of the classifiers for the unbalanced dataset. 
 
 \begin{table}[hbt!]
 	\caption{Classifier results for unbalanced dataset}
@@ -155,7 +144,7 @@ Table \ref{Tab:unchanged} shows the performance metrices of the classifiers for 
 \subsection{Oversampled and undersampled datasets}
 \label{ch:experimentDd}
 
-Table \ref{Tab:undersampled} shows the performance metrices of the classifiers for the undersampled dataset and table \ref{Tab:oversampled} for the oversampled dataset. 
+Table \ref{Tab:undersampled} shows the performance metrics of the classifiers for the undersampled dataset and table \ref{Tab:oversampled} for the oversampled dataset. 
 
 \begin{table}[hbt!]
 	\caption{Classifier results for undersampled dataset}

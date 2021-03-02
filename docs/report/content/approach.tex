@@ -65,9 +65,10 @@ As the methods need it, there are slight differences between the training of the
 	\label{fig:classifier_pipeline}
 \end{figure}
 
-For the conventional machine learning methods the dataset is split into training (0.8) and test set (0.2). In order to find the optimal model Randomized\-SearchCV is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. Finally the model is evaluated on the test set.
+For the conventional machine learning methods the dataset is split into training (0.8) and test set (0.2). In order to find the optimal model Randomized\-SearchCV is executed on the defined hyperparameter search space. The hyperparameter search space was chosen based on the classifiers doc\-u\-men\-ta\-tion, papers and by an empirical examination. For the decision tree \cite{mantovani2019empirical} and for the random forest \cite{probstHyperparametersTuningStrategies2019} were observed. For SVM we used the sklearn C-Support Vector Classification implementation and concentrated the grid search on the kernel (linear, poly, rbf or sigmoid) as this has the biggest impact on performance. Tuning the kernel already used up quite some computational time, so we did not look into further parameters. In future work one could have a closer look at parameters such as the regularization parameter C or some kernel specific coefficients.
+Finally the model is evaluated on the test set.
 
-%TODO: Description for LR, SVM how is the hyperparameter search space set?
+%TODO: Description for LR how is the hyperparameter search space set?
 
 For neural network based approaches the dataset is again split into training (0.8) and test set (0.2). Then the training set is further split up into training (0.8) and validation (0.2). In the next step the optimal model is found by using the training and the validation set. The final step is equal to the final step in conventional machine learning, were the model is evaluated.
 
