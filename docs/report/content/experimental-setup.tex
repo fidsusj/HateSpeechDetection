@@ -20,7 +20,7 @@ The resulting common dataset was stored in a .csv file. It contains 2.491 hate s
 
 \subsection{Corpus building}
 
-The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model that spacy brings decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
+The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. Furthermore no stemming was applied to the tokens, instead lemmatization was used as one can in this case later on use pre-trained word embeddings from i.e. Word2Vec. Furthermore tokenization works better using the lemmas instead of word stems (e.g. We'll becomes ["we","will"] and not ["we", "'ll"].
 
 
 %% TODO:
@@ -63,7 +63,7 @@ In further analysis of the data, we had a look at the length of hate speech post
 
 Here one can see, that the hate speech posts contain more words (tokens before cleaning) than non-hate speech posts. In average a hate speech post contains 18.18 words, whereas a non-hate speech post only contains 15.85 words. Unlike expected, the hate speech posts are longer than the non-hate speech posts.
 
-A more interesting look at the data are the most commonly used words per class. As can be seen in the word clouds in \autoref{fig:wordclouds} there are some obvious differences, such that the hate speech posts use words like \enquote{bitch}, \enquote{faggot} or \enquote{nigga}. But interestingly enough, the non-hate speech posts also often consist of the words \enquote{trash} or \enquote{white}.
+A more interesting look at the data is given by the most commonly used words per class. As can be seen in the word clouds in \autoref{fig:wordclouds} there are some obvious differences, such that the hate speech posts use words like \enquote{bitch}, \enquote{faggot} or \enquote{nigga}. But interestingly enough, the non-hate speech posts also sometimes consist of the words \enquote{trash} or \enquote{white}.
 
 \begin{figure}[ht]
     \hfill
@@ -88,16 +88,16 @@ For a better insight with what data we are dealing, a few examples are shown in 
 \noindent
 Examples for non-hate speech (neutral sentences):
 \begin{itemize}
-    \item "billy that guy would nt leave me alone so i gave him the trudeau salute"
+    \item "billy that guy would'nt leave me alone so i gave him the trudeau salute"
     \item "this is after a famous incident of former prime minister pierre trudeau who gave the finger to a group of protesters who were yelling antifrench sayings at him"
-    \item "askdems arent you embarrassed that charlie rangel remains in your caucus"
+    \item "askdems aren't you embarrassed that charlie rangel remains in your caucus"
 \end{itemize}
 
 \noindent
 Examples for hate speech:
 \begin{itemize}
     \item "california is full of white trash"
-    \item "and yes they will steal anything from whites because they think whites owe them something so it s ok to steal"
+    \item "and yes they will steal anything from whites because they think whites owe them something so it's ok to steal"
     \item "why white people used to say that sex was a sin used to be a mystery to me until i saw the children of browns and mixed race children popping up all around me"
 \end{itemize}
 
