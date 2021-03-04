@@ -1,4 +1,4 @@
-\section{Analysis} \label{analysis}
+\section{Results and analysis} \label{analysis}
 
 For answering our research question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches, the following results were achieved:
 \begin{itemize}
@@ -42,7 +42,7 @@ For answering our research question, whether classical Machine Learning methods 
 After extracting all the features, we had a closer look at them to identify which features are characteristic for hate speech.
 Firstly, the semantic features in general do not signify whether a post is hate speech or not. Neither the number of exclamation marks, question marks, full stop marks, interjections or all caps words show any sign of signifying hate speech. These features are evenly distributed regarding hate speech versus non-hate speech.
 The only semantic features which indicate hate speech are the number of words and - to a very small degree - the number of laughing expressions.
-As already mentioned in \autoref{sec:data_analysis} the more words a post consists of, the likelier it is to be classified as hate speech (illustrated in \autoref{fig:wordclouds}).
+As already mentioned in \autoref{sec:data_insights} the more words a post consists of, the likelier it is to be classified as hate speech (illustrated in \autoref{fig:wordclouds}).
 Although, there are only very few laughing expressions identified per post (most do not contain any), there is a tendency for hate speech posts to contain more laughing expressions, such as \enquote{haha}, \enquote{lol} or similar.
 
 Slightly more telling is the topic feature we trained using LDA with only 2 topics. It seems to have somewhat trained to classify into hate and non-hate - as we hoped. The hate speech posts are more likely to be classified as topic 0 than non-hate speech posts. But this difference is not really significant.
@@ -77,10 +77,56 @@ But maybe it would be worthwhile to have a closer look at the patterns and adjus
 \subsection{Comparison of the classifier results}
 \label{ch:experimentDc}
 
+Table \ref{Tab:unchanged} shows the performance metrics of the classifiers for the unbalanced dataset. 
+
+\begin{table}[hbt!]
+	\caption{Classifier results for unbalanced dataset}
+	\label{Tab:unchanged}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|}
+		\hline
+		\textbf{classifier} & \textbf{precision} & \textbf{recall} & \textbf{accuracy} & \textbf{F1} \\ \hline
+		Decision Tree       & \gradient{0.8756} & \gradient{0.9821} & \gradient{0.8671} & \gradient{0.9258} \\ \hline
+		Random Forest       & \gradient{0.8809} & \gradient{0.9894} & \gradient{0.8782} & \gradient{0.9320} \\ \hline
+		SVM                 & \gradient{0.8697} & \gradient{0.9927} & \gradient{0.8684} & \gradient{0.9272} \\ \hline
+		Logistic Regression & \gradient{0.8831} & \gradient{0.9832} & \gradient{0.8760} & \gradient{0.9305} \\ \hline
+		LSTM                & \gradient{0.9219} & \gradient{0.9567} & \gradient{0.8950} & \gradient{0.9390} \\ \hline
+	\end{tabular}
+\end{table}
+
 All classifiers perform about equally well. And the achieved results are good with about 93\% for the F1-score. In the unbalanced case the conventional Machine Learning methods can definitely keep up with the neural network baseline. 
 
 \subsection{Oversampled and undersampled datasets}
 \label{ch:experimentDd}
+
+Table \ref{Tab:undersampled} shows the performance metrics of the classifiers for the undersampled dataset and table \ref{Tab:oversampled} for the oversampled dataset. 
+
+\begin{table}[hbt!]
+	\caption{Classifier results for undersampled dataset}
+	\label{Tab:undersampled}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|}
+		\hline
+		\textbf{classifier} & \textbf{precision} & \textbf{recall} & \textbf{accuracy} & \textbf{F1} \\ \hline
+		Decision Tree       & \gradient{0.7202} & \gradient{0.7710} & \gradient{0.7431} & \gradient{0.7448} \\ \hline
+		Random Forest       & \gradient{0.7261} & \gradient{0.8043} & \gradient{0.7573} & \gradient{0.7632} \\ \hline
+		SVM                 & \gradient{0.7193} & \gradient{0.8375} & \gradient{0.7621} & \gradient{0.7739} \\ \hline
+		Logistic Regression & \gradient{0.7246} & \gradient{0.8238} & \gradient{0.7621} & \gradient{0.7710} \\ \hline
+		LSTM                & \gradient{0.9219} & \gradient{0.9567} & \gradient{0.8950} & \gradient{0.9390} \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[hbt!]
+	\caption{Classifier results for oversampled dataset}
+	\label{Tab:oversampled}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|}
+		\hline
+		\textbf{classifier} & \textbf{precision} & \textbf{recall} & \textbf{accuracy} & \textbf{F1} \\ \hline
+		Decision Tree       & \gradient{0.7973} & \gradient{0.7919} & \gradient{0.7924} & \gradient{0.7946} \\ \hline
+		Random Forest       & \gradient{0.8844} & \gradient{0.8557} & \gradient{0.8701} & \gradient{0.8698} \\ \hline
+		SVM                 & \gradient{0.7648} & \gradient{0.8081} & \gradient{0.7767} & \gradient{0.7859} \\ \hline
+		Logistic Regression & \gradient{0.7573} & \gradient{0.8081} & \gradient{0.7713} & \gradient{0.7819} \\ \hline
+		LSTM                & \multicolumn{4}{|c|}{not measured} \\ \hline
+	\end{tabular}
+\end{table}
 
 In the undersampled case all conventional Machine Learning methods perform about equally well. Compared to the results from unbalanced dataset the conventional classifiers perform worse. In contrast the neural network baseline can keep up with the results from the unbalanced case. So in this undersampled case the conventional Machine Learning methods cannot keep up with the neural network baseline.
 
