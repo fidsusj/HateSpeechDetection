@@ -1,4 +1,4 @@
-\section{Experimental setup and results} \label{results}
+\section{Experimental setup} \label{experimental_setup}
 
 \subsection{Data preparation}
 
@@ -38,10 +38,9 @@ Finally we receive unbalanced, undersampled and oversampled datasets, which we u
 
 Unfortunately, SMOTE only works in feature space, so we could not provide an oversampled balanced dataset for our neural network approach as this works directly on the hate speech and non-hate speech posts. This could be addressed in future work.
 
-\subsection{Data analysis} \label{sec:data_analysis}
+\subsection{Data insights} \label{sec:data_insights}
 
-%TODO: Mit Hate Speech Statistics mergen?
-
+To better understand the dataset we are working with, the following section provides some insights into the preprocessed data corpus.
 In an in-depth analysis of the data, we had a look at the length of hate speech posts versus non-hate speech posts. This can be seen in \autoref{fig:post_length_density_distribution}.
 
 \begin{figure}[ht]
@@ -148,3 +147,4 @@ Table \ref{Tab:undersampled} shows the performance metrics of the classifiers fo
 		LSTM                & \multicolumn{4}{|c|}{not measured} \\ \hline
 	\end{tabular}
 \end{table}
+
