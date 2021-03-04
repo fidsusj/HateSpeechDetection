@@ -1,0 +1,17 @@
+\section{Appendix}
+
+\subsection{Experimental details}
+\label{ch:app-A}
+
+\begin{table}[hbt!]
+	\caption{Optimal hyperparameters of the conventional Machine Learning methods}
+	\label{Tab:hyperparameters}
+	\begin{tabular}{|p{0.12\textwidth}|p{0.32\textwidth}|p{0.32\textwidth}|p{0.32\textwidth}|}
+		\hline
+		\textbf{classifier} & \textbf{unbalanced} & \textbf{undersampled} & \textbf{oversampled} \\ \hline
+		Decision Tree       & max\_leaf\_nodes=15, min\_samples\_leaf=10 & class\_weight='balanced', criterion='entropy', max\_depth=10, max\_leaf\_nodes=15, min\_samples\_split=40 & class\_weight='balanced', criterion='entropy' \\ \hline
+		Random Forest       & criterion='entropy', max\_depth=10, max\_features='log2' & max\_depth=10, max\_features='sqrt' & criterion='entropy', max\_features='sqrt' \\ \hline
+		SVM                 & kernel='linear' & kernel='linear' & all default parameters \\ \hline
+		Logistic Regression & C=1.2, solver='lbfgs' & C=1.2, solver='saga' & C=1.2, solver='lbfgs' \\ \hline
+	\end{tabular}
+\end{table}

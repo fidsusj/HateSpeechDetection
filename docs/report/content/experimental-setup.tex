@@ -95,33 +95,7 @@ One can clearly see the hate expressed in the hate speech examples and see their
 
 \subsection{Experimental details}
 
-%TODO: Hyperparameter vielleicht in den Anhang?
-
-The optimal hyperparameters of the conventional Machine Learning methods are learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in this chapter to enable the replication of our results. For readability only the hyperparameters, which differ from the default values are listed.
-
-Optimal hyperparameters for the unbalanced dataset:
-\begin{itemize}
-	\item Decision Tree: max\_leaf\_nodes=15, min\_samples\_leaf=10
-	\item Random Forest: criterion='entropy', max\_depth=10, max\_features='log2'
-	\item SVM: kernel='linear'
-	\item Logistic Regression: C=1.2, solver='lbfgs'
-\end{itemize}
-
-Optimal hyperparameters for the undersampled dataset:
-\begin{itemize}
-	\item Decision Tree: class\_weight='balanced', criterion='entropy', max\_depth=10, max\_leaf\_nodes=15, min\_samples\_split=40
-	\item Random Forest: max\_depth=10, max\_features='sqrt'
-	\item SVM: kernel='linear'
-	\item Logistic Regression: C=1.2, solver='saga'
-\end{itemize}
-
-Optimal hyperparameters for the oversampled dataset:
-\begin{itemize}
-	\item Decision Tree: class\_weight='balanced', criterion='entropy'
-	\item Random Forest: criterion='entropy', max\_features='sqrt'
-	\item SVM: all default parameters
-	\item Logistic Regression: C=1.2, solver='lbfgs'
-\end{itemize}
+The optimal hyperparameters of the conventional Machine Learning methods are learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in the appendix \ref{ch:app-A} to enable the replication of our results. For readability only the hyperparameters, which differ from the default values are listed.
 
 \subsection{Classifier metrics}
 \label{ch:experimentDc}
