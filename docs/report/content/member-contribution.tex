@@ -8,12 +8,12 @@ Faced challenges when trying to provide meaningful insights into the hate speech
 
 \subsubsection*{Felix Hausberger}
 
-Took care of the data preparation and corpus building based on the two utilized datasets. Also setup the GitHub actions and hooks for CI. Added the Logistic Regression classifier and implemented a Word2Vec model. Furthermore, implemented the PoS pattern feature, as well as ngrams and a topic detection based on LDA. In the analysis had a close look at the feature importance for the different classifiers.
+Took care of the data preparation and corpus building based on the two utilized datasets. Also setup the GitHub actions and hooks for CI. Added the Logistic Regression classifier and implemented a Word2Vec model. Furthermore, implemented the PoS pattern feature, as well as ngrams, sentiment based on VADER and a topic detection based on LDA. In the analysis had a close look at the feature importance for the different classifiers.
 
 % TODO: text verbessern + challenges
 
 \subsubsection*{Nils Krehl}
 
-Big contribution was the development of the reusable pipeline for adding new features to the feature extraction, adding classifiers and executing grid search and learning the optimal hyperparameters for the classifiers. Added Random Forrest and Decision Tree as classifiers as well as implemented a neural network baseline via LSTM. Added a few features such as sentiment, dictionary and TF-IDF.
+One major contribution was the development of the reusable pipeline for feature extraction and classifier execution. New features and classifiers can easily be added to the pipeline. As part of the pipeline the optimal hyperparameters are automatically learned by executing \textit{RandomizedSearchCV} and the classifier performance metrics are calculated automatically. Added Random Forest and Decision Tree classifiers as well as the neural network baseline via LSTM. Added some features such as TF-IDF, dictionaries and special characters.
 
-% TODO: text verbessern + challenges
+Faced challenges in optimizing the execution time of the classifier pipeline, which made the change from \textit{GridSearchCV} to \textit{RandomizedSearchCV} and the use of multiprocessing necessary. Through both measures, it was possible to reduce the execution time to around 10min. 
