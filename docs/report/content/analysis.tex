@@ -1,10 +1,10 @@
 \section{Results and analysis} \label{analysis}
 
-For answering our research question, whether classical Machine Learning methods combined with suitable features can outperform neural network based approaches, the following results were achieved:
+For answering our research question, whether classical machine learning methods combined with suitable features can outperform neural network based approaches, the following results were achieved:
 \begin{itemize}
 	\item Investigation of feature importances (chapter \ref{ch:experimentDa})
 	\item Hate speech statistics (chapter \ref{ch:experimentDb})
-	\item Comparison of the classifier results (classical Machine Learning methods vs neural network based approaches) (chapter \ref{ch:experimentDc})
+	\item Comparison of the classifier results (classical machine learning methods vs neural network based approaches) (chapter \ref{ch:experimentDc})
 	\item Oversampled and undersampled datasets (chapter \ref{ch:experimentDd})
 \end{itemize}
 
@@ -45,9 +45,9 @@ The only semantic features which indicate hate speech are the number of words an
 As already mentioned in \autoref{sec:data_insights} the more words a post consists of, the likelier it is to be classified as hate speech (illustrated in \autoref{fig:wordclouds}).
 Although, there are only very few laughing expressions identified per post (most do not contain any), there is a tendency for hate speech posts to contain more laughing expressions, such as \enquote{haha}, \enquote{lol} or similar.
 
-Slightly more telling is the topic feature we trained using LDA with only 2 topics. It seems to have somewhat trained to classify into hate and non-hate - as we hoped. The hate speech posts are more likely to be classified as topic 0 than non-hate speech posts. But this difference is not really significant.
+Slightly more telling is the topic feature we trained using LDA with only 2 topics. It seems to have somewhat trained to classify into hate and non-hate - as we hoped. The hate speech posts are more likely to be classified as topic 0 than non-hate speech posts. But this difference is not significant.
 
-A more interesting and characteristic feature seems to be sentiment-based. As described, we extracted a sentiment-score (polarity) for each post using vader and this clearly differentiates between hate speech and non-hate speech, as shown in \autoref{fig:statistics_sentiment}.
+A more interesting and characteristic feature seems to be sentiment-based. As described, we extracted a sentiment-score (polarity) for each post using VADER and this clearly differentiates between hate speech and non-hate speech, as shown in \autoref{fig:statistics_sentiment}.
 This shows, that a negative sentiment-score indicates a post being rather likely to contain hate speech. The more positive the sentiment-score is, the less probable it is classified as hate speech.
 
 \begin{figure}[ht]
@@ -72,7 +72,7 @@ Lastly, the feature pattern-count can somewhat indicate hate speech, as the mean
 	\label{fig:statistics_pattern_count}
 \end{figure}
 
-But maybe it would be worthwhile to have a closer look at the patterns and adjust them for some future work. Because when we look at single patterns, some occur more often in hate speech and some more often in non-hate speech (in our dataset). For example the pattern \enquote{adjective, noun (JJ, NN)} occurs in 56\% of hate speech and in 48\% of non-hate speech, whereas the pattern \enquote{determiner, noun} occurs in 5\% less hate speech posts than non-hate speech posts. So a more thorough analysis of these patterns could benefit this feature a lot, maybe by using individual features for each pattern. For example the biggest difference in occurrences is achieved by the pattern \enquote{personal pronoun, non-3rd person singular present verb (PRP, VBP)} with a 10\% difference.
+But maybe it would be worthwhile to have a closer look at the patterns and adjust them for some future work: when we look at single patterns, some occur more often in hate speech and some more often in non-hate speech (in our dataset). For example the pattern \enquote{adjective, noun (JJ, NN)} occurs in 56\% of hate speech and in 48\% of non-hate speech, whereas the pattern \enquote{determiner, noun} occurs in 5\% less hate speech posts than non-hate speech posts. So a more thorough analysis of these patterns could benefit this feature a lot, maybe by using individual features for each pattern. For example the biggest difference in occurrences is achieved by the pattern \enquote{personal pronoun, non-3rd person singular present verb (PRP, VBP)} with a 10\% difference.
 
 \subsection{Comparison of the classifier results}
 \label{ch:experimentDc}
@@ -93,7 +93,7 @@ Table \ref{Tab:unchanged} shows the performance metrics of the classifiers for t
 	\end{tabular}
 \end{table}
 
-All classifiers perform about equally well. And the achieved results are good with about 93\% for the F1-score. In the unbalanced case the conventional Machine Learning methods can definitely keep up with the neural network baseline. 
+All classifiers perform about equally well. And the achieved results are good with about 93\% for the F1-score. In the unbalanced case the conventional machine learning methods can definitely keep up with the neural network baseline. 
 
 \subsection{Oversampled and undersampled datasets}
 \label{ch:experimentDd}
@@ -128,6 +128,6 @@ Table \ref{Tab:undersampled} shows the performance metrics of the classifiers fo
 	\end{tabular}
 \end{table}
 
-In the undersampled case all conventional Machine Learning methods perform about equally well. Compared to the results from unbalanced dataset the conventional classifiers perform worse. In contrast the neural network baseline can keep up with the results from the unbalanced case. So in this undersampled case the conventional Machine Learning methods cannot keep up with the neural network baseline.
+In the undersampled case all conventional machine learning methods perform about equally well. Compared to the results from unbalanced dataset the conventional classifiers perform worse. In contrast the neural network baseline can keep up with the results from the unbalanced case. So in this undersampled case the conventional machine learning methods cannot keep up with the neural network baseline.
 
-In the oversampled case the results are located between the undersampled and the unbalanced case. An outstanding result is the Random Forest, which performs better then the other conventional Machine Learning methods. As already mentioned SMOTE is not able to generate new textual features for generating an oversampled dataset for the neural network baseline. That is why these results could not be measured.
+In the oversampled case the results are located between the undersampled and the unbalanced case. An outstanding result is the Random Forest, which performs better then the other conventional machine learning methods. As already mentioned SMOTE is not able to generate new textual features for generating an oversampled dataset for the neural network baseline. That is why these results could not be measured.

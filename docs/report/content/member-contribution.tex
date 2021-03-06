@@ -1,8 +1,8 @@
-\section*{Member contribution}
+\section*{Member contributions}
 
 \subsubsection*{Christopher Klammt}
 
-Main focus was the analysis of the preprocessed dataset and providing insights for the milestone, before extracting features. After feature extraction hate speech statistics were drawn out to show what signifies hate speech. Additionally, the semantic features and the SVM classifier were added. To handle the unbalanced dataset undersampling in the form of randomly deleting overrepresented instances and oversampling using synthetic generation of underrepresented instances (via SMOTE) was implemented.
+Main focus was the analysis of the preprocessed dataset and providing insights for the milestone, before extracting features. After feature extraction hate speech statistics were drawn out to show what signifies hate speech. Ad\-di\-tio\-nal\-¸ly, the semantic features and the SVM classifier were added. To handle the unbalanced dataset undersampling in the form of randomly deleting over\-re\-pre\-sen\-¸ted instances and oversampling using synthetic generation of underrepresented instances (via SMOTE) was implemented.
 
 Faced challenges when trying to provide meaningful insights into the hate speech statistics as a lot of features were count-based and e.g. did not contain the occurring laughing expression or PoS pattern. Furthermore, balancing the dataset did not fare well for performance and it was not possible to apply SMOTE for the neural network approach.
 
@@ -14,6 +14,6 @@ Took care of the data preparation and corpus building based on the two utilized 
 
 \subsubsection*{Nils Krehl}
 
-One major contribution was the development of the reusable pipeline for feature extraction and classifier execution. New features and classifiers can easily be added to the pipeline. As part of the pipeline the optimal hyperparameters are automatically learned by executing \textit{RandomizedSearchCV} and the classifier performance metrics are calculated automatically. Added Random Forest and Decision Tree classifiers as well as the neural network baseline via LSTM. Added some features such as TF-IDF, dictionaries and special characters.
+One major contribution was the development of the reusable pipeline for feature extraction and classifier execution. New features and classifiers can easily be added to the pipeline. As part of the pipeline the optimal hy\-per\-pa\-ra\-me\-ters are automatically learned by executing \textit{RandomizedSearchCV} and the classifier performance metrics are calculated automatically. Added Random Forest and Decision Tree classifiers as well as the neural network baseline via LSTM. Added some features such as TFIDF, dictionaries and special characters.
 
 Faced challenges in optimizing the execution time of the classifier pipeline, which made the change from \textit{GridSearchCV} to \textit{RandomizedSearchCV} and the use of multiprocessing necessary. Through both measures, it was possible to reduce the execution time to around 10min. 
