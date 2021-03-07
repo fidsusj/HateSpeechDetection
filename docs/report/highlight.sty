@@ -23,6 +23,28 @@
     }}
  }
 %======================================
+% gradient function 2!
+\newcommand{\gradientOne}[1]{
+    % The values are calculated linearly between 0 and 0.25
+    \ifdimcomp{#1pt}{>}{0.25pt}{#1}{
+    \ifdimcomp{#1pt}{<}{0pt}{#1}{
+         \pgfmathparse{int(round(100*(#1/(0.25-0))-(0*(100/(0.25-0)))))}
+        \xdef\tempa{\pgfmathresult}
+        \cellcolor{high!\tempa!low!\opacity} #1
+    }}
+ }
+%======================================
+% gradient function 3!
+\newcommand{\gradientTwo}[1]{
+    % The values are calculated linearly between \minval and \maxval
+    \ifdimcomp{#1pt}{>}{2.01pt}{#1}{
+    \ifdimcomp{#1pt}{<}{0pt}{#1}{
+         \pgfmathparse{int(round(100*(#1/(2.01-0))-(0*(100/(2.01-0)))))}
+        \xdef\tempa{\pgfmathresult}
+        \cellcolor{high!\tempa!low!\opacity} #1
+    }}
+ }
+%======================================
 % gradient function single cell! 
 \newcommand{\gradientcell}[6]{
     % The values are calculated linearly between \minval and \maxval
