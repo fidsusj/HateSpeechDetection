@@ -14,7 +14,7 @@ For answering our research question, whether classical machine learning methods 
 \begin{table}[hbt!]
 	\caption{Feature importance scores per classifier}
 	\label{Tab:featureimportances}
-	\begin{tabular}{|p{0.3\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|p{0.17\textwidth}|}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|}
 		\hline
 		\textbf{feature}     & \textbf{Decision Tree} & \textbf{Random Forest} & \textbf{SVM} & \textbf{Logistic Regression} \\ \hline
 		Unigrams      		 & \gradientOne{0.096833} & \gradientOne{0.110481} & \gradientTwo{0.116233} & \gradientTwo{0.340829} \\ \hline
@@ -35,6 +35,10 @@ For answering our research question, whether classical machine learning methods 
 		Sentiment     	     & \gradientOne{0.208907} & \gradientOne{0.229479} & \gradientTwo{0.447129} & \gradientTwo{1.180669} \\ \hline
 	\end{tabular}
 \end{table}
+
+The feature importance scores were extracted using the hyperparameter configuration from \ref{ch:app-A} for the unbalanced dataset. The feature importance scores for the Decision Tree and Random Forest are calculated automatically by sklearn and equals to the gini importance score for tree classifiers. The feature importance scores for the SVM and Logistic Regression model are taken as absolute values from the feature coefficients. As the feature importances from the Decision Tree and Random Forest respectively from the SVM and Logistic Regression model are semantically not the same, the color gradient of the feature importance scores should not be compared to each other.
+
+Probably the most important feature for almost all classifiers represents the sentiment-based polarity score. Besides the sentiment the extracted n-gram dictionaries were also informative to decide between hate speech and non-hate speech. Besides the word count any other semantic features are almost not very decisive for the task of hate speech detection and compared to n-grams and polarity scores also the hate speech pattern count and topic assignment performed weakly. 
 
 \subsection{Hate speech statistics}
 \label{ch:experimentDb}
