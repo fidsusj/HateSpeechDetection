@@ -20,7 +20,11 @@ Responsibility was assumed for assignment three and four.
 
 \subsubsection*{Nils Krehl}
 
-One major contribution was the development of the reusable pipeline for feature extraction and classifier execution. New features and classifiers can easily be added to the pipeline. As part of the pipeline the optimal hy\-per\-pa\-ra\-me\-ters are automatically learned by executing \textit{RandomizedSearchCV} and the classifier performance metrics are calculated automatically. Added Random Forest and Decision Tree classifiers as well as the neural network baseline via LSTM. Added some features such as TFIDF, dictionaries and special characters.
+Thorough literature research for the following papers \footnote{see \url{https://github.com/fidsusj/HateSpeechDetection/blob/main/docs/research/papers_overview.md\#ieee-vpn-required-for--marked-papers}} was done.
+Definition of the project idea, the research question and the scope of the project including its novelties. 
+For the purpose of data exploration, a fasttext model to visualize hate speech word embeddings with t-SNE was added. In contrast to the Word2Vec model two clusters for hate speech and neutral speech are nicely visible.
+One major contribution was the end to end technical architecture of the project. As part of this, reusable pipelines for feature extraction and classifier execution were developed. New features and classifiers can easily be added to the pipeline. As part of the pipeline the optimal hy\-per\-pa\-ra\-me\-ters are automatically learned by executing \textit{RandomizedSearchCV} and the classifier performance metrics are calculated automatically. Added Random Forest and Decision Tree classifiers as well as the neural network baseline via LSTM. 
+Based on the literature research regarding feature groups, promising features such as TFIDF, dictionaries and special characters are implemented and visualized.
 
 Faced challenges in optimizing the execution time of the classifier pipeline, which made the change from \textit{GridSearchCV} to \textit{RandomizedSearchCV} and the use of multiprocessing necessary. Through both measures, it was possible to reduce the execution time to around 10min.
 
