@@ -36,7 +36,7 @@ For answering our research question, whether classical machine learning methods 
 	\end{tabular}
 \end{table}
 
-The feature importance scores were extracted using the hyperparameter configuration from \ref{ch:app-A} for the unbalanced dataset. The feature importance scores for the Decision Tree and Random Forest are calculated automatically by sklearn and equals to the gini importance score for tree classifiers. The feature importance scores for the SVM and Logistic Regression model are taken as absolute values from the feature coefficients. As the feature importances from the Decision Tree and Random Forest respectively from the SVM and Logistic Regression model are semantically not the same, the color gradient of the feature importance scores should not be compared to each other.
+The feature importance scores were extracted using the hyperparameter configuration from \ref{ch:app-A} for the unbalanced dataset. The feature importance scores for the Decision Tree and Random Forest were calculated automatically by sklearn and equal to the gini importance score for tree classifiers. The feature importance scores for the SVM and Logistic Regression model were taken as absolute values from the feature coefficients. As the feature importances from the Decision Tree and Random Forest respectively from the SVM and Logistic Regression model are semantically not the same, the color gradient of the feature importance scores should not be compared to each other.
 
 Probably the most important feature for almost all classifiers represents the sentiment-based polarity score. Besides the sentiment the extracted n-gram dictionaries were also informative to decide between hate speech and non-hate speech. Besides the word count any other semantic features are almost not very decisive for the task of hate speech detection and compared to n-grams and polarity scores also the hate speech pattern count and topic assignment performed weakly. 
 
@@ -44,8 +44,9 @@ Probably the most important feature for almost all classifiers represents the se
 \label{ch:experimentDb}
 
 After extracting all the features, we had a closer look at them to identify which features are characteristic for hate speech.
-Firstly, the semantic features in general do not signify whether a post is hate speech or not. Neither the number of exclamation marks, question marks, full stop marks, interjections or all caps words show any sign of signifying hate speech. These features are evenly distributed regarding hate speech versus non-hate speech.
-The only semantic features which indicate hate speech are the number of words and - to a very small degree - the number of laughing expressions.
+
+Firstly, the semantic features in general do not signify whether a post is hate speech or not. Neither the number of exclamation marks, question marks, full stop marks, interjections or all caps words showed any sign of signifying hate speech. These features are evenly distributed regarding hate speech versus non-hate speech.
+The only semantic features which indicated hate speech are the number of words and - to a very small degree - the number of laughing expressions.
 As already mentioned in \autoref{sec:data_insights} the more words a post consists of, the likelier it is to be classified as hate speech (illustrated in \autoref{fig:wordclouds}).
 Although, there are only very few laughing expressions identified per post (most do not contain any), there is a tendency for hate speech posts to contain more laughing expressions, such as \enquote{haha}, \enquote{lol} or similar.
 
@@ -70,8 +71,7 @@ Examples for the most common hateful words found in hate speech posts are \enquo
 
 \vspace{0.5cm}
 
-Furthermore, we had an extensive look at unigrams, bigrams and trigrams for hate speech and these are significantly overrepresented in hate speech posts compared to non-hate speech posts. This especially holds true for the unigrams such as \enquote{white} which appears in 15\% of hate speech posts or \enquote{not} appearing in 9\% of hate speech posts. Both of these appear only half as often in non-hate speech posts.
-The identified bigrams only show up in a very small percentage of posts, but significantly less in non-hate speech posts. Most common bigrams for hate speech are \enquote{white trash}, \enquote{look like} and \enquote{ass nigga}.
+Furthermore, we had an extensive look at unigrams, bigrams and trigrams for hate speech and these are significantly overrepresented in hate speech posts compared to non-hate speech posts. This especially holds true for the unigrams such as \enquote{white} which appears in 15\% of hate speech posts or \enquote{not} appearing in 9\% of hate speech posts. Both of these appear only half as often in non-hate speech posts. The identified bigrams only show up in a very small percentage of posts, but significantly less in non-hate speech posts. Most common bigrams for hate speech are \enquote{white trash}, \enquote{look like} and \enquote{ass nigga}.
 
 \vspace{0.5cm}
 
@@ -105,7 +105,7 @@ Table \ref{Tab:unchanged} shows the performance metrics of the classifiers for t
 	\end{tabular}
 \end{table}
 
-All classifiers perform about equally well. And the achieved results are good with about 93\% for the F1-score. In the unbalanced case the conventional machine learning methods can definitely keep up with the neural network baseline. 
+All classifiers performed about equally well. And the achieved results are good with about 93\% for the F1-score. In the unbalanced case the conventional machine learning methods can definitely keep up with the neural network baseline. 
 
 \subsection{Oversampled and undersampled datasets}
 \label{ch:experimentDd}
@@ -140,6 +140,6 @@ Table \ref{Tab:undersampled} shows the performance metrics of the classifiers fo
 	\end{tabular}
 \end{table}
 
-In the undersampled case all conventional machine learning methods perform about equally well. Compared to the results from unbalanced dataset the conventional classifiers perform worse. In contrast the neural network baseline can keep up with the results from the unbalanced case. So in this undersampled case the conventional machine learning methods cannot keep up with the neural network baseline.
+In the undersampled case all conventional machine learning methods performed about equally well. Compared to the results from unbalanced dataset the conventional classifiers performed worse. In contrast the neural network baseline was able to keep up with the results from the unbalanced case. So in this undersampled case the conventional machine learning methods cannot keep up with the neural network baseline.
 
-In the oversampled case the results are located between the undersampled and the unbalanced case. An outstanding result is the Random Forest, which performs better then the other conventional machine learning methods. As already mentioned SMOTE is not able to generate new textual features for generating an oversampled dataset for the neural network baseline. That is why these results could not be measured.
+In the oversampled case the results are located between the undersampled and the unbalanced case. An outstanding result is the Random Forest, which performed better then the other conventional machine learning methods. As already mentioned SMOTE was not able to generate new textual features for generating an oversampled dataset for the neural network baseline. That is why these results could not be measured.

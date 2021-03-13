@@ -18,13 +18,13 @@ The resulting common dataset was stored in a .csv file. It contains 2.626 hate s
 
 \subsection{Corpus building}
 
-The common dataset is loaded from the .csv file into a pandas dataframe. After doing basic preprocessing like lowercasing and removing emojis and other irrelevant characters, spacy is used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists are used in this process. This keeps URLs or other tokens including punctuation as one token. 
+The common dataset was loaded from the .csv file into a pandas dataframe. After having done basic preprocessing like lowercasing and removing emojis and other irrelevant characters, spacy was used to build a tokenized corpus. The language model from spacy decides about stop word, punctuation and white space removal. No hard coded logic or stop word lists were used in this process. This keeps URLs or other tokens including punctuation as one token. 
 
-Regarding tokenization using the lemmas instead of word stems works better as for instance \textit{we'll} becomes \textit{["we","will"]} and not \textit{["we", "'ll"]}. For getting n-gram features, the lemmatized tokens are stemmed. This keeps the range of possible unigrams for one and the same semantic word instance restricted. PoS tags are added to the dataframe using NLTKs PoS tagger as problems using spacys PoS tagger were encountered. PoS-tags are necessary for the hate speech pattern extraction.
+Regarding tokenization using the lemmas instead of word stems worked better as for instance \textit{we'll} becomes \textit{["we","will"]} and not \textit{["we", "'ll"]}. For getting n-gram features, the lemmatized tokens were stemmed. This keeps the range of possible unigrams for one and the same semantic word instance restricted. PoS tags were added to the dataframe using NLTKs PoS tagger as problems using spacys PoS tagger were encountered. PoS-tags are necessary for the hate speech pattern extraction.
 
-Depending on the method the inputs vary. For the conventional machine learning methods the inputs are the extracted features as numerical values added to the dataframe by the already mentioned \textit{Feature\-Extractor} class, whereas in neural network based approaches the inputs are the raw textual contents of each document and the embeddings are learned automatically. The labels are in both cases numerical values.
+Depending on the method the inputs vary. For the conventional machine learning methods the inputs are the extracted features as numerical values added to the dataframe by the already mentioned \textit{Feature\-Extractor} class, whereas in neural network based approaches the inputs are the raw textual contents of each document and the embeddings are learned automatically. The labels in both cases were numerical values.
 
-Then we perform the dataset balancing. As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison Oriola and Kotz\'{e} \cite{Oriola.2020} recognized the class imbalance and tried to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
+Then we performed the dataset balancing. As already mentioned, the acquired dataset is an imbalanced one, which can lead to a decrease in performance and accuracy with machine learning classification. As a comparison Oriola and Kotz\'{e} \cite{Oriola.2020} recognized the class imbalance and tried to reduce it by applying a synthetic minority oversampling technique called SMOTE \cite{Chawla2011}. In general there are a few possibilities to tackle the challenge of unbalanced classes:
 
 \begin{itemize}
     \item changing the performance metric (e.g. F1-score instead of accuracy)
@@ -34,7 +34,8 @@ Then we perform the dataset balancing. As already mentioned, the acquired datase
 \end{itemize}
 
 In our experiments we chose to try the different approaches and applied a simple undersampling by randomly deleting instances from the over-represented class (neutral posts), as well as an oversampling using SMOTE. SMOTE does an oversampling by generating synthetic samples in the feature-space of the under-represented class, resulting in posts that statistically fall in between the different hate speech posts. Additionally, we used the imbalanced dataset to train a classifier to compare how this affects the performance.
-Finally we receive unbalanced, undersampled and oversampled datasets, which we use for the further experiments. In addition for all experiments, we use the F1-score instead of the accuracy as our performance metric, which should somewhat handle unbalanced classes by itself.
+
+Finally we received unbalanced, undersampled and oversampled datasets, which we used for the further experiments. In addition for all experiments, we used the F1-score instead of the accuracy as our performance metric, which should somewhat handle unbalanced classes by itself.
 
 Unfortunately, SMOTE only works in feature space, so we could not provide an oversampled balanced dataset for our neural network approach as this works directly on the hate speech and non-hate speech posts. This could be addressed in future work.
 
@@ -94,4 +95,4 @@ One can clearly see the hate expressed in the hate speech examples and see their
 
 \subsection{Experimental details}
 
-The optimal hyperparameters of the conventional machine learning methods are learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in the appendix \ref{ch:app-A} to enable the replication of our results. For readability only the hyperparameters differing from the default values are listed.
+The optimal hyperparameters of the conventional machine learning methods were learned automatically as part of the pipeline. Nevertheless the learned optimal hyperparameters are listed in the appendix \ref{ch:app-A} to enable the replication of our results. For readability only the hyperparameters differing from the default values are listed.
