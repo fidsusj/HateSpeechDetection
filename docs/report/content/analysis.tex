@@ -12,33 +12,33 @@ For answering our research question, whether classical machine learning methods 
 \label{ch:experimentDa}
 
 \begin{table}[hbt!]
-	\caption{Feature importance scores per classifier}
-	\label{Tab:featureimportances}
+	\caption{Mean feature importance scores per classifier over ten-fold cross validation}
+	\label{Tab:featureimportancesmax}
 	\begin{tabular}{|p{0.3\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|p{0.13\textwidth}|}
 		\hline
 		\textbf{feature}     & \textbf{Decision Tree} & \textbf{Random Forest} & \textbf{SVM} & \textbf{Logistic Regression} \\ \hline
-		Unigrams      		 & \gradientOne{0.096833} & \gradientOne{0.110481} & \gradientTwo{0.116233} & \gradientTwo{0.340829} \\ \hline
-		Bigrams       		 & \gradientOne{0.010989} & \gradientOne{0.030529} & \gradientTwo{0.163003} & \gradientTwo{0.288648} \\ \hline
-		Trigrams       		 & \gradientOne{0.015111} & \gradientOne{0.041289} & \gradientTwo{1.389380} & \gradientTwo{2.009609} \\ \hline
-		Hateful Words        & \gradientOne{0.165297} & \gradientOne{0.238533} & \gradientTwo{0.281878} & \gradientTwo{0.550001} \\ \hline
-		Neutral Words        & \gradientOne{0.078015} & \gradientOne{0.060794} & \gradientTwo{0.092602} & \gradientTwo{0.211546} \\ \hline
-		Exclamation Marks    & \gradientOne{0.015078} & \gradientOne{0.014925} & \gradientTwo{0.16408} & \gradientTwo{0.39866} \\ \hline
-		Question Marks       & \gradientOne{0.015837} & \gradientOne{0.012568} & \gradientTwo{0.077828} & \gradientTwo{0.034885} \\ \hline
-		Full Stop Marks      & \gradientOne{0.050472} & \gradientOne{0.039024} & \gradientTwo{0.015701} & \gradientTwo{0.018517} \\ \hline
-		Interjections        & \gradientOne{0.001223} & \gradientOne{0.002545} & \gradientTwo{0.084760} & \gradientTwo{0.255209} \\ \hline
-		All Caps Words       & \gradientOne{0.030842} & \gradientOne{0.025809} & \gradientTwo{0.036716} & \gradientTwo{0.119023} \\ \hline
-		Quotation Marks      & \gradientOne{0.007124} & \gradientOne{0.011336} & \gradientTwo{0.083534} & \gradientTwo{0.197908} \\ \hline
-		Words Total          & \gradientOne{0.176739} & \gradientOne{0.107484} & \gradientTwo{0.023188} & \gradientTwo{0.048423} \\ \hline
-		Laughing Expressions & \gradientOne{0.002860} & \gradientOne{0.006506} & \gradientTwo{0.172888} & \gradientTwo{0.150478} \\ \hline
-		Pattern Count        & \gradientOne{0.094512} & \gradientOne{0.056026} & \gradientTwo{0.005469} & \gradientTwo{0.017724} \\ \hline
-		Topic       		 & \gradientOne{0.030162} & \gradientOne{0.012664} & \gradientTwo{0.024878} & \gradientTwo{0.002830} \\ \hline
-		Sentiment     	     & \gradientOne{0.208907} & \gradientOne{0.229479} & \gradientTwo{0.447129} & \gradientTwo{1.180669} \\ \hline
+		Unigrams             & \gradientOne{0.0968} & \gradientOne{0.1345} & \gradientTwo{0.1170} & \gradientTwo{0.3511} \\ \hline
+		Bigrams              & \gradientOne{0.0110} & \gradientOne{0.0349} & \gradientTwo{0.1501} & \gradientTwo{0.2947} \\ \hline
+		Trigrams             & \gradientOne{0.0151} & \gradientOne{0.0402} & \gradientTwo{1.3322} & \gradientTwo{1.9025} \\ \hline
+		Hateful Words        & \gradientOne{0.1653} & \gradientOne{0.2766} & \gradientTwo{0.2771} & \gradientTwo{0.5529} \\ \hline
+		Neutral Words        & \gradientOne{0.0780} & \gradientOne{0.0567} & \gradientTwo{0.0945} & \gradientTwo{0.2182} \\ \hline
+		Exclamation Marks	 & \gradientOne{0.0151} & \gradientOne{0.0122} & \gradientTwo{0.0108} & \gradientTwo{0.0435} \\ \hline
+		Question Marks    	 & \gradientOne{0.0158} & \gradientOne{0.0116} & \gradientTwo{0.0618} & \gradientTwo{0.0690} \\ \hline
+		Full Stop Marks  	 & \gradientOne{0.0505} & \gradientOne{0.0341} & \gradientTwo{0.0152} & \gradientTwo{0.0163} \\ \hline
+		Interjections        & \gradientOne{0.0012} & \gradientOne{0.0011} & \gradientTwo{0.0595} & \gradientTwo{0.1941} \\ \hline
+		All Caps Words       & \gradientOne{0.0308} & \gradientOne{0.0260} & \gradientTwo{0.0267} & \gradientTwo{0.1219} \\ \hline
+		Quotation Marks      & \gradientOne{0.0071} & \gradientOne{0.0070} & \gradientTwo{0.0762} & \gradientTwo{0.1611} \\ \hline
+		Words Total          & \gradientOne{0.1767} & \gradientOne{0.0883} & \gradientTwo{0.0221} & \gradientTwo{0.0487} \\ \hline
+		Laughing Expressions & \gradientOne{0.0029} & \gradientOne{0.0056} & \gradientTwo{0.1870} & \gradientTwo{0.1947} \\ \hline
+		Pattern Count        & \gradientOne{0.0945} & \gradientOne{0.0438} & \gradientTwo{0.0053} & \gradientTwo{0.0176} \\ \hline
+		Topic     	         & \gradientOne{0.0302} & \gradientOne{0.0095} & \gradientTwo{0.0337} & \gradientTwo{0.0650} \\ \hline
+		Sentiment            & \gradientOne{0.2089} & \gradientOne{0.2184} & \gradientTwo{0.4316} & \gradientTwo{1.1808} \\ \hline
 	\end{tabular}
 \end{table}
 
-The feature importance scores were extracted using the hyperparameter configuration from \ref{ch:app-A} for the unbalanced dataset. The feature importance scores for the Decision Tree and Random Forest were calculated automatically by sklearn and equal to the gini importance score for tree classifiers. The feature importance scores for the SVM and Logistic Regression model were taken as absolute values from the feature coefficients. As the feature importances from the Decision Tree and Random Forest respectively from the SVM and Logistic Regression model are semantically not the same, the color gradient of the feature importance scores should not be compared to each other.
+The feature importance scores were extracted using the hyperparameter configuration from \ref{ch:app-A} for the unbalanced dataset using ten-fold cross validation. The feature importance scores for the Decision Tree and Random Forest were calculated automatically by sklearn and equal to the gini importance score for tree classifiers. The feature importance scores for the SVM and Logistic Regression model were taken as absolute values from the feature coefficients. As the feature importances from the Decision Tree and Random Forest respectively from the SVM and Logistic Regression model are semantically not the same, the color gradient of the feature importance scores should not be compared to each other.
 
-Probably the most important feature for almost all classifiers represents the sentiment-based polarity score. Besides the sentiment the extracted n-gram dictionaries were also informative to decide between hate speech and non-hate speech. Besides the word count any other semantic features are almost not very decisive for the task of hate speech detection and compared to n-grams and polarity scores also the hate speech pattern count and topic assignment performed weakly. 
+Probably the most important feature for almost all classifiers represents the sentiment-based polarity score. Besides the sentiment the extracted n-gram dictionaries were also informative to decide between hate speech and non-hate speech. Besides the word count any other semantic features are almost not very decisive for the task of hate speech detection and compared to n-grams and polarity scores also the hate speech pattern count and topic assignment performed weakly. The values presented in \autoref{Tab:featureimportancesmax} tend to be stable and only vary in the hundredths range ($\le \pm$0.0X)
 
 \subsection{Hate speech statistics}
 \label{ch:experimentDb}
